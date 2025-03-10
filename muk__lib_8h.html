@@ -266,26 +266,25 @@ Here is the caller graph for this function:</div>
 <div class="fragment"><div class="line"><span class="lineno">  108</span>{</div>
 <div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (ptr == NULL || to_add == NULL)</div>
 <div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> (1);</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (*ptr != NULL)</div>
-<div class="line"><span class="lineno">  113</span>    {</div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__ambient.html">t_ambient</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701ada01eaec024a78f1d2e73b59e5d281251e">AMBIENT</a>)</div>
-<div class="line"><span class="lineno">  115</span>            free(*ptr);</div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701adada31f516cdf218b68b790fb31e8a6956">CAMERA</a>)</div>
-<div class="line"><span class="lineno">  117</span>        {</div>
-<div class="line"><span class="lineno">  118</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;origin);</div>
-<div class="line"><span class="lineno">  119</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;v_orient);</div>
-<div class="line"><span class="lineno">  120</span>            free(*ptr);</div>
-<div class="line"><span class="lineno">  121</span>        }</div>
-<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__light.html">t_light</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701adaf917d6c11c85b4ac32e30d1cc9da25eb">LIGHT</a>)</div>
-<div class="line"><span class="lineno">  123</span>        {</div>
-<div class="line"><span class="lineno">  124</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__light.html">t_light</a> *)*ptr)-&gt;origin);</div>
-<div class="line"><span class="lineno">  125</span>            free(*ptr);</div>
-<div class="line"><span class="lineno">  126</span>        }</div>
-<div class="line"><span class="lineno">  127</span>    }</div>
-<div class="line"><span class="lineno">  128</span>    *ptr = to_add;</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">return</span> (0);</div>
-<div class="line"><span class="lineno">  130</span>}</div>
+<div class="line"><span class="lineno">  111</span>    <span class="keywordflow">if</span> (*ptr != NULL)</div>
+<div class="line"><span class="lineno">  112</span>    {</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__ambient.html">t_ambient</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701ada01eaec024a78f1d2e73b59e5d281251e">AMBIENT</a>)</div>
+<div class="line"><span class="lineno">  114</span>            free(*ptr);</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701adada31f516cdf218b68b790fb31e8a6956">CAMERA</a>)</div>
+<div class="line"><span class="lineno">  116</span>        {</div>
+<div class="line"><span class="lineno">  117</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;origin);</div>
+<div class="line"><span class="lineno">  118</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__camera.html">t_camera</a> *)*ptr)-&gt;v_orient);</div>
+<div class="line"><span class="lineno">  119</span>            free(*ptr);</div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (((<a class="code hl_struct" href="structs__light.html">t_light</a> *)*ptr)-&gt;type == <a class="code hl_enumvalue" href="types_8h.html#a07fb55fb8ca681eee25e1f632b6701adaf917d6c11c85b4ac32e30d1cc9da25eb">LIGHT</a>)</div>
+<div class="line"><span class="lineno">  122</span>        {</div>
+<div class="line"><span class="lineno">  123</span>            <a class="code hl_function" href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a>(((<a class="code hl_struct" href="structs__light.html">t_light</a> *)*ptr)-&gt;origin);</div>
+<div class="line"><span class="lineno">  124</span>            free(*ptr);</div>
+<div class="line"><span class="lineno">  125</span>        }</div>
+<div class="line"><span class="lineno">  126</span>    }</div>
+<div class="line"><span class="lineno">  127</span>    *ptr = to_add;</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">return</span> (0);</div>
+<div class="line"><span class="lineno">  129</span>}</div>
 <div class="ttc" id="aadd__to__dptr_8c_html_ab28d26aa6d34d5c2a3b83b9ee519fec6"><div class="ttname"><a href="add__to__dptr_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a></div><div class="ttdeci">void free_matrix(t_matrix *mat)</div><div class="ttdef"><b>Definition</b> matrix_free.c:15</div></div>
 <div class="ttc" id="astructs__ambient_html"><div class="ttname"><a href="structs__ambient.html">s_ambient</a></div><div class="ttdoc">Ambient Light [Identifier A].</div><div class="ttdef"><b>Definition</b> types.h:122</div></div>
 <div class="ttc" id="astructs__camera_html"><div class="ttname"><a href="structs__camera.html">s_camera</a></div><div class="ttdoc">Camera [Identifier C].</div><div class="ttdef"><b>Definition</b> types.h:139</div></div>
