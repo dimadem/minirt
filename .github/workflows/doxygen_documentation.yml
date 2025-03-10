@@ -1,0 +1,28 @@
+name: Doxygen Documentation
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate Doxygen Documentation
+        uses: mattnotmitt/doxygen-action@v1.9.8
+        with:
+          working-directory: './DOC'
+          doxyfile-path: './Doxygen'
+
+      - name: push to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./DOC/html
+          publish_branch: gh-pages
