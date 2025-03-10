@@ -1,0 +1,9 @@
+<map id="ft_strdup" name="ft_strdup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="254,31,326,56"/>
+<area shape="rect" id="Node000002" href="$ft__strmapi_8c.html#a668b60557bfc9d60c2d3ccda8afadf49" title=" " alt="" coords="127,5,206,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,36,206,29,207,24,239,30"/>
+<area shape="rect" id="Node000003" href="$ft__substr_8c.html#a78c402cbf3d55b1374693c3b7d34f71d" title=" " alt="" coords="130,55,203,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,56,204,63,203,58,238,51"/>
+<area shape="rect" id="Node000004" href="$ft__strtrim_8c.html#a60352c5b39fab08469b3e28131a79e25" title=" " alt="" coords="5,55,79,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="115,70,79,70,79,65,115,65"/>
+</map>

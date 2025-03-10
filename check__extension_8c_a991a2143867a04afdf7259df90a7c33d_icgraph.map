@@ -1,0 +1,7 @@
+<map id="check_extension" name="check_extension">
+<area shape="rect" id="Node000001" title="Function specifically checking if the given file has expected extension." alt="" coords="252,5,370,31"/>
+<area shape="rect" id="Node000002" href="$input__validate_8c.html#a1497d4d5fc8fdfecbe3b36df53d2195f" title="Validating if argument count is 2 (exe and 1 extra) and the extra is a .rt file and we have permissio..." alt="" coords="103,5,204,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,21,205,21,205,16,236,16"/>
+<area shape="rect" id="Node000003" href="$mini__ray_8c.html#a0c99d968a34e803d378692bde2e3f18f" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>

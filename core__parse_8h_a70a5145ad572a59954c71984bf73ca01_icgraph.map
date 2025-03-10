@@ -1,0 +1,19 @@
+<map id="parse_assign_vec" name="parse_assign_vec">
+<area shape="rect" id="Node000001" title=" " alt="" coords="747,55,873,80"/>
+<area shape="rect" id="Node000002" href="$parse__camera__light_8c.html#a00b9b6a4aadecaaf341d2fc409582b39" title=" " alt="" coords="595,5,699,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="750,52,691,34,693,29,751,47"/>
+<area shape="rect" id="Node000007" href="$parse__objects_8c.html#a438a08a219ba336c395096067e52bb1b" title=" " alt="" coords="595,55,699,80"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="731,70,699,70,699,65,731,65"/>
+<area shape="rect" id="Node000008" href="$parse__objects_8c.html#a7e641794acee51578d8539e361635c47" title=" " alt="" coords="601,104,693,130"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="751,88,693,106,691,101,750,83"/>
+<area shape="rect" id="Node000003" href="$parse__main_8c.html#a92aa268ea4b3d5c808364ca73d913cbe" title=" " alt="" coords="429,55,547,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="589,39,533,57,531,51,588,34"/>
+<area shape="rect" id="Node000004" href="$parse__main_8c.html#a5d7da6ab7925ffda04b676ef38880723" title="Reading a line from the given .rt file and splitting the given line with the space (&#39; &#39;) delimiter...." alt="" coords="254,55,381,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="414,70,382,70,382,65,414,65"/>
+<area shape="rect" id="Node000005" href="$parse__main_8c.html#a62c4de2f960942eba61e7de12c387ae4" title="Entry function to parsing .rt file where the file is attempted to be opened, t_parse structure is ini..." alt="" coords="103,55,206,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="238,70,206,70,206,65,238,65"/>
+<area shape="rect" id="Node000006" href="$mini__ray_8c.html#a0c99d968a34e803d378692bde2e3f18f" title=" " alt="" coords="5,55,55,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="87,70,55,70,55,65,87,65"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="579,70,547,70,547,65,579,65"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="588,101,531,84,533,78,589,96"/>
+</map>

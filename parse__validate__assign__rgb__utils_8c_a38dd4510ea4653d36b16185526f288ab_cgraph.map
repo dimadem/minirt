@@ -1,0 +1,9 @@
+<map id="split_and_validate_components" name="split_and_validate_components">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,47,131,88"/>
+<area shape="rect" id="Node000002" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="211,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,48,195,30,197,35,132,53"/>
+<area shape="rect" id="Node000003" href="$LIBFT_2ft__split_8c.html#aa65c9de65051c8c589286cf133c4a1f4" title=" " alt="" coords="217,55,278,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,65,201,65,201,70,131,70"/>
+<area shape="rect" id="Node000004" href="$parse__utils_8c.html#a14e4a06978d8374fc830989e94b08140" title=" " alt="" coords="179,104,316,130"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="132,82,184,97,183,102,130,87"/>
+</map>

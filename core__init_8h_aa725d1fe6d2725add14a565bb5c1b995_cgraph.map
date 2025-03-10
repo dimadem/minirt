@@ -1,0 +1,12 @@
+<map id="init_lux" name="init_lux">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,67,56"/>
+<area shape="rect" id="Node000002" href="$cleanup_8c.html#a4d0401c5d47d3fbe2f286eae7eea7e19" title=" " alt="" coords="115,31,208,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,41,99,41,99,46,67,46"/>
+<area shape="rect" id="Node000003" href="$matrix__free_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6" title=" " alt="" coords="396,5,482,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,27,256,16,320,11,381,12,381,17,321,16,256,21,204,33"/>
+<area shape="rect" id="Node000004" href="$obj__free_8c.html#a17507d61054a4f286419903a51a478f8" title=" " alt="" coords="256,31,348,56"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="208,41,241,41,241,46,208,46"/>
+<area shape="rect" id="Node000005" href="$ft__putstr__fd_8c.html#acefce9ac519f8f8b7d3fde33dbafe469" title=" " alt="" coords="259,80,346,106"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="201,54,250,72,248,77,200,59"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="348,32,381,26,382,31,349,38"/>
+</map>

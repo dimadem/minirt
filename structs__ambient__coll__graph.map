@@ -1,0 +1,5 @@
+<map id="s_ambient" name="s_ambient">
+<area shape="rect" id="Node000001" title="Ambient Light [Identifier A]." alt="" coords="5,94,87,120"/>
+<area shape="rect" id="Node000002" href="$structs__trgb.html" title=" " alt="" coords="17,5,75,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="49,47,49,94,43,94,43,47"/>
+</map>

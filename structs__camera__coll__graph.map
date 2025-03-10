@@ -1,0 +1,7 @@
+<map id="s_camera" name="s_camera">
+<area shape="rect" id="Node000001" title="Camera [Identifier C]." alt="" coords="43,109,121,135"/>
+<area shape="rect" id="Node000002" href="$structs__matrix.html" title="n x m size matrix where values are stored in double **data" alt="" coords="5,5,76,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="43,46,46,65,52,84,69,107,65,110,47,86,40,66,38,47"/>
+<area shape="rect" id="Node000003" href="$structs__uv.html" title="UV Coordinates [Identifier uv]." alt="" coords="100,5,149,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,46,89,110,84,107,111,44"/>
+</map>

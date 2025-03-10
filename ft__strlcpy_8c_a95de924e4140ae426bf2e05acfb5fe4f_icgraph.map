@@ -1,0 +1,12 @@
+<map id="ft_strlcpy" name="ft_strlcpy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="374,31,449,56"/>
+<area shape="rect" id="Node000002" href="$ft__strdup_8c.html#aaacf33ac82063226a213d2ee49adc65f" title=" " alt="" coords="254,5,326,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,35,326,28,327,23,360,30"/>
+<area shape="rect" id="Node000004" href="$ft__substr_8c.html#a78c402cbf3d55b1374693c3b7d34f71d" title=" " alt="" coords="130,55,203,80"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="359,51,203,67,203,61,359,46"/>
+<area shape="rect" id="Node000003" href="$ft__strmapi_8c.html#a668b60557bfc9d60c2d3ccda8afadf49" title=" " alt="" coords="127,5,206,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,21,206,21,206,16,239,16"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="243,40,202,57,200,52,241,35"/>
+<area shape="rect" id="Node000005" href="$ft__strtrim_8c.html#a60352c5b39fab08469b3e28131a79e25" title=" " alt="" coords="5,55,79,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="115,70,79,70,79,65,115,65"/>
+</map>

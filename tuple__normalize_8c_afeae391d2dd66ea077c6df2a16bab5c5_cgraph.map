@@ -1,0 +1,5 @@
+<map id="tuple_normalize" name="tuple_normalize">
+<area shape="rect" id="Node000001" title="This function converts the given vector into its normalized vector. Normalize is used to convert the ..." alt="" coords="5,5,117,31"/>
+<area shape="rect" id="Node000002" href="$tuple__length_8c.html#ac1af431bd3ffc503762b0b4a6ce99f65" title="This function is used to calculate length of vectors using the x^2 + y^2 + z^2 = len^2 and finding th..." alt="" coords="165,5,256,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,16,149,16,149,21,117,21"/>
+</map>

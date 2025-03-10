@@ -1,0 +1,11 @@
+<map id="matrix_identity" name="matrix_identity">
+<area shape="rect" id="Node000001" title="Function that creates an identity matrix of size n 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1." alt="" coords="5,31,110,56"/>
+<area shape="rect" id="Node000002" href="$matrix__create_8c.html#a5291384d37d735f9c3fc33c03d2788ad" title=" " alt="" coords="158,31,257,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,41,142,41,142,46,110,46"/>
+<area shape="rect" id="Node000003" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="315,5,387,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,32,299,25,300,30,258,37"/>
+<area shape="rect" id="Node000004" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="305,55,396,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="258,49,290,55,289,60,257,54"/>
+<area shape="rect" id="Node000005" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="444,55,512,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="397,65,429,65,429,70,397,70"/>
+</map>

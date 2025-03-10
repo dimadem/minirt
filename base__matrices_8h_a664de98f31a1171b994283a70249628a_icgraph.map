@@ -1,0 +1,14 @@
+<map id="matrix_clone" name="matrix_clone">
+<area shape="rect" id="Node000001" title=" " alt="" coords="357,51,451,76"/>
+<area shape="rect" id="Node000002" href="$prepare__computations_8c.html#a260bb84a41e41fe52951d598804fb2fe" title=" " alt="" coords="5,25,155,51"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="370,44,341,28,308,15,259,9,210,10,163,18,124,27,122,22,162,12,209,5,260,3,310,10,343,23,373,39"/>
+<area shape="rect" id="Node000003" href="$ray__clone_8c.html#a2cec923765c270860af3d023b8236564" title=" " alt="" coords="218,25,294,51"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="341,55,294,47,295,42,342,50"/>
+<area shape="rect" id="Node000004" href="$reflect_8c.html#a9a14a2740fe14a6f96d7b3ef0cffeb61" title=" " alt="" coords="228,124,284,150"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="366,86,310,115,285,127,283,122,308,110,364,81"/>
+<area shape="rect" id="Node000006" href="$sphere__normal_8c.html#a7f90156067fc9db4452ca1b058c976e8" title=" " alt="" coords="203,75,309,100"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="342,76,310,81,309,76,341,71"/>
+<area shape="rect" id="Node000005" href="$lighting_8c.html#ad035411c7e850248af38e7d68bb0ddd4" title=" " alt="" coords="49,124,111,150"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="212,139,112,139,112,134,212,134"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="192,72,128,54,129,49,194,67"/>
+</map>

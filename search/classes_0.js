@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['s_5fambient_0',['s_ambient',['../structs__ambient.html',1,'']]],
+  ['s_5fcamera_1',['s_camera',['../structs__camera.html',1,'']]],
+  ['s_5fcomps_2',['s_comps',['../structs__comps.html',1,'']]],
+  ['s_5fcylinder_3',['s_cylinder',['../structs__object_1_1u__data_1_1s__cylinder.html',1,'s_object::u_data']]],
+  ['s_5fgnl_4',['s_gnl',['../structs__gnl.html',1,'']]],
+  ['s_5fimage_5',['s_image',['../structs__image.html',1,'']]],
+  ['s_5fisect_6',['s_isect',['../structs__isect.html',1,'']]],
+  ['s_5flight_7',['s_light',['../structs__light.html',1,'']]],
+  ['s_5flist_8',['s_list',['../structs__list.html',1,'']]],
+  ['s_5fmat_9',['s_mat',['../structs__mat.html',1,'']]],
+  ['s_5fmatrix_10',['s_matrix',['../structs__matrix.html',1,'']]],
+  ['s_5fobject_11',['s_object',['../structs__object.html',1,'']]],
+  ['s_5forient_12',['s_orient',['../structs__orient.html',1,'']]],
+  ['s_5fparse_13',['s_parse',['../structs__parse.html',1,'']]],
+  ['s_5fplane_14',['s_plane',['../structs__object_1_1u__data_1_1s__plane.html',1,'s_object::u_data']]],
+  ['s_5fray_15',['s_ray',['../structs__ray.html',1,'']]],
+  ['s_5frayt_16',['s_rayt',['../structs__rayt.html',1,'']]],
+  ['s_5fsphere_17',['s_sphere',['../structs__object_1_1u__data_1_1s__sphere.html',1,'s_object::u_data']]],
+  ['s_5ftrgb_18',['s_trgb',['../structs__trgb.html',1,'']]],
+  ['s_5ftuple_19',['s_tuple',['../structs__tuple.html',1,'']]],
+  ['s_5fuv_20',['s_uv',['../structs__uv.html',1,'']]]
+];

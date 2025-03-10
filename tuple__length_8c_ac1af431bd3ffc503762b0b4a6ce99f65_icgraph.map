@@ -1,0 +1,7 @@
+<map id="tuple_length" name="tuple_length">
+<area shape="rect" id="Node000001" title="This function is used to calculate length of vectors using the x^2 + y^2 + z^2 = len^2 and finding th..." alt="" coords="165,31,256,56"/>
+<area shape="rect" id="Node000002" href="$tuple__dot_8c.html#af0137a21bb74d89a29bbc017bdf99e91" title="Function that finds the dot (.) product of 2 vectors." alt="" coords="24,5,98,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,36,98,27,99,22,150,31"/>
+<area shape="rect" id="Node000003" href="$tuple__normalize_8c.html#afeae391d2dd66ea077c6df2a16bab5c5" title="This function converts the given vector into its normalized vector. Normalize is used to convert the ..." alt="" coords="5,55,117,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,56,118,61,117,56,149,51"/>
+</map>

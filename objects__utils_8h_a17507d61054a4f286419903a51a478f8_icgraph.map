@@ -1,0 +1,22 @@
+<map id="free_objects" name="free_objects">
+<area shape="rect" id="Node000001" title=" " alt="" coords="571,132,663,158"/>
+<area shape="rect" id="Node000002" href="$cleanup_8c.html#a4d0401c5d47d3fbe2f286eae7eea7e19" title=" " alt="" coords="429,132,523,158"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="555,148,523,148,523,142,555,142"/>
+<area shape="rect" id="Node000003" href="$init__lux_8c.html#aa725d1fe6d2725add14a565bb5c1b995" title=" " alt="" coords="124,5,185,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,121,423,84,403,67,380,53,329,34,276,23,226,19,186,19,186,14,226,14,277,18,331,29,383,48,406,63,427,81,459,118"/>
+<area shape="rect" id="Node000004" href="$mini__ray_8c.html#a0c99d968a34e803d378692bde2e3f18f" title=" " alt="" coords="5,107,55,132"/>
+<area shape="poly" id="edge8_Node000002_Node000004" title=" " alt="" coords="425,129,381,117,303,99,242,89,181,87,103,97,56,111,54,106,102,92,181,82,243,84,304,94,382,112,426,124"/>
+<area shape="rect" id="Node000005" href="$init__mlx_8c.html#a1a6dc2f71f09a4fb49ab62f2e83ef424" title=" " alt="" coords="122,107,187,132"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="414,143,187,125,188,119,414,137"/>
+<area shape="rect" id="Node000006" href="$input__validate_8c.html#a1497d4d5fc8fdfecbe3b36df53d2195f" title="Validating if argument count is 2 (exe and 1 extra) and the extra is a .rt file and we have permissio..." alt="" coords="267,157,368,183"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="414,157,369,165,368,159,413,152"/>
+<area shape="rect" id="Node000007" href="$parse__main_8c.html#a62c4de2f960942eba61e7de12c387ae4" title="Entry function to parsing .rt file where the file is attempted to be opened, t_parse structure is ini..." alt="" coords="103,208,206,234"/>
+<area shape="poly" id="edge9_Node000002_Node000007" title=" " alt="" coords="444,169,415,185,382,198,337,210,290,217,207,223,206,218,289,212,336,204,380,193,412,180,441,164"/>
+<area shape="rect" id="Node000008" href="$parse__main_8c.html#a5d7da6ab7925ffda04b676ef38880723" title="Reading a line from the given .rt file and splitting the given line with the space (&#39; &#39;) delimiter...." alt="" coords="254,259,381,284"/>
+<area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="456,171,424,206,383,242,351,260,349,256,380,237,420,202,453,167"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="119,42,104,52,45,108,41,104,101,48,115,38"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="106,122,55,122,55,117,106,117"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="251,169,179,161,102,147,54,132,56,127,103,142,180,156,252,164"/>
+<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="115,201,101,191,41,135,45,131,104,187,119,197"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="259,256,197,237,199,232,260,251"/>
+</map>

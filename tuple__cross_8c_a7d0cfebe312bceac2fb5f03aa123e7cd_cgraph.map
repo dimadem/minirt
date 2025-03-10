@@ -1,0 +1,9 @@
+<map id="tuple_cross" name="tuple_cross">
+<area shape="rect" id="Node000001" title="This function find the cross product of 2 vectors (tup1 x tup2). This is used to find a vertical vect..." alt="" coords="5,31,94,56"/>
+<area shape="rect" id="Node000002" href="$errmsg_8c.html#a2fad0db9f0b078aa69ed34ccd60ad0c1" title=" " alt="" coords="157,5,218,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,33,141,24,142,29,94,38"/>
+<area shape="rect" id="Node000003" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="142,55,233,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,49,127,54,126,60,94,54"/>
+<area shape="rect" id="Node000004" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="281,55,348,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="233,65,266,65,266,70,233,70"/>
+</map>

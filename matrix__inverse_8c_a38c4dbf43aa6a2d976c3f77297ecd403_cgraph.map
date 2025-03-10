@@ -1,0 +1,16 @@
+<map id="matrix_inverse" name="matrix_inverse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,111,82"/>
+<area shape="rect" id="Node000002" href="$matrix__free_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6" title=" " alt="" coords="168,5,254,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,53,155,34,156,39,100,58"/>
+<area shape="rect" id="Node000003" href="$matrix__create_8c.html#a5291384d37d735f9c3fc33c03d2788ad" title=" " alt="" coords="311,81,410,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,71,296,86,295,91,111,76"/>
+<area shape="rect" id="Node000007" href="$matrix__identity_8c.html#a841c87975e3b38adb536d63ec35456e5" title="Function that creates an identity matrix of size n 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1." alt="" coords="159,107,263,132"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="100,80,156,99,155,104,98,85"/>
+<area shape="rect" id="Node000004" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="468,56,540,82"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="410,83,452,75,453,80,411,88"/>
+<area shape="rect" id="Node000005" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="458,105,550,131"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="411,100,443,105,442,111,410,105"/>
+<area shape="rect" id="Node000006" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="598,105,665,131"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="550,116,582,116,582,121,550,121"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="263,108,295,102,296,108,264,113"/>
+</map>

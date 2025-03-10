@@ -1,0 +1,25 @@
+<map id="matrix_identity" name="matrix_identity">
+<area shape="rect" id="Node000001" title="Function that creates an identity matrix of size n 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1." alt="" coords="563,177,668,203"/>
+<area shape="rect" id="Node000002" href="$matrix__inverse_8c.html#a38c4dbf43aa6a2d976c3f77297ecd403" title=" " alt="" coords="401,29,506,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="597,165,562,116,539,91,514,68,495,58,498,53,517,64,543,87,566,113,601,162"/>
+<area shape="rect" id="Node000007" href="$scale_8c.html#a48fd6dec69f122197f7c6b5967c1319c" title=" " alt="" coords="402,79,506,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="587,170,553,143,514,118,492,107,495,103,517,113,556,139,590,165"/>
+<area shape="rect" id="Node000008" href="$translate_8c.html#a520d09bd7d70f7e5ab59d81bbb7468d9" title=" " alt="" coords="392,128,515,154"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="556,175,498,157,499,152,557,170"/>
+<area shape="rect" id="Node000009" href="$rotate_8c.html#a2a9331f58a373dad2ac3c24794183cc3" title="Creates a 4x4 rotation matrix around the X axis (left/right)" alt="" coords="415,177,492,203"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="548,193,493,193,493,188,548,188"/>
+<area shape="rect" id="Node000010" href="$rotate_8c.html#a37fb509db7d1ecb9a2dc830e8d6c4d3c" title="Creates a 4x4 rotation matrix around the Y axis (front/back)" alt="" coords="415,227,492,252"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="557,211,493,230,492,225,556,206"/>
+<area shape="rect" id="Node000011" href="$rotate_8c.html#af3cde01a934f6c4b452608316f91bc2f" title="Creates a 4x4 rotation matrix around the Z axis (vertical)" alt="" coords="415,276,492,302"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="590,215,556,241,517,267,494,278,492,273,514,263,553,237,587,211"/>
+<area shape="rect" id="Node000012" href="$shearing_8c.html#ab7ead1278f06784d5d1bb0925af42fc3" title="This function is used to shear given objects." alt="" coords="419,325,489,351"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="601,218,566,267,543,293,517,316,490,330,488,326,514,312,539,290,562,264,597,215"/>
+<area shape="rect" id="Node000003" href="$ray__intersect_8c.html#a20cc82316845ecb42e8e8c218ff72a73" title=" " alt="" coords="203,5,344,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="385,36,344,30,344,25,386,31"/>
+<area shape="rect" id="Node000005" href="$sphere__normal_8c.html#a7f90156067fc9db4452ca1b058c976e8" title=" " alt="" coords="220,55,327,80"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="386,54,327,63,327,57,385,49"/>
+<area shape="rect" id="Node000004" href="$ray__world__intersect_8c.html#a2e629895d43f70cc7814ef4b0c89cf0d" title=" " alt="" coords="13,5,147,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="187,21,147,21,147,16,187,16"/>
+<area shape="rect" id="Node000006" href="$prepare__computations_8c.html#a260bb84a41e41fe52951d598804fb2fe" title=" " alt="" coords="5,55,155,80"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,70,155,70,155,65,205,65"/>
+</map>

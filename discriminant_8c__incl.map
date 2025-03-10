@@ -1,0 +1,19 @@
+<map id="/github/workspace/SRC/BASE/HELPERS/discriminant.c" name="/github/workspace/SRC/BASE/HELPERS/discriminant.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="84,5,294,46"/>
+<area shape="rect" id="Node000002" href="$base__helpers_8h.html" title=" " alt="" coords="5,94,114,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,49,94,88,91,83,155,44"/>
+<area shape="rect" id="Node000007" href="$base__tuples_8h.html" title=" " alt="" coords="138,94,240,120"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="192,46,192,78,186,78,186,46"/>
+<area shape="rect" id="Node000008" href="$base__matrices_8h.html" title=" " alt="" coords="264,94,380,120"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="223,44,290,83,287,88,221,49"/>
+<area shape="rect" id="Node000003" href="$types_8h.html" title=" " alt="" coords="158,168,220,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,118,155,157,152,162,80,123"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="60,241,134,267"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,196,126,234,122,230,172,192"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="158,241,220,267"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="192,194,192,226,186,226,186,194"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="244,241,307,267"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="205,192,251,229,248,233,202,196"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="192,120,192,152,186,152,186,120"/>
+<area shape="poly" id="edge9_Node000008_Node000003" title=" " alt="" coords="301,123,226,162,224,158,298,118"/>
+</map>

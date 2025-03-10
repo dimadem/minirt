@@ -1,0 +1,7 @@
+<map id="s_light" name="s_light">
+<area shape="rect" id="Node000001" title="Spot Light [Identifier L]." alt="" coords="55,94,114,120"/>
+<area shape="rect" id="Node000002" href="$structs__matrix.html" title="n x m size matrix where values are stored in double **data" alt="" coords="5,5,76,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="55,44,68,69,80,92,76,95,63,71,50,46"/>
+<area shape="rect" id="Node000003" href="$structs__trgb.html" title=" " alt="" coords="100,5,157,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="118,46,93,95,88,92,113,44"/>
+</map>

@@ -1,0 +1,46 @@
+<map id="parse_assign_trgb" name="parse_assign_trgb">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,160,133,186"/>
+<area shape="rect" id="Node000002" href="$parse__validate__assign__rgb__utils_8c.html#accb5a2d4b08a89039765ec742b587b41" title=" " alt="" coords="185,36,314,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,157,121,115,149,92,179,71,188,66,190,71,182,75,152,96,125,119,84,161"/>
+<area shape="rect" id="Node000003" href="$colour_8c.html#a06b140860c7d645321abb45ead50e04b" title=" " alt="" coords="407,36,463,62"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="73,159,86,128,109,90,139,51,158,34,179,21,206,11,235,5,292,5,347,15,393,29,391,34,346,20,292,10,235,10,208,16,182,26,162,39,143,55,113,93,91,131,78,161"/>
+<area shape="rect" id="Node000005" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="399,296,471,322"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="80,184,119,236,148,263,182,285,233,303,287,311,338,314,383,312,383,317,338,319,286,317,232,308,179,290,145,268,115,239,76,188"/>
+<area shape="rect" id="Node000006" href="$parse__utils_8c.html#a14e4a06978d8374fc830989e94b08140" title=" " alt="" coords="366,185,503,211"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="133,175,351,190,351,195,133,180"/>
+<area shape="rect" id="Node000007" href="$parse__validate__assign__rgb__utils_8c.html#ab71c9a28c124cbbec7afa314c3595d68" title=" " alt="" coords="182,85,317,111"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="97,157,180,120,194,114,196,119,182,125,99,162"/>
+<area shape="rect" id="Node000011" href="$parse__validate__assign__rgb__utils_8c.html#a38dd4510ea4653d36b16185526f288ab" title=" " alt="" coords="187,235,312,276"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="100,184,190,226,188,231,98,189"/>
+<area shape="rect" id="Node000013" href="$parse__validate__assign__rgb__utils_8c.html#a00d4a3c3a01ac083aacdf897546cc68c" title=" " alt="" coords="181,135,318,160"/>
+<area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="133,161,165,157,166,162,133,167"/>
+<area shape="rect" id="Node000014" href="$parse__validate__assign__rgb__utils_8c.html#a61e41bb10d4cefab87e662ece1e0b5ca" title=" " alt="" coords="184,351,315,376"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="79,185,117,252,147,293,182,329,199,341,196,345,179,334,143,296,113,255,74,187"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,46,391,46,391,52,315,52"/>
+<area shape="rect" id="Node000004" href="$ft__atoi_8c.html#afad2ec371b4188602da9a94db687cb16" title=" " alt="" coords="406,85,463,111"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="301,60,392,84,390,89,300,65"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="408,37,403,27,406,18,417,12,435,9,454,12,464,19,461,23,452,17,435,15,418,17,410,21,408,27,412,34"/>
+<area shape="poly" id="edge12_Node000007_Node000003" title=" " alt="" coords="300,82,391,58,392,63,301,87"/>
+<area shape="poly" id="edge13_Node000007_Node000004" title=" " alt="" coords="317,96,390,96,390,101,317,101"/>
+<area shape="poly" id="edge14_Node000007_Node000006" title=" " alt="" coords="299,109,319,120,335,133,344,146,353,158,368,171,377,176,374,181,364,175,349,162,340,149,331,137,317,124,296,114"/>
+<area shape="rect" id="Node000008" href="$check__range_8c.html#a31d1b2f2b0c6260cc272247fb1e281e4" title=" " alt="" coords="387,135,482,160"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="301,109,373,128,371,133,300,114"/>
+<area shape="rect" id="Node000009" href="$ft__atod_8c.html#ad55518c88cf22904ac355596269be400" title=" " alt="" coords="561,175,623,200"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="483,157,547,174,546,179,482,162"/>
+<area shape="rect" id="Node000010" href="$LIBFT_2ft__isdigit_8c.html#a2cf15b8a1a277d1e2ce3654101a2003d" title=" " alt="" coords="684,269,755,295"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="612,199,690,258,687,262,609,203"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="313,271,384,292,383,297,312,276"/>
+<area shape="poly" id="edge18_Node000011_Node000006" title=" " alt="" coords="312,234,376,214,377,219,313,239"/>
+<area shape="rect" id="Node000012" href="$LIBFT_2ft__split_8c.html#aa65c9de65051c8c589286cf133c4a1f4" title=" " alt="" coords="405,243,465,268"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="313,253,389,253,389,258,313,258"/>
+<area shape="poly" id="edge20_Node000013_Node000008" title=" " alt="" coords="318,145,371,145,371,150,318,150"/>
+<area shape="rect" id="Node000015" href="$ft__strval_8c.html#adc216c7cf83a710b028bd1501e3d4e6b" title="Checks if a given string consists of valid characters." alt="" coords="401,345,469,371"/>
+<area shape="poly" id="edge22_Node000014_Node000015" title=" " alt="" coords="315,359,385,357,385,362,315,364"/>
+<area shape="poly" id="edge27_Node000015_Node000010" title=" " alt="" coords="468,345,502,332,526,318,550,305,611,290,669,282,669,288,612,295,552,310,528,322,505,337,470,350"/>
+<area shape="rect" id="Node000016" href="$LIBFT_2ft__isalnum_8c.html#a9c2c3821ea43ebdf97de07b123503f8b" title=" " alt="" coords="551,320,633,346"/>
+<area shape="poly" id="edge23_Node000015_Node000016" title=" " alt="" coords="469,350,536,339,536,344,470,355"/>
+<area shape="rect" id="Node000017" href="$LIBFT_2ft__isalpha_8c.html#ac283963beaa3b8c7d09b78851cda297e" title=" " alt="" coords="681,345,758,371"/>
+<area shape="poly" id="edge26_Node000015_Node000017" title=" " alt="" coords="469,356,665,356,665,361,469,361"/>
+<area shape="poly" id="edge25_Node000016_Node000010" title=" " alt="" coords="625,317,670,299,672,304,627,322"/>
+<area shape="poly" id="edge24_Node000016_Node000017" title=" " alt="" coords="634,338,666,345,665,350,633,344"/>
+</map>

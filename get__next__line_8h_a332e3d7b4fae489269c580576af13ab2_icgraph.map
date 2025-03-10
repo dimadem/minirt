@@ -1,0 +1,13 @@
+<map id="dealloc" name="dealloc">
+<area shape="rect" id="Node000001" title=" " alt="" coords="696,5,758,31"/>
+<area shape="rect" id="Node000002" href="$get__next__line_8c.html#a49f935d849fec7e78b1ca1451f8c4b09" title=" " alt="" coords="575,5,648,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="680,21,648,21,648,16,680,16"/>
+<area shape="rect" id="Node000003" href="$get__next__line_8c.html#a78d68a5f50a6eec0380ce25b4a1bd5b7" title=" " alt="" coords="429,5,527,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="559,21,527,21,527,16,559,16"/>
+<area shape="rect" id="Node000004" href="$parse__main_8c.html#a5d7da6ab7925ffda04b676ef38880723" title="Reading a line from the given .rt file and splitting the given line with the space (&#39; &#39;) delimiter...." alt="" coords="254,5,381,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="414,21,382,21,382,16,414,16"/>
+<area shape="rect" id="Node000005" href="$parse__main_8c.html#a62c4de2f960942eba61e7de12c387ae4" title="Entry function to parsing .rt file where the file is attempted to be opened, t_parse structure is ini..." alt="" coords="103,5,206,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="238,21,206,21,206,16,238,16"/>
+<area shape="rect" id="Node000006" href="$mini__ray_8c.html#a0c99d968a34e803d378692bde2e3f18f" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="t_trgb_to_addr" name="t_trgb_to_addr">
+<area shape="rect" id="Node000001" title="This function convert t_trgb to char pointer." alt="" coords="5,29,110,55"/>
+<area shape="rect" id="Node000002" href="$colour_8c.html#a06b140860c7d645321abb45ead50e04b" title=" " alt="" coords="158,29,214,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,40,142,40,142,45,110,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="163,30,159,21,162,11,171,5,186,3,202,5,210,12,207,16,200,10,186,8,173,10,166,14,165,20,168,28"/>
+</map>

@@ -1,0 +1,34 @@
+<map id="sphere_normal" name="sphere_normal">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,181,112,207"/>
+<area shape="rect" id="Node000002" href="$matrix__free_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6" title=" " alt="" coords="344,5,429,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,179,99,124,126,93,158,67,200,46,245,32,328,18,329,23,246,37,202,51,161,71,130,97,103,127,69,182"/>
+<area shape="rect" id="Node000003" href="$matrix__clone_8c.html#a664de98f31a1171b994283a70249628a" title=" " alt="" coords="172,269,266,295"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="85,205,181,259,179,264,82,210"/>
+<area shape="rect" id="Node000008" href="$matrix__inverse_8c.html#a38c4dbf43aa6a2d976c3f77297ecd403" title=" " alt="" coords="166,81,272,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="80,178,182,113,185,118,83,183"/>
+<area shape="rect" id="Node000010" href="$matrix__multiple_8c.html#a6aa64cfb17a064fdea66fdf14a2a426e" title=" " alt="" coords="165,207,273,232"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="112,200,150,206,149,211,111,205"/>
+<area shape="rect" id="Node000012" href="$matrix__normalize_8c.html#a35a688dc70b34d031fa58218f8bcdbdd" title=" " alt="" coords="160,345,278,371"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="73,206,111,251,162,306,192,333,188,337,158,309,107,255,69,209"/>
+<area shape="rect" id="Node000014" href="$matrix__transpose_8c.html#a70a4847189f00eb79dd2d8f03fd8afa6" title=" " alt="" coords="326,156,446,182"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="112,187,310,172,311,177,112,193"/>
+<area shape="rect" id="Node000004" href="$matrix__create_8c.html#a5291384d37d735f9c3fc33c03d2788ad" title=" " alt="" coords="494,156,594,182"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,293,300,303,348,309,398,307,422,302,445,293,473,274,497,248,529,194,534,197,501,251,477,278,448,298,424,307,399,313,348,315,299,308,258,298"/>
+<area shape="rect" id="Node000005" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="651,131,724,156"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="594,157,635,150,636,155,595,163"/>
+<area shape="rect" id="Node000006" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="642,180,733,206"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="595,175,627,180,626,185,594,180"/>
+<area shape="rect" id="Node000007" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="781,180,848,206"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="733,190,766,190,766,196,733,196"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="245,78,325,40,336,35,338,40,327,45,247,83"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="273,102,447,141,480,149,479,154,446,146,271,107"/>
+<area shape="rect" id="Node000009" href="$matrix__identity_8c.html#a841c87975e3b38adb536d63ec35456e5" title="Function that creates an identity matrix of size n 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1." alt="" coords="334,55,438,80"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="271,83,318,76,319,81,272,88"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="415,79,448,97,515,144,512,149,445,102,412,83"/>
+<area shape="poly" id="edge14_Node000010_Node000004" title=" " alt="" coords="273,213,355,205,446,192,482,184,483,189,447,197,356,210,274,218"/>
+<area shape="rect" id="Node000011" href="$errmsg_8c.html#a2fad0db9f0b078aa69ed34ccd60ad0c1" title=" " alt="" coords="356,257,417,283"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="265,230,341,254,340,259,263,235"/>
+<area shape="rect" id="Node000013" href="$matrix__length_8c.html#a17fc3dee2a35d639486d28c848d3bc82" title=" " alt="" coords="337,359,435,384"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="278,360,322,364,321,369,278,366"/>
+<area shape="poly" id="edge18_Node000014_Node000004" title=" " alt="" coords="447,166,479,166,479,172,447,172"/>
+</map>

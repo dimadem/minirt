@@ -1,0 +1,14 @@
+<map id="matrix_dot" name="matrix_dot">
+<area shape="rect" id="Node000001" title="Function that finds the dot (.) product of 2 vectors." alt="" coords="515,56,597,82"/>
+<area shape="rect" id="Node000002" href="$discriminant_8c.html#aec39a15e88725e65db99b439a7732f81" title=" " alt="" coords="376,5,467,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="505,52,457,34,459,29,507,47"/>
+<area shape="rect" id="Node000005" href="$lighting_8c.html#ad035411c7e850248af38e7d68bb0ddd4" title=" " alt="" coords="226,81,289,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="500,76,289,94,289,89,500,71"/>
+<area shape="rect" id="Node000006" href="$reflect_8c.html#a9a14a2740fe14a6f96d7b3ef0cffeb61" title=" " alt="" coords="394,107,450,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="507,90,451,112,449,107,505,85"/>
+<area shape="rect" id="Node000003" href="$ray__intersect_8c.html#a20cc82316845ecb42e8e8c218ff72a73" title=" " alt="" coords="187,5,328,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="360,21,329,21,329,16,360,16"/>
+<area shape="rect" id="Node000004" href="$ray__world__intersect_8c.html#a2e629895d43f70cc7814ef4b0c89cf0d" title=" " alt="" coords="5,5,139,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,21,139,21,139,16,171,16"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="378,115,289,102,289,96,378,110"/>
+</map>

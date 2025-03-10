@@ -1,0 +1,19 @@
+<map id="render_main" name="render_main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,128,98,154"/>
+<area shape="rect" id="Node000002" href="$create__image_8c.html#a5870ff24682e6d8f25ff2b7ec0ecc920" title=" " alt="" coords="154,79,253,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,125,146,107,148,112,94,130"/>
+<area shape="rect" id="Node000008" href="$cleanup_8c.html#abe685ee14db8cb48a187ccdbedadca30" title=" " alt="" coords="157,128,250,154"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="98,138,141,138,141,144,98,144"/>
+<area shape="rect" id="Node000009" href="$cleanup_8c.html#ab1315e0ec5e8591f9dcfd84f1fdcd624" title=" " alt="" coords="146,177,261,203"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="94,152,148,169,146,174,93,157"/>
+<area shape="rect" id="Node000003" href="$create__ppm_8c.html#a53e58fa0b2bc265bf63827fef5488f92" title="This function create PPM file based on ASCII characters." alt="" coords="309,5,422,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="231,76,308,40,318,35,321,40,310,45,234,80"/>
+<area shape="rect" id="Node000004" href="$obj__render_8c.html#af31454c51253a1a45f89fed96eecb24e" title=" " alt="" coords="325,55,406,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="253,82,309,73,310,78,254,87"/>
+<area shape="rect" id="Node000005" href="$create__image_8c.html#aecb792df82df4a862294d3c25be0f7be" title=" " alt="" coords="312,104,419,130"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="254,97,297,103,296,109,253,102"/>
+<area shape="rect" id="Node000006" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="320,153,411,179"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="239,102,262,113,310,140,319,144,317,149,308,145,260,118,237,107"/>
+<area shape="rect" id="Node000007" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="470,153,538,179"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="412,164,455,164,455,169,412,169"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="/github/workspace/INC/core_parse.h" name="/github/workspace/INC/core_parse.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="789,5,943,46"/>
+<area shape="rect" id="Node000002" href="$parse__assign__coord__utils_8c.html" title=" " alt="" coords="5,94,196,150"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="774,35,518,56,363,74,209,97,196,99,195,94,208,91,363,68,518,51,773,30"/>
+<area shape="rect" id="Node000003" href="$parse__camera__light_8c.html" title=" " alt="" coords="220,94,416,150"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="774,42,612,65,429,97,417,99,416,94,428,91,611,60,773,36"/>
+<area shape="rect" id="Node000004" href="$parse__main_8c.html" title=" " alt="" coords="440,102,630,142"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="783,53,605,103,604,98,781,48"/>
+<area shape="rect" id="Node000005" href="$parse__objects_8c.html" title=" " alt="" coords="654,102,859,142"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="834,58,781,103,777,99,830,54"/>
+<area shape="rect" id="Node000006" href="$parse__utils_8c.html" title=" " alt="" coords="883,102,1070,142"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="902,54,955,99,952,103,898,58"/>
+<area shape="rect" id="Node000007" href="$parse__validate__assign__rgb__utils_8c.html" title=" " alt="" coords="1094,94,1291,150"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="949,48,1099,91,1097,96,948,53"/>
+<area shape="rect" id="Node000008" href="$parse__validate__obj__utils_8c.html" title=" " alt="" coords="1315,94,1513,150"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="959,36,1120,60,1304,91,1316,94,1314,99,1303,97,1119,65,958,42"/>
+<area shape="rect" id="Node000009" href="$mini__ray_8c.html" title=" " alt="" coords="1536,102,1694,142"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="959,28,1215,48,1370,66,1525,91,1554,98,1553,103,1524,97,1370,71,1215,53,958,34"/>
+</map>

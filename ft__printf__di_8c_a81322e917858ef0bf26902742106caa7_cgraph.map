@@ -1,0 +1,8 @@
+<map id="ft_printf_di" name="ft_printf_di">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,88,55"/>
+<area shape="rect" id="Node000002" href="$ft__putnbr__fd_8c.html#a63cc0aec12256d125d3f85e472280972" title=" " alt="" coords="136,29,226,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,40,120,40,120,45,88,45"/>
+<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="157,30,153,21,156,11,165,5,181,3,198,5,206,12,203,16,195,10,181,8,167,10,160,14,158,20,162,28"/>
+<area shape="rect" id="Node000003" href="$ft__putchar__fd_8c.html#a8ee15a511946c1397bd2bdea4aed6aee" title=" " alt="" coords="274,29,371,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,40,258,40,258,45,227,45"/>
+</map>

@@ -1,0 +1,37 @@
+<map id="s_parse" name="s_parse">
+<area shape="rect" id="Node000001" title=" " alt="" coords="372,489,440,515"/>
+<area shape="rect" id="Node000002" href="$structs__rayt.html" title="Raytracer main structure." alt="" coords="378,401,434,426"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="409,442,409,489,403,489,403,442"/>
+<area shape="rect" id="Node000003" href="$structs__image.html" title=" " alt="" coords="182,312,252,338"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,352,226,364,234,375,258,387,297,396,378,407,377,412,296,402,257,392,230,379,222,367,217,354"/>
+<area shape="rect" id="Node000004" href="$structs__light.html" title="Spot Light [Identifier L]." alt="" coords="639,117,698,142"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="654,156,574,257,518,319,458,379,427,402,424,398,455,375,515,316,570,253,649,152"/>
+<area shape="rect" id="Node000005" href="$structs__matrix.html" title="n x m size matrix where values are stored in double **data" alt="" coords="240,5,311,31"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="326,20,436,31,488,40,525,53,534,60,539,68,551,83,571,93,588,97,628,106,645,114,643,118,627,112,586,102,569,98,548,87,534,71,530,64,522,57,487,46,435,36,326,25"/>
+<area shape="rect" id="Node000008" href="$structs__camera.html" title="Camera [Identifier C]." alt="" coords="74,117,152,142"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="225,23,178,33,156,43,137,57,127,70,120,86,115,117,110,116,115,85,122,68,133,53,153,38,177,28,224,18"/>
+<area shape="rect" id="Node000012" href="$structs__object_1_1u__data_1_1s__sphere.html" title="Sphere Object [Identifier sp]." alt="" coords="183,109,312,150"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="227,32,208,42,193,56,189,70,193,84,213,107,209,110,189,86,183,70,189,54,205,38,224,27"/>
+<area shape="rect" id="Node000013" href="$structs__object_1_1u__data_1_1s__plane.html" title="Plane Object [Identifier pl]." alt="" coords="335,109,464,150"/>
+<area shape="poly" id="edge17_Node000013_Node000005" title=" " alt="" coords="272,47,273,66,279,83,301,97,336,110,334,115,298,102,275,87,267,67,267,47"/>
+<area shape="rect" id="Node000014" href="$structs__object_1_1u__data_1_1s__cylinder.html" title="Cylinder Object [Identifier cy]." alt="" coords="487,109,616,150"/>
+<area shape="poly" id="edge20_Node000014_Node000005" title=" " alt="" coords="326,27,357,37,386,53,400,68,412,83,443,96,488,109,486,115,441,101,409,87,396,72,383,57,355,42,325,32"/>
+<area shape="rect" id="Node000006" href="$structs__trgb.html" title=" " alt="" coords="589,5,647,31"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="644,41,652,54,665,87,670,115,665,116,659,88,648,56,640,44"/>
+<area shape="rect" id="Node000007" href="$structs__ambient.html" title="Ambient Light [Identifier A]." alt="" coords="692,174,773,199"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="663,29,682,39,699,53,717,84,728,117,735,173,730,174,723,118,712,86,695,57,679,43,660,34"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="574,24,451,34,391,44,350,57,337,71,325,87,290,111,287,106,321,83,333,67,347,53,390,39,450,29,574,19"/>
+<area shape="poly" id="edge18_Node000013_Node000006" title=" " alt="" coords="575,29,534,40,494,57,478,71,464,87,432,111,429,106,460,83,475,67,491,53,532,35,574,24"/>
+<area shape="poly" id="edge21_Node000014_Node000006" title=" " alt="" coords="611,47,591,86,573,110,568,107,586,84,606,44"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="722,215,700,252,669,297,629,342,582,379,545,396,505,407,435,415,434,410,504,402,543,391,579,374,626,338,665,294,696,249,718,212"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="138,151,395,398,392,402,134,155"/>
+<area shape="rect" id="Node000009" href="$structs__uv.html" title="UV Coordinates [Identifier uv]." alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="27,46,28,66,34,84,51,102,74,114,72,119,48,106,29,86,22,67,22,47"/>
+<area shape="rect" id="Node000010" href="$structs__object.html" title="Object [Identifier O]." alt="" coords="371,312,441,338"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="409,353,409,400,403,400,403,353"/>
+<area shape="rect" id="Node000011" href="$unions__object_1_1u__data.html" title=" " alt="" coords="348,223,464,249"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="409,265,409,312,403,312,403,265"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="291,156,389,221,386,225,288,161"/>
+<area shape="poly" id="edge16_Node000011_Node000013" title=" " alt="" coords="404,165,408,223,403,223,399,165"/>
+<area shape="poly" id="edge19_Node000011_Node000014" title=" " alt="" coords="513,161,424,225,421,221,510,157"/>
+</map>

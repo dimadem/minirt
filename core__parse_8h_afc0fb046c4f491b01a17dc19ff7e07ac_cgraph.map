@@ -1,0 +1,20 @@
+<map id="validate_ambient" name="validate_ambient">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,125,119"/>
+<area shape="rect" id="Node000002" href="$check__range_8c.html#a31d1b2f2b0c6260cc272247fb1e281e4" title=" " alt="" coords="194,19,289,44"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,90,194,48,196,53,98,95"/>
+<area shape="rect" id="Node000005" href="$ft__strval_8c.html#adc216c7cf83a710b028bd1501e3d4e6b" title="Checks if a given string consists of valid characters." alt="" coords="207,93,276,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="125,104,192,104,192,109,125,109"/>
+<area shape="rect" id="Node000008" href="$parse__utils_8c.html#a14e4a06978d8374fc830989e94b08140" title=" " alt="" coords="173,143,310,168"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="115,117,179,135,178,141,113,122"/>
+<area shape="rect" id="Node000003" href="$ft__atod_8c.html#ad55518c88cf22904ac355596269be400" title=" " alt="" coords="368,5,429,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,25,352,19,353,25,290,30"/>
+<area shape="rect" id="Node000004" href="$LIBFT_2ft__isdigit_8c.html#a2cf15b8a1a277d1e2ce3654101a2003d" title=" " alt="" coords="491,56,561,82"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="431,28,479,47,477,52,429,33"/>
+<area shape="poly" id="edge9_Node000005_Node000004" title=" " alt="" coords="276,99,475,73,476,78,276,104"/>
+<area shape="rect" id="Node000006" href="$LIBFT_2ft__isalnum_8c.html#a9c2c3821ea43ebdf97de07b123503f8b" title=" " alt="" coords="358,107,439,132"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="276,106,343,112,342,117,276,112"/>
+<area shape="rect" id="Node000007" href="$LIBFT_2ft__isalpha_8c.html#ac283963beaa3b8c7d09b78851cda297e" title=" " alt="" coords="487,132,565,158"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="276,115,359,142,417,147,472,146,472,152,417,153,357,147,275,120"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="432,104,477,85,479,90,434,109"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="440,125,473,132,472,137,439,130"/>
+</map>

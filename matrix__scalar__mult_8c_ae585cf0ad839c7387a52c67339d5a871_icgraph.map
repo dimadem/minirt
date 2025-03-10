@@ -1,0 +1,10 @@
+<map id="matrix_scalar_mult" name="matrix_scalar_mult">
+<area shape="rect" id="Node000001" title=" " alt="" coords="313,25,443,51"/>
+<area shape="rect" id="Node000002" href="$lighting_8c.html#ad035411c7e850248af38e7d68bb0ddd4" title=" " alt="" coords="5,25,68,51"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="313,23,265,15,190,8,116,15,69,28,67,23,115,10,190,3,265,10,314,18"/>
+<area shape="rect" id="Node000003" href="$prepare__computations_8c.html#a260bb84a41e41fe52951d598804fb2fe" title=" " alt="" coords="116,25,265,51"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="297,40,265,40,265,35,297,35"/>
+<area shape="rect" id="Node000004" href="$reflect_8c.html#a9a14a2740fe14a6f96d7b3ef0cffeb61" title=" " alt="" coords="162,74,219,100"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="312,58,219,82,218,77,311,53"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="146,76,67,50,69,45,148,71"/>
+</map>

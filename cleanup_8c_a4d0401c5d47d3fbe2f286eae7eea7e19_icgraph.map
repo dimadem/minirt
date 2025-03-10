@@ -1,0 +1,20 @@
+<map id="exit_cleanup" name="exit_cleanup">
+<area shape="rect" id="Node000001" title=" " alt="" coords="429,132,523,158"/>
+<area shape="rect" id="Node000002" href="$init__lux_8c.html#aa725d1fe6d2725add14a565bb5c1b995" title=" " alt="" coords="124,5,185,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="455,121,423,84,403,67,380,53,329,34,276,23,226,19,186,19,186,14,226,14,277,18,331,29,383,48,406,63,427,81,459,118"/>
+<area shape="rect" id="Node000003" href="$mini__ray_8c.html#a0c99d968a34e803d378692bde2e3f18f" title=" " alt="" coords="5,107,55,132"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="442,125,413,109,381,97,304,82,243,82,181,90,103,103,55,115,54,109,102,98,181,85,243,76,305,77,382,92,415,104,445,121"/>
+<area shape="rect" id="Node000004" href="$init__mlx_8c.html#a1a6dc2f71f09a4fb49ab62f2e83ef424" title=" " alt="" coords="285,107,350,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="414,138,350,127,351,122,415,132"/>
+<area shape="rect" id="Node000005" href="$input__validate_8c.html#a1497d4d5fc8fdfecbe3b36df53d2195f" title="Validating if argument count is 2 (exe and 1 extra) and the extra is a .rt file and we have permissio..." alt="" coords="104,157,205,183"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="414,152,206,169,205,164,414,147"/>
+<area shape="rect" id="Node000006" href="$parse__main_8c.html#a62c4de2f960942eba61e7de12c387ae4" title="Entry function to parsing .rt file where the file is attempted to be opened, t_parse structure is ini..." alt="" coords="103,208,206,234"/>
+<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="415,162,382,170,207,212,206,206,381,165,414,157"/>
+<area shape="rect" id="Node000007" href="$parse__main_8c.html#a5d7da6ab7925ffda04b676ef38880723" title="Reading a line from the given .rt file and splitting the given line with the space (&#39; &#39;) delimiter...." alt="" coords="254,259,381,284"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="456,171,424,206,383,242,351,260,349,256,380,237,420,202,453,167"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="119,42,104,52,45,108,41,104,101,48,115,38"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="270,122,55,122,55,117,270,117"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="106,154,54,132,56,127,108,149"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="108,202,101,198,66,165,39,134,43,131,69,161,104,193,111,198"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="259,256,197,237,199,232,260,251"/>
+</map>

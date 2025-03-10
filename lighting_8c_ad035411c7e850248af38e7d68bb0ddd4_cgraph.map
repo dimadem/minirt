@@ -1,0 +1,32 @@
+<map id="lighting" name="lighting">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,131,68,156"/>
+<area shape="rect" id="Node000002" href="$matrix__free_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6" title=" " alt="" coords="305,5,390,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="45,129,73,94,92,76,114,61,158,42,204,29,289,17,290,23,205,35,160,47,117,66,96,80,77,98,49,132"/>
+<area shape="rect" id="Node000003" href="$matrix__dot_8c.html#a1e63fc9ff7ee9be50c15ed7399415881" title="Function that finds the dot (.) product of 2 vectors." alt="" coords="307,56,388,82"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="52,128,80,108,115,90,160,78,206,70,290,65,291,70,207,75,161,83,117,95,83,112,55,132"/>
+<area shape="rect" id="Node000004" href="$matrix__normalize_8c.html#a35a688dc70b34d031fa58218f8bcdbdd" title=" " alt="" coords="116,257,234,283"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="48,155,77,194,117,236,133,247,130,252,114,240,73,197,44,158"/>
+<area shape="rect" id="Node000006" href="$matrix__scalar__mult_8c.html#ae585cf0ad839c7387a52c67339d5a871" title=" " alt="" coords="282,155,412,180"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="68,143,266,159,266,164,68,149"/>
+<area shape="rect" id="Node000007" href="$matrix__sum_8c.html#a131fcf979705ebc7d09650c74adddfbb" title=" " alt="" coords="302,204,393,230"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="69,150,116,162,287,202,286,207,115,167,67,155"/>
+<area shape="rect" id="Node000012" href="$reflect_8c.html#a9a14a2740fe14a6f96d7b3ef0cffeb61" title=" " alt="" coords="147,105,203,131"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="68,135,131,123,132,129,69,140"/>
+<area shape="rect" id="Node000005" href="$matrix__length_8c.html#a17fc3dee2a35d639486d28c848d3bc82" title=" " alt="" coords="298,257,396,283"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="235,268,282,268,282,273,235,273"/>
+<area shape="rect" id="Node000008" href="$matrix__create_8c.html#a5291384d37d735f9c3fc33c03d2788ad" title=" " alt="" coords="460,155,560,180"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="391,201,450,183,451,188,393,206"/>
+<area shape="rect" id="Node000009" href="$free__dptr_8c.html#aaa705b6d12fb1a9a15e6103879ec0ea0" title=" " alt="" coords="617,129,690,155"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="560,156,601,149,602,154,561,161"/>
+<area shape="rect" id="Node000010" href="$safe__malloc_8c.html#ab8bcda0e59b6f8eab1bfd9f92de50c6c" title=" " alt="" coords="608,179,699,204"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="561,173,593,179,592,184,560,178"/>
+<area shape="rect" id="Node000011" href="$LIBFT_2ft__bzero_8c.html#a5937ab0d08e31d0e3e4a16ec71e293a1" title=" " alt="" coords="747,179,814,204"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="699,189,732,189,732,194,699,194"/>
+<area shape="poly" id="edge12_Node000012_Node000002" title=" " alt="" coords="191,103,231,73,281,41,293,35,295,40,283,46,234,77,194,107"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="203,108,291,82,292,87,204,113"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="204,124,286,147,284,152,203,129"/>
+<area shape="poly" id="edge17_Node000012_Node000007" title=" " alt="" coords="194,129,233,159,283,191,292,195,290,200,281,195,230,164,191,134"/>
+<area shape="rect" id="Node000013" href="$matrix__clone_8c.html#a664de98f31a1171b994283a70249628a" title=" " alt="" coords="300,105,394,131"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="203,116,284,116,284,121,203,121"/>
+<area shape="poly" id="edge14_Node000013_Node000008" title=" " alt="" coords="393,129,451,147,450,152,391,134"/>
+</map>
