@@ -94,7 +94,7 @@ static void paint_sphere(int **pixel, t_object **sphere, t_camera *camera)
             calculate_uv(x, y, camera);
             matrix_normalize(camera->v_orient);
             ray = ray_create_local(camera->origin, &camera->viewport);
-            inter = ray_intersect_sphere(sphere, &ray);
+            inter = ray_intersect_sphere(*sphere, &ray);
             pixel[y][x] = (inter != NULL) ? 0xFFFFFFFF : 0x00000000;
             if (inter != NULL) free_dptr((void **)inter);
             x++;
@@ -178,7 +178,7 @@ void	test_ray_render(void)
     
     /********************************************************** */
 
-    paint_sphere(pixel, sphere, camera);
+    paint_sphere(pixel, &sphere, camera);
     
     /********************************************************** */
 
