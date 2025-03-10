@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:00:30 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/18 14:33:11 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:21:44 by dmdemirk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,30 +102,28 @@ int	add_to_dptr(void ***dptr, void *to_add)
 // 	}
 // 	return (0);
 // }
-*/
+ */
 
 int	add_to_ptr(void **ptr, void *to_add)
 {
-    if (ptr == NULL || to_add == NULL)
-        return (1);
-
-    if (*ptr != NULL)
-    {
-        if (((t_ambient *)*ptr)->type == AMBIENT)
-            free(*ptr);
-        else if (((t_camera *)*ptr)->type == CAMERA)
-        {
-            free_matrix(((t_camera *)*ptr)->origin);
-            free_matrix(((t_camera *)*ptr)->v_orient);
-            free(*ptr);
-        }
-        else if (((t_light *)*ptr)->type == LIGHT)
-        {
-            free_matrix(((t_light *)*ptr)->origin);
-            free(*ptr);
-        }
-    }
-    *ptr = to_add;
-    return (0);
+	if (ptr == NULL || to_add == NULL)
+		return (1);
+	if (*ptr != NULL)
+	{
+		if (((t_ambient *)*ptr)->type == AMBIENT)
+			free(*ptr);
+		else if (((t_camera *)*ptr)->type == CAMERA)
+		{
+			free_matrix(((t_camera *)*ptr)->origin);
+			free_matrix(((t_camera *)*ptr)->v_orient);
+			free(*ptr);
+		}
+		else if (((t_light *)*ptr)->type == LIGHT)
+		{
+			free_matrix(((t_light *)*ptr)->origin);
+			free(*ptr);
+		}
+	}
+	*ptr = to_add;
+	return (0);
 }
-
