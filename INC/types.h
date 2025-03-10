@@ -174,13 +174,6 @@ typedef struct s_object
 	t_type	type;
 	union	u_data
 	{
-		/**
-		 * @brief Sphere Object [Identifier sp]
-		 * @param origin	[x, y, z, 1]	4x1 tuple
-		 * @param transform	[x, y, z, 1]	4x4 matrix
-		 * @param radius	[double]
-		 * @param color		[0 - 255] [0 - 255] [0 - 255] [0 - 255]
-		 */
 		struct s_sphere
 		{
 			t_matrix	*origin;
@@ -188,26 +181,12 @@ typedef struct s_object
 			double		radius;
 			t_trgb		color;
 		}	sphere;
-		/**
-		 * @brief Plane Object [Identifier pl]
-		 * @param origin	[x, y, z, 1]	4x1 tuple
-		 * @param v_orient	[-1.0 - 1.0]	4x1 tuple
-		 * @param color 	[0 - 255] [0 - 255] [0 - 255] [0 - 255]
-		 */
 		struct s_plane
 		{
 			t_matrix	*origin;
 			t_matrix	*v_orient;
 			t_trgb		color;
 		}	plane;
-		/**
-		 * @brief Cylinder Object [Identifier cy]
-		 * @param origin 	[x, y, z, 1] 				4x1 tuple
-		 * @param v_orient	[x, y, z, 1] [-1.0 - 1.0] 	4x1 tuple
-		 * @param diameter 	[double]
-		 * @param height	[double]
-		 * @param color 	[0 - 255] [0 - 255] [0 - 255] [0 - 255]
-		 */
 		struct s_cylinder
 		{
 			t_matrix	*origin;
