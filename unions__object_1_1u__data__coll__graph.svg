@@ -20,7 +20,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title="Sphere Object [Identifier sp].">
+<g id="a_Node000002"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="96.25,-97 0,-97 0,-66.5 96.25,-66.5 96.25,-97"/>
 <text text-anchor="start" x="8" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="48.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_sphere</text>
@@ -60,7 +60,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title="Plane Object [Identifier pl].">
+<g id="a_Node000005"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="324.25,-97 228,-97 228,-66.5 324.25,-66.5 324.25,-97"/>
 <text text-anchor="start" x="236" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="276.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_plane</text>
@@ -81,7 +81,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title="Cylinder Object [Identifier cy].">
+<g id="a_Node000006"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="210.25,-97 114,-97 114,-66.5 210.25,-66.5 210.25,-97"/>
 <text text-anchor="start" x="122" y="-83.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="162.12" y="-72.25" font-family="Helvetica,sans-Serif" font-size="10.00">_cylinder</text>

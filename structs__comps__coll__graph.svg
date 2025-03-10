@@ -58,7 +58,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title="Sphere Object [Identifier sp].">
+<g id="a_Node000004"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="324.25,-244.5 228,-244.5 228,-214 324.25,-214 324.25,-244.5"/>
 <text text-anchor="start" x="236" y="-231" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="276.12" y="-219.75" font-family="Helvetica,sans-Serif" font-size="10.00">_sphere</text>
@@ -110,7 +110,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title="Plane Object [Identifier pl].">
+<g id="a_Node000007"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="96.25,-244.5 0,-244.5 0,-214 96.25,-214 96.25,-244.5"/>
 <text text-anchor="start" x="8" y="-231" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="48.12" y="-219.75" font-family="Helvetica,sans-Serif" font-size="10.00">_plane</text>
@@ -131,7 +131,7 @@
 <!-- Node8 -->
 <g id="Node000008" class="node">
 <title>Node8</title>
-<g id="a_Node000008"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title="Cylinder Object [Identifier cy].">
+<g id="a_Node000008"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="210.25,-244.5 114,-244.5 114,-214 210.25,-214 210.25,-244.5"/>
 <text text-anchor="start" x="122" y="-231" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="162.12" y="-219.75" font-family="Helvetica,sans-Serif" font-size="10.00">_cylinder</text>

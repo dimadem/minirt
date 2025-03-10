@@ -97,7 +97,7 @@
 <!-- Node11 -->
 <g id="Node000011" class="node">
 <title>Node11</title>
-<g id="a_Node000011"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title="Sphere Object [Identifier sp].">
+<g id="a_Node000011"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="229.62,-238 133.38,-238 133.38,-207.5 229.62,-207.5 229.62,-238"/>
 <text text-anchor="start" x="141.38" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="181.5" y="-213.25" font-family="Helvetica,sans-Serif" font-size="10.00">_sphere</text>
@@ -118,7 +118,7 @@
 <!-- Node12 -->
 <g id="Node000012" class="node">
 <title>Node12</title>
-<g id="a_Node000012"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title="Plane Object [Identifier pl].">
+<g id="a_Node000012"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="343.62,-238 247.38,-238 247.38,-207.5 343.62,-207.5 343.62,-238"/>
 <text text-anchor="start" x="255.38" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="295.5" y="-213.25" font-family="Helvetica,sans-Serif" font-size="10.00">_plane</text>
@@ -139,7 +139,7 @@
 <!-- Node13 -->
 <g id="Node000013" class="node">
 <title>Node13</title>
-<g id="a_Node000013"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title="Cylinder Object [Identifier cy].">
+<g id="a_Node000013"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="457.62,-238 361.38,-238 361.38,-207.5 457.62,-207.5 457.62,-238"/>
 <text text-anchor="start" x="369.38" y="-224.5" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="409.5" y="-213.25" font-family="Helvetica,sans-Serif" font-size="10.00">_cylinder</text>

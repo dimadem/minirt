@@ -139,8 +139,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   24</span>    ray = NULL;</div>
 <div class="line"><span class="lineno">   25</span>}</div>
 <div class="ttc" id="amatrix__free_8c_html_ab28d26aa6d34d5c2a3b83b9ee519fec6"><div class="ttname"><a href="matrix__free_8c.html#ab28d26aa6d34d5c2a3b83b9ee519fec6">free_matrix</a></div><div class="ttdeci">void free_matrix(t_matrix *mat)</div><div class="ttdef"><b>Definition</b> matrix_free.c:15</div></div>
-<div class="ttc" id="astructs__ray_html_a1e04d97c95a6c24b26e5ab89786fd22c"><div class="ttname"><a href="structs__ray.html#a1e04d97c95a6c24b26e5ab89786fd22c">s_ray::direction</a></div><div class="ttdeci">t_matrix * direction</div><div class="ttdef"><b>Definition</b> types.h:230</div></div>
-<div class="ttc" id="astructs__ray_html_a6bfd9d5aad67618fc376d12470fac71b"><div class="ttname"><a href="structs__ray.html#a6bfd9d5aad67618fc376d12470fac71b">s_ray::origin</a></div><div class="ttdeci">t_matrix * origin</div><div class="ttdef"><b>Definition</b> types.h:229</div></div>
+<div class="ttc" id="astructs__ray_html_a1e04d97c95a6c24b26e5ab89786fd22c"><div class="ttname"><a href="structs__ray.html#a1e04d97c95a6c24b26e5ab89786fd22c">s_ray::direction</a></div><div class="ttdeci">t_matrix * direction</div><div class="ttdef"><b>Definition</b> types.h:209</div></div>
+<div class="ttc" id="astructs__ray_html_a6bfd9d5aad67618fc376d12470fac71b"><div class="ttname"><a href="structs__ray.html#a6bfd9d5aad67618fc376d12470fac71b">s_ray::origin</a></div><div class="ttdeci">t_matrix * origin</div><div class="ttdef"><b>Definition</b> types.h:208</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -190,7 +190,7 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="amatrix__clone_8c_html_a664de98f31a1171b994283a70249628a"><div class="ttname"><a href="matrix__clone_8c.html#a664de98f31a1171b994283a70249628a">matrix_clone</a></div><div class="ttdeci">t_matrix * matrix_clone(t_matrix *original)</div><div class="ttdef"><b>Definition</b> matrix_clone.c:15</div></div>
 <div class="ttc" id="aray__create_8c_html_a6b37390392ea1308815dc9a65054ba3d"><div class="ttname"><a href="ray__create_8c.html#a6b37390392ea1308815dc9a65054ba3d">ray_create</a></div><div class="ttdeci">t_ray * ray_create(t_matrix *origin, t_matrix *direction)</div><div class="ttdef"><b>Definition</b> ray_create.c:16</div></div>
 <div class="ttc" id="astructs__matrix_html"><div class="ttname"><a href="structs__matrix.html">s_matrix</a></div><div class="ttdoc">n x m size matrix where values are stored in double **data</div><div class="ttdef"><b>Definition</b> types.h:41</div></div>
-<div class="ttc" id="astructs__ray_html"><div class="ttname"><a href="structs__ray.html">s_ray</a></div><div class="ttdoc">Ray [Identifier R].</div><div class="ttdef"><b>Definition</b> types.h:228</div></div>
+<div class="ttc" id="astructs__ray_html"><div class="ttname"><a href="structs__ray.html">s_ray</a></div><div class="ttdoc">Ray [Identifier R].</div><div class="ttdef"><b>Definition</b> types.h:207</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -319,7 +319,7 @@ Here is the caller graph for this function:</div>
 <div class="ttc" id="amatrix__sum_8c_html_a131fcf979705ebc7d09650c74adddfbb"><div class="ttname"><a href="matrix__sum_8c.html#a131fcf979705ebc7d09650c74adddfbb">matrix_subs</a></div><div class="ttdeci">t_matrix * matrix_subs(t_matrix *mat1, t_matrix *mat2)</div><div class="ttdef"><b>Definition</b> matrix_sum.c:15</div></div>
 <div class="ttc" id="aray__free_8c_html_a9383ed085976d00ada942863da06de89"><div class="ttname"><a href="ray__free_8c.html#a9383ed085976d00ada942863da06de89">free_ray</a></div><div class="ttdeci">void free_ray(t_ray *ray)</div><div class="ttdef"><b>Definition</b> ray_free.c:15</div></div>
 <div class="ttc" id="aray__transform_8c_html_a4b22c1091f5143dc209773a18fd27f15"><div class="ttname"><a href="ray__transform_8c.html#a4b22c1091f5143dc209773a18fd27f15">ray_transform</a></div><div class="ttdeci">t_ray * ray_transform(t_ray *ray, t_matrix *matrix)</div><div class="ttdef"><b>Definition</b> ray_transform.c:16</div></div>
-<div class="ttc" id="astructs__isect_html"><div class="ttname"><a href="structs__isect.html">s_isect</a></div><div class="ttdef"><b>Definition</b> types.h:245</div></div>
+<div class="ttc" id="astructs__isect_html"><div class="ttname"><a href="structs__isect.html">s_isect</a></div><div class="ttdef"><b>Definition</b> types.h:224</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -375,10 +375,10 @@ Here is the caller graph for this function:</div>
 <div class="line"><span class="lineno">   63</span>}</div>
 <div class="ttc" id="aadd__to__dptr_8c_html_a87c44ad76517c5ecf00aaaee8585a9f1"><div class="ttname"><a href="add__to__dptr_8c.html#a87c44ad76517c5ecf00aaaee8585a9f1">add_to_dptr</a></div><div class="ttdeci">int add_to_dptr(void ***dptr, void *to_add)</div><div class="ttdef"><b>Definition</b> add_to_dptr.c:35</div></div>
 <div class="ttc" id="aray__intersect_8c_html_a20cc82316845ecb42e8e8c218ff72a73"><div class="ttname"><a href="ray__intersect_8c.html#a20cc82316845ecb42e8e8c218ff72a73">ray_intersect_sphere</a></div><div class="ttdeci">t_isect ** ray_intersect_sphere(t_object *obj, t_ray *ray)</div><div class="ttdef"><b>Definition</b> ray_intersect.c:34</div></div>
-<div class="ttc" id="astructs__isect_html_aa326ce64826a2cfa1c5b709967bea14a"><div class="ttname"><a href="structs__isect.html#aa326ce64826a2cfa1c5b709967bea14a">s_isect::obj_id</a></div><div class="ttdeci">int obj_id</div><div class="ttdef"><b>Definition</b> types.h:249</div></div>
-<div class="ttc" id="astructs__isect_html_ac1d3f4c8e8c70b95ed8f184d46619c38"><div class="ttname"><a href="structs__isect.html#ac1d3f4c8e8c70b95ed8f184d46619c38">s_isect::obj_type</a></div><div class="ttdeci">t_type obj_type</div><div class="ttdef"><b>Definition</b> types.h:248</div></div>
+<div class="ttc" id="astructs__isect_html_aa326ce64826a2cfa1c5b709967bea14a"><div class="ttname"><a href="structs__isect.html#aa326ce64826a2cfa1c5b709967bea14a">s_isect::obj_id</a></div><div class="ttdeci">int obj_id</div><div class="ttdef"><b>Definition</b> types.h:228</div></div>
+<div class="ttc" id="astructs__isect_html_ac1d3f4c8e8c70b95ed8f184d46619c38"><div class="ttname"><a href="structs__isect.html#ac1d3f4c8e8c70b95ed8f184d46619c38">s_isect::obj_type</a></div><div class="ttdeci">t_type obj_type</div><div class="ttdef"><b>Definition</b> types.h:227</div></div>
 <div class="ttc" id="astructs__object_html_a5194ec7d474eeb6d740f9331b4a94a56"><div class="ttname"><a href="structs__object.html#a5194ec7d474eeb6d740f9331b4a94a56">s_object::type</a></div><div class="ttdeci">t_type type</div><div class="ttdef"><b>Definition</b> types.h:174</div></div>
-<div class="ttc" id="astructs__rayt_html_abaccf32cac691c90a46fb461808813c2"><div class="ttname"><a href="structs__rayt.html#abaccf32cac691c90a46fb461808813c2">s_rayt::objects</a></div><div class="ttdeci">t_object ** objects</div><div class="ttdef"><b>Definition</b> types.h:272</div></div>
+<div class="ttc" id="astructs__rayt_html_abaccf32cac691c90a46fb461808813c2"><div class="ttname"><a href="structs__rayt.html#abaccf32cac691c90a46fb461808813c2">s_rayt::objects</a></div><div class="ttdeci">t_object ** objects</div><div class="ttdef"><b>Definition</b> types.h:251</div></div>
 </div><!-- fragment --><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

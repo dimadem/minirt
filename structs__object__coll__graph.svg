@@ -39,7 +39,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title="Sphere Object [Identifier sp].">
+<g id="a_Node000003"><a xlink:href="structs__object_1_1u__data_1_1s__sphere.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="96.25,-163.5 0,-163.5 0,-133 96.25,-133 96.25,-163.5"/>
 <text text-anchor="start" x="8" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="48.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">_sphere</text>
@@ -79,7 +79,7 @@
 <!-- Node6 -->
 <g id="Node000006" class="node">
 <title>Node6</title>
-<g id="a_Node000006"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title="Plane Object [Identifier pl].">
+<g id="a_Node000006"><a xlink:href="structs__object_1_1u__data_1_1s__plane.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="324.25,-163.5 228,-163.5 228,-133 324.25,-133 324.25,-163.5"/>
 <text text-anchor="start" x="236" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="276.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">_plane</text>
@@ -100,7 +100,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title="Cylinder Object [Identifier cy].">
+<g id="a_Node000007"><a xlink:href="structs__object_1_1u__data_1_1s__cylinder.html" target="_top" xlink:title=" ">
 <polygon fill="white" stroke="#666666" points="210.25,-163.5 114,-163.5 114,-133 210.25,-133 210.25,-163.5"/>
 <text text-anchor="start" x="122" y="-150" font-family="Helvetica,sans-Serif" font-size="10.00">s_object::u_data::s</text>
 <text text-anchor="middle" x="162.12" y="-138.75" font-family="Helvetica,sans-Serif" font-size="10.00">_cylinder</text>
