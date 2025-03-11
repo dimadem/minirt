@@ -48,10 +48,30 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	}
 	
 	comp = prepare_computations(lux, intersections, &ray);
-	material = comp->object->material;
+	
+	// Get the appropriate color based on object type
+	if (comp->type == SPHERE)
+		material.colour = comp->object->obj.sphere.color;
+	else if (comp->type == PLANE)
+		material.colour = comp->object->obj.plane.color;
+	else if (comp->type == CYLINDER)
+		material.colour = comp->object->obj.cylinder.color;
+	
+	// Set default material properties
+	material.ambient = 0.1;
+	material.diffuse = 0.7;
+	material.specular = 0.2;
+	material.shininess = 200.0;
+	
 	material = lighting(lux, material, comp->p_intersect, comp->v_normal);
 	
-	color = colour_to_int(material.colour, material.brightness_ratio);
+	// Modify the color based on lighting calculations
+	t_trgb adjusted_color = material.colour;
+	adjusted_color.r *= material.brightness_ratio;
+	adjusted_color.g *= material.brightness_ratio;
+	adjusted_color.b *= material.brightness_ratio;
+	
+	color = colour_to_int(adjusted_color);
 	
 	free_dptr((void **)intersections);
 	free_matrix(comp->p_intersect);
