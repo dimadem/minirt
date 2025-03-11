@@ -51,6 +51,14 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	}
 	
 	comp = prepare_computations(lux, intersections, &ray);
+	if (!comp)
+	{
+		free_dptr((void **)intersections);
+		return (0x00000000);
+	}
+	
+	// Initialize material to default values
+	ft_bzero(&material, sizeof(t_mat));
 	
 	// Get the appropriate color based on object type
 	if (comp->type == SPHERE)
@@ -76,10 +84,14 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	
 	color = colour_to_int(adjusted_color);
 	
+	// Cleanup
 	free_dptr((void **)intersections);
-	free_matrix(comp->p_intersect);
-	free_matrix(comp->v_eye);
-	free_matrix(comp->v_normal);
+	if (comp->p_intersect)
+		free_matrix(comp->p_intersect);
+	if (comp->v_eye)
+		free_matrix(comp->v_eye);
+	if (comp->v_normal)
+		free_matrix(comp->v_normal);
 	free(comp);
 	
 	return (color);

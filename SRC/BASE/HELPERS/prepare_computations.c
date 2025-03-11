@@ -20,15 +20,52 @@ t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 {
 	t_comps	*comps;
 
+	if (!lux || !inter || !inter[0] || !ray || !ray->direction || !ray->origin)
+		return (NULL);
+
 	comps = safe_malloc(sizeof(t_comps), 1);
 	if (!comps)
 		return (NULL);
+
 	comps->t_val = inter[0]->t_val;
 	comps->type = inter[0]->obj_type;
+	
+	// Check for valid object ID
+	if (inter[0]->obj_id < 0 || !lux->objects[inter[0]->obj_id])
+	{
+		free(comps);
+		return (NULL);
+	}
+	
 	comps->object = lux->objects[inter[0]->obj_id];
 	comps->p_intersect = ray_position(ray, comps->t_val);
+	
+	// Check if ray_position succeeded
+	if (!comps->p_intersect)
+	{
+		free(comps);
+		return (NULL);
+	}
+	
 	comps->v_eye = matrix_clone(ray->direction);
+	if (!comps->v_eye)
+	{
+		free_matrix(comps->p_intersect);
+		free(comps);
+		return (NULL);
+	}
+	
 	matrix_scalar_mult(comps->v_eye, -1);
 	comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
+	
+	// Check if normal calculation succeeded
+	if (!comps->v_normal)
+	{
+		free_matrix(comps->p_intersect);
+		free_matrix(comps->v_eye);
+		free(comps);
+		return (NULL);
+	}
+	
 	return (comps);
 }

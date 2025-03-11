@@ -16,9 +16,13 @@ t_matrix	*ray_position(t_ray *ray, double dt)
 {
 	t_matrix	*pos;
 
+	if (!ray || !ray->origin || !ray->direction)
+		return (NULL);
+		
 	pos = matrix_create(4, 1);
 	if (pos == NULL)
 		return (NULL);
+		
 	pos->data[0][0] = ray->origin->data[0][0] + ray->direction->data[0][0] * dt;
 	pos->data[1][0] = ray->origin->data[1][0] + ray->direction->data[1][0] * dt;
 	pos->data[2][0] = ray->origin->data[2][0] + ray->direction->data[2][0] * dt;
