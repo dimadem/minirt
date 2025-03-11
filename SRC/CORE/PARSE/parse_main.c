@@ -61,29 +61,56 @@ void	parse_func_redir(t_parse *pars, char **split_line)
 }
 
 /**
- * @brief Reading a line from the given .rt file and splitting the given 
- * line with the space (' ') delimiter. 
- * Then, split line is passed to processing function
+ * @brief Processes a single line from the .rt file
+ * @param lux Ray tracer structure
+ * @param pars Parser structure
+ * @param line The line to process
  */
-
-void	parse_rt_read_line(t_rayt *lux, t_parse *pars)
+static void	process_single_line(t_rayt *lux, t_parse *pars, char *line)
 {
-	char	*line;
 	char	**split_line;
 
-	line = get_next_line(lux->file_fd);
+	if (!line || pars->error_encountered)
+		return;
+		
+	split_line = ft_split(line, ' ');
+	if (split_line != NULL && pars->error_encountered == false)
+		parse_func_redir(pars, split_line);
+		
+	free_dptr((void **)split_line);
+}
+
+/**
+ * @brief Checks if the file is empty and handles the error
+ * @param lux Ray tracer structure
+ * @param line The first line read from the file
+ */
+static void	check_empty_file(t_rayt *lux, char *line)
+{
 	if (line == NULL)
 	{
 		close(lux->file_fd);
 		exit_cleanup("Error - Empty File!\n", lux, -6);
 	}
+}
+
+/**
+ * @brief Reads lines from the .rt file, splits each line by space,
+ * and passes the split lines to processing functions.
+ * @param lux Ray tracer structure
+ * @param pars Parser structure
+ */
+void	parse_rt_read_line(t_rayt *lux, t_parse *pars)
+{
+	char	*line;
+
+	line = get_next_line(lux->file_fd);
+	check_empty_file(lux, line);
+	
 	while (line != NULL)
 	{
-		split_line = ft_split(line, ' ');
+		process_single_line(lux, pars, line);
 		free(line);
-		if (split_line != NULL && pars->error_encountered == false)
-			parse_func_redir(pars, split_line);
-		free_dptr((void **)split_line);
 		line = get_next_line(lux->file_fd);
 	}
 }

@@ -45,11 +45,34 @@ void	parse_plane(t_parse *pars, char **split_line)
 	pars->count_pl++;
 }
 
+static t_matrix	*create_sphere_transform(double radius)
+{
+	t_matrix	*identity;
+	t_matrix	*scaling;
+	t_matrix	*transform;
+
+	identity = matrix_identity(4);
+	if (!identity)
+		return (NULL);
+		
+	scaling = object_scaling(radius, radius, radius);
+	if (!scaling)
+	{
+		free_matrix(identity);
+		return (NULL);
+	}
+	
+	transform = matrix_multiple(identity, scaling);
+	free_matrix(identity);
+	free_matrix(scaling);
+	
+	return (transform);
+}
+
 static t_object	*init_sphere(t_parse *pars, char **split_line)
 {
 	t_object	*curr;
-	t_matrix	*scaling;
-	t_matrix	*transform_temp;
+	double		radius;
 
 	curr = (t_object *)safe_malloc(sizeof(t_object), 1);
 	if (curr == NULL)
@@ -57,20 +80,31 @@ static t_object	*init_sphere(t_parse *pars, char **split_line)
 		pars->error_encountered = true;
 		return (NULL);
 	}
+	
 	curr->type = SPHERE;
 	curr->obj.sphere.origin = matrix_create(4, 1);
+	if (!curr->obj.sphere.origin)
+	{
+		free(curr);
+		pars->error_encountered = true;
+		return (NULL);
+	}
+	
 	parse_assign_coord(pars, split_line[1], curr->obj.sphere.origin);
 	parse_assign_trgb(pars, split_line[3], &curr->obj.sphere.color);
-	curr->obj.sphere.radius = ft_atod(split_line[2]) / 2;
-	curr->obj.sphere.transform = matrix_identity(4);
-	scaling = object_scaling(curr->obj.sphere.radius, \
-			curr->obj.sphere.radius,
-			curr->obj.sphere.radius);
-	transform_temp = \
-			matrix_multiple(curr->obj.sphere.transform, scaling);
-	free_matrix(curr->obj.sphere.transform);
-	curr->obj.sphere.transform = transform_temp;
-	free_matrix(scaling);
+	
+	radius = ft_atod(split_line[2]) / 2;
+	curr->obj.sphere.radius = radius;
+	curr->obj.sphere.transform = create_sphere_transform(radius);
+	
+	if (!curr->obj.sphere.transform)
+	{
+		free_matrix(curr->obj.sphere.origin);
+		free(curr);
+		pars->error_encountered = true;
+		return (NULL);
+	}
+	
 	return (curr);
 }
 

@@ -27,6 +27,98 @@ static void	calculate_uv(int i, int j, t_camera *camera)
 							* camera->half_height;
 }
 
+static t_ray	*create_ray_for_pixel(int x, int y, t_camera *camera)
+{
+	calculate_uv(x, y, camera);
+	matrix_normalize(camera->v_orient);
+	return (ray_create_local(camera->origin, &camera->viewport));
+}
+
+static void	free_ray(t_ray *ray)
+{
+	if (!ray)
+		return ;
+	if (ray->direction)
+		free_matrix(ray->direction);
+	if (ray->origin)
+		free_matrix(ray->origin);
+	free(ray);
+}
+
+static void	free_comp(t_comps *comp)
+{
+	if (!comp)
+		return ;
+	if (comp->p_intersect)
+		free_matrix(comp->p_intersect);
+	if (comp->v_eye)
+		free_matrix(comp->v_eye);
+	if (comp->v_normal)
+		free_matrix(comp->v_normal);
+	free(comp);
+}
+
+static void	print_debug_info(t_comps *comp, int x, int y)
+{
+	static int debug_count = 0;
+	
+	if (debug_count >= 5 || !comp)
+		return ;
+	
+	if (comp->type == SPHERE)
+		printf("Pixel [%d,%d] hit SPHERE\n", x, y);
+	else if (comp->type == PLANE)
+		printf("Pixel [%d,%d] hit PLANE\n", x, y);
+	else if (comp->type == CYLINDER)
+		printf("Pixel [%d,%d] hit CYLINDER\n", x, y);
+	debug_count++;
+}
+
+static void	setup_material(t_mat *material, t_comps *comp)
+{
+	ft_bzero(material, sizeof(t_mat));
+	
+	if (!comp)
+		return ;
+	
+	if (comp->type == SPHERE)
+		material->colour = comp->object->obj.sphere.color;
+	else if (comp->type == PLANE)
+		material->colour = comp->object->obj.plane.color;
+	else if (comp->type == CYLINDER)
+		material->colour = comp->object->obj.cylinder.color;
+	
+	material->ambient = 0.1;
+	material->diffuse = 0.7;
+	material->specular = 0.2;
+	material->shininess = 200.0;
+}
+
+static int	apply_lighting(t_rayt *lux, t_mat *material, t_comps *comp)
+{
+	t_trgb	adjusted_color;
+	double	brightness;
+	
+	if (!lux || !lux->p_light || !comp->p_intersect || !comp->v_normal)
+		return (colour_to_int(material->colour));
+	
+	*material = lighting(lux, *material, comp->p_intersect, comp->v_normal);
+	
+	adjusted_color = material->colour;
+	brightness = material->brightness_ratio;
+	
+	if (brightness < 0.0)
+		brightness = 0.0;
+	if (brightness > 1.0)
+		brightness = 1.0;
+	
+	adjusted_color.r *= brightness;
+	adjusted_color.g *= brightness;
+	adjusted_color.b *= brightness;
+	
+	return (colour_to_int(adjusted_color));
+}
+
 static int	process_pixel(int x, int y, t_rayt *lux)
 {
 	t_ray		*ray;
@@ -35,32 +127,21 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	t_mat		material;
 	int			color;
 
-	calculate_uv(x, y, lux->camera);
-	matrix_normalize(lux->camera->v_orient);
-	ray = ray_create_local(lux->camera->origin, &lux->camera->viewport);
-	
+	ray = create_ray_for_pixel(x, y, lux->camera);
 	if (!ray)
 		return (0x00000000);
 	
 	intersections = ray_intersect_world(lux, ray);
-	
 	if (!intersections || !intersections[0])
 	{
 		if (intersections)
 			free_dptr((void **)intersections);
-		// Free ray and its components
-		free_matrix(ray->direction);
-		free_matrix(ray->origin);
-		free(ray);
+		free_ray(ray);
 		return (0x00000000);
 	}
 	
 	comp = prepare_computations(lux, intersections, ray);
-	
-	// Free ray after prepare_computations
-	free_matrix(ray->direction);
-	free_matrix(ray->origin);
-	free(ray);
+	free_ray(ray);
 	
 	if (!comp)
 	{
@@ -68,70 +149,12 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 		return (0x00000000);
 	}
 	
-	// Debug printout for the first few pixels
-	static int debug_count = 0;
-	if (debug_count < 5)
-	{
-		if (comp->type == SPHERE)
-			printf("Pixel [%d,%d] hit SPHERE\n", x, y);
-		else if (comp->type == PLANE)
-			printf("Pixel [%d,%d] hit PLANE\n", x, y);
-		else if (comp->type == CYLINDER)
-			printf("Pixel [%d,%d] hit CYLINDER\n", x, y);
-		debug_count++;
-	}
+	print_debug_info(comp, x, y);
+	setup_material(&material, comp);
+	color = apply_lighting(lux, &material, comp);
 	
-	// Initialize material to default values
-	ft_bzero(&material, sizeof(t_mat));
-	
-	// Get the appropriate color based on object type
-	if (comp->type == SPHERE)
-		material.colour = comp->object->obj.sphere.color;
-	else if (comp->type == PLANE)
-		material.colour = comp->object->obj.plane.color;
-	else if (comp->type == CYLINDER)
-		material.colour = comp->object->obj.cylinder.color;
-	
-	// Set default material properties
-	material.ambient = 0.1;
-	material.diffuse = 0.7;
-	material.specular = 0.2;
-	material.shininess = 200.0;
-	
-	// Check for lighting issues and handle them gracefully
-	if (!lux || !lux->p_light || !comp->p_intersect || !comp->v_normal) 
-	{
-		// Basic color without lighting, just use object color
-		color = colour_to_int(material.colour);
-	}
-	else
-	{
-		material = lighting(lux, material, comp->p_intersect, comp->v_normal);
-		
-		// Modify the color based on lighting calculations
-		t_trgb adjusted_color = material.colour;
-		
-		// Clamp brightness ratio to reasonable values
-		double brightness = material.brightness_ratio;
-		if (brightness < 0.0) brightness = 0.0;
-		if (brightness > 1.0) brightness = 1.0;
-		
-		adjusted_color.r *= brightness;
-		adjusted_color.g *= brightness;
-		adjusted_color.b *= brightness;
-		
-		color = colour_to_int(adjusted_color);
-	}
-	
-	// Cleanup
 	free_dptr((void **)intersections);
-	if (comp->p_intersect)
-		free_matrix(comp->p_intersect);
-	if (comp->v_eye)
-		free_matrix(comp->v_eye);
-	if (comp->v_normal)
-		free_matrix(comp->v_normal);
-	free(comp);
+	free_comp(comp);
 	
 	return (color);
 }

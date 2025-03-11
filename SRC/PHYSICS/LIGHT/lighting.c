@@ -17,11 +17,9 @@
 
 static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 {
-	// Add null checks
 	if (!result || !material || !light)
 		return;
 
-	// Initialize with default values first in case of early return
 	result->colour.r = 0;
 	result->colour.g = 0; 
 	result->colour.b = 0;
@@ -31,70 +29,91 @@ static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 	result->ambient = 0;
 	result->brightness_ratio = 0;
 	
-	// Calculate color
 	result->colour = colour_hadamard_product(material->colour, light->color);
 	
-	// Scale by constant factor
+	// Scale by constant factor (1/255)
 	result->colour.r *= 0.00392156862;
 	result->colour.g *= 0.00392156862;
 	result->colour.b *= 0.00392156862;
 	
-	// Set ambient light
 	result->ambient = light->brightness_ratio * material->ambient;
+}
+
+static void	calculate_diffuse_lighting(t_mat *result, t_mat *mat, 
+										t_light *light, double dot_product)
+{
+	if (!result || !mat || !light || dot_product <= 0)
+		return;
+		
+	result->diffuse = light->brightness_ratio * mat->diffuse * dot_product;
+}
+
+static void	calculate_specular_lighting(t_mat *result, t_mat *mat, 
+										t_light *light, t_matrix *v_reflect, 
+										t_matrix *v_camera)
+{
+	double	dot_product;
+	
+	if (!result || !mat || !light || !v_reflect || !v_camera)
+		return;
+		
+	dot_product = matrix_dot(v_reflect, v_camera);
+	if (dot_product <= 0)
+		return;
+		
+	result->specular = light->brightness_ratio * mat->specular * 
+						pow(dot_product, mat->shininess);
+}
+
+static void	calculate_direct_lighting(t_rayt *lux, t_mat *result, 
+									t_mat *mat, t_matrix *pos, t_matrix *v_normal)
+{
+	t_matrix	*v_light;
+	t_matrix	*v_reflect;
+	double		dot_product;
+	
+	v_light = matrix_subs(lux->p_light->origin, pos);
+	if (!v_light)
+		return;
+		
+	matrix_normalize(v_light);
+	dot_product = matrix_dot(v_light, v_normal);
+	
+	if (dot_product > 0)
+	{
+		calculate_diffuse_lighting(result, mat, lux->p_light, dot_product);
+		
+		matrix_scalar_mult(v_light, -1);
+		v_reflect = reflect(v_light, v_normal);
+		
+		if (v_reflect)
+		{
+			calculate_specular_lighting(result, mat, lux->p_light, 
+										v_reflect, lux->camera->v_orient);
+			free_matrix(v_reflect);
+		}
+	}
+	
+	free_matrix(v_light);
 }
 
 t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 {
 	t_mat		result;
-	double		dot_h;
-	t_matrix	*v_light;
-	t_matrix	*v_reflect;
 	bool		in_shadow;
 
-	// Initialize the result with zero values
 	ft_bzero(&result, sizeof(t_mat));
 	
-	// Add null checks
-	if (!lux || !lux->p_light || !pos || !v_normal || !lux->camera || !lux->camera->v_orient)
+	if (!lux || !lux->p_light || !pos || !v_normal || 
+		!lux->camera || !lux->camera->v_orient)
 		return (result);
 	
-	v_reflect = NULL;
 	trgb_init(&result, &mat, lux->p_light);
-	
-	// Check for shadows if shadow detection is available
 	in_shadow = is_shadowed(lux, pos);
 	
 	if (!in_shadow)
-	{
-		v_light = matrix_subs(lux->p_light->origin, pos);
-		if (!v_light)
-			return (result);
-			
-		matrix_normalize(v_light);
-		dot_h = matrix_dot(v_light, v_normal);
-		
-		if (dot_h > 0)
-		{
-			result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
-			
-			matrix_scalar_mult(v_light, -1);
-			v_reflect = reflect(v_light, v_normal);
-			
-			if (v_reflect)
-			{
-				dot_h = matrix_dot(v_reflect, lux->camera->v_orient);
-				if (dot_h > 0)
-					result.specular = lux->p_light->brightness_ratio * mat.specular * 
-						pow(dot_h, mat.shininess);
-			}
-		}
-		
-		free_matrix(v_light);
-		if (v_reflect)
-			free_matrix(v_reflect);
-	}
+		calculate_direct_lighting(lux, &result, &mat, pos, v_normal);
 	
-	// Calculate final brightness
 	result.brightness_ratio = result.ambient + result.diffuse + result.specular;
 	return (result);
 }
