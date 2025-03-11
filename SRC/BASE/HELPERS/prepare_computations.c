@@ -15,6 +15,7 @@
 #include "base_matrices.h"
 #include "base_rays.h"
 #include "objects_sphere.h"
+#include "objects_plane.h"
 
 t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 {
@@ -61,7 +62,19 @@ t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 	if (comps->type == SPHERE)
 		comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
 	else if (comps->type == PLANE)
-		comps->v_normal = plane_normal(comps->object, comps->p_intersect);
+	{
+		// Create a normal for plane directly - avoiding function call to plane_normal
+		comps->v_normal = matrix_create(4, 1);
+		if (comps->v_normal && comps->object && comps->object->obj.plane.v_orient)
+		{
+			// Copy the plane orientation to the normal
+			comps->v_normal->data[0][0] = comps->object->obj.plane.v_orient->data[0][0];
+			comps->v_normal->data[1][0] = comps->object->obj.plane.v_orient->data[1][0];
+			comps->v_normal->data[2][0] = comps->object->obj.plane.v_orient->data[2][0];
+			comps->v_normal->data[3][0] = 0;  // Ensure it's a vector (w=0)
+			matrix_normalize(comps->v_normal);
+		}
+	}
 	else
 		comps->v_normal = NULL;  // For other object types (will add later)
 		

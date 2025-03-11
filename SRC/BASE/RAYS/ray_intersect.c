@@ -121,6 +121,7 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 		return (NULL);
 	}
 	all_inter[0]->t_val = t;
+	all_inter[0]->count = 2;  // Set count for compatibility
 	
 	all_inter[1] = safe_malloc(sizeof(t_isect), 1);
 	if (!all_inter[1])

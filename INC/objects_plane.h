@@ -14,6 +14,7 @@
 # define OBJECTS_PLANE_H
 
 # include "types.h"
+# include "base_matrices.h"
 
 t_matrix	*plane_normal(t_object *curr, t_matrix *point);
 
