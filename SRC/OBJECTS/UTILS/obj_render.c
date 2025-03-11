@@ -85,15 +85,30 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	material.specular = 0.2;
 	material.shininess = 200.0;
 	
-	material = lighting(lux, material, comp->p_intersect, comp->v_normal);
-	
-	// Modify the color based on lighting calculations
-	t_trgb adjusted_color = material.colour;
-	adjusted_color.r *= material.brightness_ratio;
-	adjusted_color.g *= material.brightness_ratio;
-	adjusted_color.b *= material.brightness_ratio;
-	
-	color = colour_to_int(adjusted_color);
+	// Check for lighting issues and handle them gracefully
+	if (!lux || !lux->p_light || !comp->p_intersect || !comp->v_normal) 
+	{
+		// Basic color without lighting, just use object color
+		color = colour_to_int(material.colour);
+	}
+	else
+	{
+		material = lighting(lux, material, comp->p_intersect, comp->v_normal);
+		
+		// Modify the color based on lighting calculations
+		t_trgb adjusted_color = material.colour;
+		
+		// Clamp brightness ratio to reasonable values
+		double brightness = material.brightness_ratio;
+		if (brightness < 0.0) brightness = 0.0;
+		if (brightness > 1.0) brightness = 1.0;
+		
+		adjusted_color.r *= brightness;
+		adjusted_color.g *= brightness;
+		adjusted_color.b *= brightness;
+		
+		color = colour_to_int(adjusted_color);
+	}
 	
 	// Cleanup
 	free_dptr((void **)intersections);
