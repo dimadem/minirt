@@ -16,11 +16,13 @@
 #include "muk_lib.h"
 #include "base_helpers.h"
 
+#define EPSILON_VAL 0.0001
+
 bool	is_shadowed(t_rayt *lux, t_matrix *point)
 {
 	t_matrix	*v_to_light;
 	t_matrix	*point_offset;
-	t_ray		shadow_ray;
+	t_ray		*shadow_ray;
 	t_isect		**intersections;
 	double		distance;
 	bool		shadowed;
@@ -30,12 +32,12 @@ bool	is_shadowed(t_rayt *lux, t_matrix *point)
 	matrix_normalize(v_to_light);
 	
 	point_offset = matrix_clone(point);
-	point_offset->data[0] += v_to_light->data[0] * EPSILON;
-	point_offset->data[1] += v_to_light->data[1] * EPSILON;
-	point_offset->data[2] += v_to_light->data[2] * EPSILON;
+	point_offset->data[0][0] += v_to_light->data[0][0] * EPSILON_VAL;
+	point_offset->data[1][0] += v_to_light->data[1][0] * EPSILON_VAL;
+	point_offset->data[2][0] += v_to_light->data[2][0] * EPSILON_VAL;
 	
 	shadow_ray = ray_create(point_offset, v_to_light);
-	intersections = ray_intersect_world(lux, &shadow_ray);
+	intersections = ray_intersect_world(lux, shadow_ray);
 	
 	shadowed = false;
 	if (intersections && intersections[0] && 
@@ -49,6 +51,7 @@ bool	is_shadowed(t_rayt *lux, t_matrix *point)
 	free_matrix(v_to_light);
 	if (intersections)
 		free_dptr((void **)intersections);
+	free(shadow_ray);
 	
 	return (shadowed);
 }

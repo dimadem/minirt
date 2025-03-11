@@ -40,6 +40,9 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	ray = ray_create_local(lux->camera->origin, &lux->camera->viewport);
 	
 	intersections = ray_intersect_world(lux, &ray);
+	
+	// Free the ray direction created inside ray_create_local
+	free_matrix(ray.direction);
 	if (!intersections || !intersections[0])
 	{
 		if (intersections)

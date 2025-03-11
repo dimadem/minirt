@@ -28,9 +28,15 @@ t_ray	*ray_create(t_matrix *origin, t_matrix *direction)
 t_ray	ray_create_local(t_matrix *origin, t_uv *direction)
 {
 	t_ray	temp;
+	t_matrix *dir;
 
+	dir = matrix_create(4, 1);
+	dir->data[0][0] = direction->u;
+	dir->data[1][0] = direction->v;
+	dir->data[2][0] = 1.0;
+	dir->data[3][0] = 0.0;
+	
 	temp.origin = origin;
-	temp.direction->data[0][0] = direction->u;
-	temp.direction->data[1][0] = direction->v;
+	temp.direction = dir;
 	return (temp);
 }
