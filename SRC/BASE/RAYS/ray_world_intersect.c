@@ -21,10 +21,16 @@ static void	sort_w_isect(t_isect **w_isect)
 	int		j;
 	int		count;
 
+	if (!w_isect)
+		return;
+	
 	count = 0;
 	while (w_isect[count] != NULL)
 		count++;
 	
+	if (count <= 0)
+		return;
+		
 	for (i = 0; i < count - 1; i++)
 	{
 		for (j = 0; j < count - i - 1; j++)
@@ -38,8 +44,7 @@ static void	sort_w_isect(t_isect **w_isect)
 		}
 	}
 	
-	if (count > 0)
-		w_isect[0]->count = count;
+	w_isect[0]->count = count;
 }
 
 t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
@@ -56,15 +61,21 @@ t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 	while (lux->objects[++i])
 	{
 		inter = ray_intersect_sphere(lux->objects[i], ray);
-		j = 0;
-		while (j < 2)
+		if (inter)  // Only process if intersections were found
 		{
-			inter[j]->obj_id = i;
-			inter[j]->obj_type = lux->objects[i]->type;
-			add_to_dptr((void ***)&w_inter, (void *)inter[j++]);
+			j = 0;
+			while (j < 2)
+			{
+				inter[j]->obj_id = i;
+				inter[j]->obj_type = lux->objects[i]->type;
+				add_to_dptr((void ***)&w_inter, (void *)inter[j++]);
+			}
+			free(inter);
 		}
-		free(inter);
 	}
-	sort_w_isect(w_inter);
+	// Only sort if we have intersections
+	if (w_inter)
+		sort_w_isect(w_inter);
+	
 	return (w_inter);
 }
