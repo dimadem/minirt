@@ -34,15 +34,12 @@ static t_ray	*create_ray_for_pixel(int x, int y, t_camera *camera)
 	return (ray_create_local(camera->origin, &camera->viewport));
 }
 
-static void	free_ray(t_ray *ray)
+// Use a different name to avoid conflict with global free_ray in base_rays.h
+static void	cleanup_ray(t_ray *ray)
 {
 	if (!ray)
 		return ;
-	if (ray->direction)
-		free_matrix(ray->direction);
-	if (ray->origin)
-		free_matrix(ray->origin);
-	free(ray);
+	free_ray(ray);
 }
 
 static void	free_comp(t_comps *comp)
@@ -136,12 +133,12 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	{
 		if (intersections)
 			free_dptr((void **)intersections);
-		free_ray(ray);
+		cleanup_ray(ray);
 		return (0x00000000);
 	}
 	
 	comp = prepare_computations(lux, intersections, ray);
-	free_ray(ray);
+	cleanup_ray(ray);
 	
 	if (!comp)
 	{

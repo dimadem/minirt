@@ -62,11 +62,10 @@ void	parse_func_redir(t_parse *pars, char **split_line)
 
 /**
  * @brief Processes a single line from the .rt file
- * @param lux Ray tracer structure
  * @param pars Parser structure
  * @param line The line to process
  */
-static void	process_single_line(t_rayt *lux, t_parse *pars, char *line)
+static void	process_single_line(t_parse *pars, char *line)
 {
 	char	**split_line;
 
@@ -109,7 +108,7 @@ void	parse_rt_read_line(t_rayt *lux, t_parse *pars)
 	
 	while (line != NULL)
 	{
-		process_single_line(lux, pars, line);
+		process_single_line(pars, line);
 		free(line);
 		line = get_next_line(lux->file_fd);
 	}
