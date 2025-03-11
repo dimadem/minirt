@@ -49,10 +49,20 @@ bool	is_shadowed(t_rayt *lux, t_matrix *point)
 	point_offset->data[1][0] += v_to_light->data[1][0] * EPSILON_VAL;
 	point_offset->data[2][0] += v_to_light->data[2][0] * EPSILON_VAL;
 	
-	shadow_ray = ray_create(point_offset, v_to_light);
+	// Make copies of matrices for the ray since ray_create takes ownership
+	t_matrix *dir_copy = matrix_clone(v_to_light);
+	if (!dir_copy)
+	{
+		free_matrix(point_offset);
+		free_matrix(v_to_light);
+		return (false);
+	}
+	
+	shadow_ray = ray_create(point_offset, dir_copy);
 	if (!shadow_ray)
 	{
 		free_matrix(point_offset);
+		free_matrix(dir_copy);
 		free_matrix(v_to_light);
 		return (false);
 	}
@@ -70,8 +80,7 @@ bool	is_shadowed(t_rayt *lux, t_matrix *point)
 	// Free all resources
 	if (intersections)
 		free_dptr((void **)intersections);
-	free_ray(shadow_ray);
-	free_matrix(point_offset);
+	free_ray(shadow_ray);  // This will free point_offset and dir_copy
 	free_matrix(v_to_light);
 	
 	return (shadowed);

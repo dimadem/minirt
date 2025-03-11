@@ -102,8 +102,15 @@ t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 		if (dot_h > 0)
 		{
 			result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
-			result.specular = calculate_specular(v_light, v_normal, 
-				lux->camera->v_orient, lux->p_light, mat);
+			
+			// We need to clone v_light because calculate_specular will modify it
+			t_matrix *v_light_copy = matrix_clone(v_light);
+			if (v_light_copy)
+			{
+				result.specular = calculate_specular(v_light_copy, v_normal, 
+					lux->camera->v_orient, lux->p_light, mat);
+				free_matrix(v_light_copy);
+			}
 		}
 		
 		free_matrix(v_light);
