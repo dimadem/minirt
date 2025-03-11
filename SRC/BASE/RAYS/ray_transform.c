@@ -15,10 +15,33 @@
 
 t_ray	*ray_transform(t_ray *ray, t_matrix *matrix)
 {
-	t_ray	*new_ray;
+	t_ray		*new_ray;
+	t_matrix	*new_origin;
+	t_matrix	*new_direction;
 
-	new_ray = ray_create(NULL, NULL);
-	new_ray->origin = matrix_multiple(matrix, ray->origin);
-	new_ray->direction = matrix_multiple(matrix, ray->direction);
+	if (!ray || !matrix)
+		return (NULL);
+		
+	new_origin = matrix_multiple(matrix, ray->origin);
+	if (!new_origin)
+		return (NULL);
+		
+	new_direction = matrix_multiple(matrix, ray->direction);
+	if (!new_direction)
+	{
+		free_matrix(new_origin);
+		return (NULL);
+	}
+	
+	new_ray = safe_malloc(sizeof(t_ray), 1);
+	if (!new_ray)
+	{
+		free_matrix(new_origin);
+		free_matrix(new_direction);
+		return (NULL);
+	}
+	
+	new_ray->origin = new_origin;
+	new_ray->direction = new_direction;
 	return (new_ray);
 }

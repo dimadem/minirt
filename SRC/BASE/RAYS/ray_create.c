@@ -14,15 +14,37 @@
 #include "muk_lib.h"
 #include "base_matrices.h"
 
+/*
+ * Creates a ray by cloning the provided origin and direction matrices.
+ * The original matrices are not modified or taken ownership of.
+ * Returns NULL if any allocation fails.
+ */
 t_ray	*ray_create(t_matrix *origin, t_matrix *direction)
 {
 	t_ray	*temp;
 
-	temp = safe_malloc(sizeof(t_ray), 1);
-	if (temp == NULL)
+	if (!origin || !direction)
 		return (NULL);
-	temp->origin = origin;
-	temp->direction = direction;
+		
+	temp = safe_malloc(sizeof(t_ray), 1);
+	if (!temp)
+		return (NULL);
+		
+	temp->origin = matrix_clone(origin);
+	if (!temp->origin)
+	{
+		free(temp);
+		return (NULL);
+	}
+	
+	temp->direction = matrix_clone(direction);
+	if (!temp->direction)
+	{
+		free_matrix(temp->origin);
+		free(temp);
+		return (NULL);
+	}
+	
 	return (temp);
 }
 

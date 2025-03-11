@@ -3,7 +3,17 @@
 #include "base_rays.h"
 #include "base_matrices.h"
 
+// Test if matrices are exactly the same object (pointer comparison)
 void TEST_ASSERT_EQUAL_MATRIX(t_matrix *expected, t_matrix *actual) 
+{
+    TEST_ASSERT_EQUAL_DOUBLE(expected->data[0][0], actual->data[0][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(expected->data[1][0], actual->data[1][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(expected->data[2][0], actual->data[2][0]);
+    TEST_ASSERT_EQUAL_DOUBLE(expected->data[3][0], actual->data[3][0]);
+}
+
+// Test if matrices contain the same data (content comparison)
+void TEST_ASSERT_EQUAL_MATRIX_DATA(t_matrix *expected, t_matrix *actual) 
 {
     TEST_ASSERT_EQUAL_DOUBLE(expected->data[0][0], actual->data[0][0]);
     TEST_ASSERT_EQUAL_DOUBLE(expected->data[1][0], actual->data[1][0]);
@@ -24,10 +34,22 @@ void	test_ray_create(void)
 	print_colored(bold, "create_point");
 	print_colored(bold, "create_vector");
     print_colored(bold, "create_ray");
-	TEST_ASSERT_EQUAL_MATRIX(origin, r->origin);
-    TEST_ASSERT_EQUAL_MATRIX(direction, r->direction);
+	
+	// ray_create now clones matrices, so we test values, not pointers
+	TEST_ASSERT_EQUAL_DOUBLE(origin->data[0][0], r->origin->data[0][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(origin->data[1][0], r->origin->data[1][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(origin->data[2][0], r->origin->data[2][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(origin->data[3][0], r->origin->data[3][0]);
+	
+	TEST_ASSERT_EQUAL_DOUBLE(direction->data[0][0], r->direction->data[0][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(direction->data[1][0], r->direction->data[1][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(direction->data[2][0], r->direction->data[2][0]);
+	TEST_ASSERT_EQUAL_DOUBLE(direction->data[3][0], r->direction->data[3][0]);
+    
     print_colored(green_back, "Ray - ray_create 	- Test 1 - Passed!");
     free_ray(r);
+    free_matrix(origin);
+    free_matrix(direction);
 }
 
 void	test_ray_position(void) 
@@ -45,24 +67,31 @@ void	test_ray_position(void)
 	print_colored(bold, "create_point");
 	print_colored(bold, "create_vector");
     print_colored(bold, "create_ray");
+    
     p1 = create_point(2, 3, 4);
     ray_p = ray_position(r, 0);
-    TEST_ASSERT_EQUAL_MATRIX(p1, ray_p);
+    TEST_ASSERT_EQUAL_MATRIX_DATA(p1, ray_p);
     free_matrix(ray_p);
+    
     p2 = create_point(3, 3, 4);
     ray_p = ray_position(r, 1);
-    TEST_ASSERT_EQUAL_MATRIX(p2, ray_p);
+    TEST_ASSERT_EQUAL_MATRIX_DATA(p2, ray_p);
     free_matrix(ray_p);
+    
     p3 = create_point(1, 3, 4);
     ray_p = ray_position(r, -1);
-    TEST_ASSERT_EQUAL_MATRIX(p3, ray_p);
+    TEST_ASSERT_EQUAL_MATRIX_DATA(p3, ray_p);
     free_matrix(ray_p);
+    
     p4 = create_point(4.5, 3, 4);
     ray_p = ray_position(r, 2.5);
-    TEST_ASSERT_EQUAL_MATRIX(p4, ray_p);
+    TEST_ASSERT_EQUAL_MATRIX_DATA(p4, ray_p);
     free_matrix(ray_p);
+    
     print_colored(green_back, "Ray - ray_position 	- Test 2 - Passed!");
     free_ray(r);
+    free_matrix(origin);
+    free_matrix(direction);
     free_matrix(p1);
     free_matrix(p2);
     free_matrix(p3);
@@ -83,10 +112,15 @@ void    test_ray_intersection(void)
 	print_colored(bold, "create_point");
 	print_colored(bold, "create_vector");
     print_colored(bold, "create_ray");
-	TEST_ASSERT_EQUAL_MATRIX(origin, r->origin);
-    TEST_ASSERT_EQUAL_MATRIX(direction, r->direction);
+	
+	// ray_create now clones matrices, so we test values, not pointers
+	TEST_ASSERT_EQUAL_MATRIX_DATA(origin, r->origin);
+	TEST_ASSERT_EQUAL_MATRIX_DATA(direction, r->direction);
+    
     print_colored(green_back, "Ray - ray_create 	- Test 1 - Passed!");
     free_ray(r);
+    free_matrix(origin);
+    free_matrix(direction);
 }
 
 

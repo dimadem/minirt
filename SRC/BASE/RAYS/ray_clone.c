@@ -15,20 +15,12 @@
 
 t_ray	*ray_clone(t_ray *original)
 {
-	t_ray		*c_ray;
-	t_matrix	*c_origin;
-	t_matrix	*c_vector;
+	t_ray	*c_ray;
 
-	if (original == NULL)
+	if (!original || !original->origin || !original->direction)
 		return (NULL);
-	c_origin = matrix_clone(original->origin);
-	if (c_origin == NULL)
-		return (NULL);
-	c_vector = matrix_clone(original->direction);
-	if (c_vector == NULL)
-		return (free(c_origin), NULL);
-	c_ray = ray_create(c_origin, c_vector);
-	if (c_ray == NULL)
-		return (free(c_origin), free(c_vector), NULL);
+		
+	// ray_create now internally clones the matrices
+	c_ray = ray_create(original->origin, original->direction);
 	return (c_ray);
 }
