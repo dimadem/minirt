@@ -44,12 +44,38 @@ static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 	result->ambient = light->brightness_ratio * material->ambient;
 }
 
+static double	calculate_specular(t_matrix *v_light, t_matrix *v_normal, 
+						t_matrix *camera_orient, t_light *light, t_mat mat)
+{
+	t_matrix	*v_reflect;
+	double		dot_h;
+	double		specular;
+
+	specular = 0.0;
+	
+	if (!v_light || !v_normal || !camera_orient || !light)
+		return (specular);
+		
+	matrix_scalar_mult(v_light, -1);
+	v_reflect = reflect(v_light, v_normal);
+	
+	if (v_reflect)
+	{
+		dot_h = matrix_dot(v_reflect, camera_orient);
+		if (dot_h > 0)
+			specular = light->brightness_ratio * mat.specular * 
+				pow(dot_h, mat.shininess);
+		free_matrix(v_reflect);
+	}
+	
+	return (specular);
+}
+
 t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 {
 	t_mat		result;
 	double		dot_h;
 	t_matrix	*v_light;
-	t_matrix	*v_reflect;
 	bool		in_shadow;
 
 	// Initialize the result with zero values
@@ -59,7 +85,6 @@ t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 	if (!lux || !lux->p_light || !pos || !v_normal || !lux->camera || !lux->camera->v_orient)
 		return (result);
 	
-	v_reflect = NULL;
 	trgb_init(&result, &mat, lux->p_light);
 	
 	// Check for shadows if shadow detection is available
@@ -77,22 +102,11 @@ t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 		if (dot_h > 0)
 		{
 			result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
-			
-			matrix_scalar_mult(v_light, -1);
-			v_reflect = reflect(v_light, v_normal);
-			
-			if (v_reflect)
-			{
-				dot_h = matrix_dot(v_reflect, lux->camera->v_orient);
-				if (dot_h > 0)
-					result.specular = lux->p_light->brightness_ratio * mat.specular * 
-						pow(dot_h, mat.shininess);
-			}
+			result.specular = calculate_specular(v_light, v_normal, 
+				lux->camera->v_orient, lux->p_light, mat);
 		}
 		
 		free_matrix(v_light);
-		if (v_reflect)
-			free_matrix(v_reflect);
 	}
 	
 	// Calculate final brightness

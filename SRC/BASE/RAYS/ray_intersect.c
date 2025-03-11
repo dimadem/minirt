@@ -90,6 +90,7 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 	double		denom;
 	double		t;
 	t_matrix	*normal;
+	t_matrix	*origin_diff;
 
 	if (!obj || !ray || obj->type != PLANE || !obj->obj.plane.v_orient)
 		return (NULL);
@@ -103,7 +104,11 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 		return (NULL);  // Ray is parallel to plane
 	
 	// Calculate distance to intersection
-	t = matrix_dot(matrix_subs(obj->obj.plane.origin, ray->origin), normal) / denom;
+	origin_diff = matrix_subs(obj->obj.plane.origin, ray->origin);
+	if (!origin_diff)
+		return (NULL);
+	t = matrix_dot(origin_diff, normal) / denom;
+	free_matrix(origin_diff);
 	
 	// Only add intersection if it's in front of the ray origin
 	if (t <= 0.0001)

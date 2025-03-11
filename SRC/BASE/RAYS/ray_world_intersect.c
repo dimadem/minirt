@@ -87,6 +87,7 @@ t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 				inter[j]->obj_type = lux->objects[i]->type;
 				add_to_dptr((void ***)&w_inter, (void *)inter[j++]);
 			}
+			// Free only the array, not its contents which were transferred to w_inter
 			free(inter);
 		}
 	}

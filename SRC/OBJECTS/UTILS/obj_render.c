@@ -124,6 +124,9 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	t_mat		material;
 	int			color;
 
+	if (!lux || !lux->camera)
+		return (0x00000000);
+		
 	ray = create_ray_for_pixel(x, y, lux->camera);
 	if (!ray)
 		return (0x00000000);
