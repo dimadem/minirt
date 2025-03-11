@@ -32,24 +32,31 @@ t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
 	double		dot_h;
 	t_matrix	*v_light;
 	t_matrix	*v_reflect;
+	bool		in_shadow;
 
 	v_reflect = NULL;
 	trgb_init(&result, mat, lux->p_light);
-	v_light = matrix_subs(lux->p_light->origin, pos);
-	matrix_normalize(v_light);
-	dot_h = matrix_dot(v_light, v_normal);
-	if (dot_h > 0)
+	in_shadow = is_shadowed(lux, pos);
+	
+	if (!in_shadow)
 	{
-		result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
-		matrix_scalar_mult(v_light, -1);
-		v_reflect = reflect(v_light, v_normal);
-		dot_h = matrix_dot(v_reflect, lux->camera->v_orient);
+		v_light = matrix_subs(lux->p_light->origin, pos);
+		matrix_normalize(v_light);
+		dot_h = matrix_dot(v_light, v_normal);
 		if (dot_h > 0)
-			result.specular = lux->p_light->brightness_ratio * mat.specular * \
-				pow(dot_h, mat.shininess);
+		{
+			result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
+			matrix_scalar_mult(v_light, -1);
+			v_reflect = reflect(v_light, v_normal);
+			dot_h = matrix_dot(v_reflect, lux->camera->v_orient);
+			if (dot_h > 0)
+				result.specular = lux->p_light->brightness_ratio * mat.specular * \
+					pow(dot_h, mat.shininess);
+		}
+		free_matrix(v_light);
+		free_matrix(v_reflect);
 	}
+	
 	result.brightness_ratio = result.ambient + result.diffuse + result.specular;
-	free_matrix(v_reflect);
-	free_matrix(v_light);
 	return (result);
 }

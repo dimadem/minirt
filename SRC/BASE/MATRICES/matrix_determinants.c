@@ -38,6 +38,24 @@ static void	populate_smol(t_matrix *matrix, t_matrix *smol, int column)
 	}
 }
 
+// Special case for 3x3 matrices to avoid recursion
+static double	det3x3(t_matrix *mat)
+{
+	double	a, b, c, d, e, f, g, h, i;
+	
+	a = mat->data[0][0];
+	b = mat->data[0][1];
+	c = mat->data[0][2];
+	d = mat->data[1][0];
+	e = mat->data[1][1];
+	f = mat->data[1][2];
+	g = mat->data[2][0];
+	h = mat->data[2][1];
+	i = mat->data[2][2];
+	
+	return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+}
+
 double	matrix_determinants(t_matrix *matrix)
 {
 	int			i;
@@ -48,20 +66,26 @@ double	matrix_determinants(t_matrix *matrix)
 	i = 0;
 	sign = 1;
 	res = 0;
-	if (matrix->n == 1 && matrix->m == 1)
+	if (!matrix || matrix->n != matrix->m)
+		return (0);
+		
+	if (matrix->n == 1)
 		return (matrix->data[0][0]);
-	else if (matrix->n == 2 && matrix->m == 2)
-		return (matrix->data[0][0] * matrix->data[1][1] - \
+	else if (matrix->n == 2)
+		return (matrix->data[0][0] * matrix->data[1][1] - 
 				matrix->data[0][1] * matrix->data[1][0]);
-	else if (matrix->n > 2 && matrix->m == matrix->n)
+	else if (matrix->n == 3)
+		return (det3x3(matrix));
+	else if (matrix->n > 3)
 	{
 		while (i < matrix->n)
 		{
 			smol = matrix_create(matrix->n - 1, matrix->m - 1);
 			populate_smol(matrix, smol, i);
-			res += sign * matrix->data[0][i++] * matrix_determinants(smol);
+			res += sign * matrix->data[0][i] * matrix_determinants(smol);
 			sign *= -1;
 			free_matrix(smol);
+			i++;
 		}
 	}
 	return (res);

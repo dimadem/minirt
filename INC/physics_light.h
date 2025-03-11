@@ -14,8 +14,10 @@
 # define PHYSICS_LIGHT_H
 
 # include "types.h"
+# include <stdbool.h>
 
 t_mat		lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal);
 t_matrix	*reflect(t_matrix *incoming, t_matrix *normal);
+bool		is_shadowed(t_rayt *lux, t_matrix *point);
 
 #endif

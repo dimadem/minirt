@@ -17,6 +17,6 @@
 
 void	free_objects(t_object **objects);
 void	free_object(t_object *obj);
-void	obj_render(int **pixel, t_object **objects, t_camera *camera);
+void	obj_render(int **pixel, t_rayt *lux);
 
 #endif

@@ -15,6 +15,9 @@
 #include "base_rays.h"
 #include "window_size.h"
 #include "muk_lib.h"
+#include "base_helpers.h"
+#include "base_colours.h"
+#include "physics_light.h"
 
 static void	calculate_uv(int i, int j, t_camera *camera)
 {
@@ -24,36 +27,46 @@ static void	calculate_uv(int i, int j, t_camera *camera)
 							* camera->half_height;
 }
 
-static bool	process_pixel(int x, int y, t_object **objects, t_camera *camera)
+static int	process_pixel(int x, int y, t_rayt *lux)
 {
-	t_ray	ray;
-	t_isect	**inter;
-	int		i;
-	bool	hit;
+	t_ray		ray;
+	t_isect		**intersections;
+	t_comps		*comp;
+	t_mat		material;
+	int			color;
 
-	hit = false;
-	calculate_uv(x, y, camera);
-	matrix_normalize(camera->v_orient);
-	ray = ray_create_local(camera->origin, &camera->viewport);
-	i = 0;
-	while (objects[i] != NULL)
+	calculate_uv(x, y, lux->camera);
+	matrix_normalize(lux->camera->v_orient);
+	ray = ray_create_local(lux->camera->origin, &lux->camera->viewport);
+	
+	intersections = ray_intersect_world(lux, &ray);
+	if (!intersections || !intersections[0])
 	{
-		inter = ray_intersect_sphere(objects[i], &ray);
-		if (inter != NULL)
-		{
-			hit = true;
-			free_dptr((void **)inter);
-		}
-		i++;
+		if (intersections)
+			free_dptr((void **)intersections);
+		return (0x00000000);
 	}
-	return (hit);
+	
+	comp = prepare_computations(lux, intersections, &ray);
+	material = comp->object->material;
+	material = lighting(lux, material, comp->p_intersect, comp->v_normal);
+	
+	color = colour_to_int(material.colour, material.brightness_ratio);
+	
+	free_dptr((void **)intersections);
+	free_matrix(comp->p_intersect);
+	free_matrix(comp->v_eye);
+	free_matrix(comp->v_normal);
+	free(comp);
+	
+	return (color);
 }
 
-void	obj_render(int **pixel, t_object **objects, t_camera *camera)
+void	obj_render(int **pixel, t_rayt *lux)
 {
 	int		y;
 	int		x;
-	bool	hit;
+	int		color;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -61,11 +74,8 @@ void	obj_render(int **pixel, t_object **objects, t_camera *camera)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			hit = process_pixel(x, y, objects, camera);
-			if (hit == true)
-				pixel[y][x] = 0xFFFFFFFF;
-			else
-				pixel[y][x] = 0x00000000;
+			color = process_pixel(x, y, lux);
+			pixel[y][x] = color;
 			x++;
 		}
 		y++;

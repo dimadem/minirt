@@ -18,21 +18,28 @@ static void	sort_w_isect(t_isect **w_isect)
 {
 	t_isect	*temp;
 	int		i;
+	int		j;
+	int		count;
 
-	i = 0;
-	while (w_isect[i + 1] != NULL)
+	count = 0;
+	while (w_isect[count] != NULL)
+		count++;
+	
+	for (i = 0; i < count - 1; i++)
 	{
-		if (w_isect[i]->t_val > w_isect[i + 1]->t_val)
+		for (j = 0; j < count - i - 1; j++)
 		{
-			temp = w_isect[i + 1];
-			w_isect[i + 1] = w_isect[i];
-			w_isect[i] = temp;
-			i = 0;
+			if (w_isect[j]->t_val > w_isect[j + 1]->t_val)
+			{
+				temp = w_isect[j];
+				w_isect[j] = w_isect[j + 1];
+				w_isect[j + 1] = temp;
+			}
 		}
-		else
-			i++;
 	}
-	w_isect[0]->count = i + 1;
+	
+	if (count > 0)
+		w_isect[0]->count = count;
 }
 
 t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)

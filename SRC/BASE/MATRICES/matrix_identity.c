@@ -22,20 +22,16 @@ t_matrix	*matrix_identity(int n)
 {
 	t_matrix	*identity;
 	int			i;
-	int			j;
 
 	identity = matrix_create(n, n);
+	if (!identity)
+		return (NULL);
+	
 	i = 0;
 	while (i < n)
 	{
-		j = 0;
-		while (j < n)
-		{
-			identity->data[i][j] = (double)0;
-			if (i == j)
-				identity->data[i][j] = (double)1;
-			j++;
-		}
+		ft_bzero(identity->data[i], sizeof(double) * n);
+		identity->data[i][i] = 1.0;
 		i++;
 	}
 	return (identity);
