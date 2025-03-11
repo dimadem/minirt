@@ -56,15 +56,26 @@ t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 	}
 	
 	matrix_scalar_mult(comps->v_eye, -1);
-	comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
 	
-	// Check if normal calculation succeeded
+	// Create a default normal vector if sphere_normal fails
+	comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
 	if (!comps->v_normal)
 	{
-		free_matrix(comps->p_intersect);
-		free_matrix(comps->v_eye);
-		free(comps);
-		return (NULL);
+		// Create a fallback normal (straight up)
+		comps->v_normal = matrix_create(4, 1);
+		if (!comps->v_normal)
+		{
+			free_matrix(comps->p_intersect);
+			free_matrix(comps->v_eye);
+			free(comps);
+			return (NULL);
+		}
+		
+		// Default normal pointing up
+		comps->v_normal->data[0][0] = 0;
+		comps->v_normal->data[1][0] = 1;
+		comps->v_normal->data[2][0] = 0;
+		comps->v_normal->data[3][0] = 0;
 	}
 	
 	return (comps);
