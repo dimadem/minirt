@@ -132,7 +132,7 @@ OBJS = $(SRC:.c=.o)
 OBJECTS = $(addprefix $(OBJ_PATH), $(OBJS))
 
 all: $(NAME)
-	@./$(NAME) MAP/testing.rt
+	@./$(NAME) MAP/minimalist.rt
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
 	@mkdir -p $(dir $@)
