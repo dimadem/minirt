@@ -57,8 +57,15 @@ t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 	
 	matrix_scalar_mult(comps->v_eye, -1);
 	
-	// Create a default normal vector if sphere_normal fails
-	comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
+	// Get normal vector based on object type
+	if (comps->type == SPHERE)
+		comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
+	else if (comps->type == PLANE)
+		comps->v_normal = plane_normal(comps->object, comps->p_intersect);
+	else
+		comps->v_normal = NULL;  // For other object types (will add later)
+		
+	// If normal calculation failed, create a fallback normal
 	if (!comps->v_normal)
 	{
 		// Create a fallback normal (straight up)

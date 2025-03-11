@@ -68,6 +68,19 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 		return (0x00000000);
 	}
 	
+	// Debug printout for the first few pixels
+	static int debug_count = 0;
+	if (debug_count < 5)
+	{
+		if (comp->type == SPHERE)
+			printf("Pixel [%d,%d] hit SPHERE\n", x, y);
+		else if (comp->type == PLANE)
+			printf("Pixel [%d,%d] hit PLANE\n", x, y);
+		else if (comp->type == CYLINDER)
+			printf("Pixel [%d,%d] hit CYLINDER\n", x, y);
+		debug_count++;
+	}
+	
 	// Initialize material to default values
 	ft_bzero(&material, sizeof(t_mat));
 	

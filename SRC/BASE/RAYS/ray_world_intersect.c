@@ -47,6 +47,22 @@ static void	sort_w_isect(t_isect **w_isect)
 	w_isect[0]->count = count;
 }
 
+static t_isect **get_intersections(t_object *obj, t_ray *ray)
+{
+	// Call the appropriate intersection function based on object type
+	if (!obj || !ray)
+		return (NULL);
+		
+	if (obj->type == SPHERE)
+		return (ray_intersect_sphere(obj, ray));
+	else if (obj->type == PLANE)
+		return (ray_intersect_plane(obj, ray));
+	else if (obj->type == CYLINDER)
+		return (ray_intersect_cylinder(obj, ray));
+	else
+		return (NULL);
+}
+
 t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 {
 	t_isect		**w_inter;
@@ -60,11 +76,12 @@ t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 	i = -1;
 	while (lux->objects[++i])
 	{
-		inter = ray_intersect_sphere(lux->objects[i], ray);
+		// Get intersections using the appropriate function for each object type
+		inter = get_intersections(lux->objects[i], ray);
 		if (inter)  // Only process if intersections were found
 		{
 			j = 0;
-			while (j < 2)
+			while (inter[j] != NULL)  // Process all intersections until NULL
 			{
 				inter[j]->obj_id = i;
 				inter[j]->obj_type = lux->objects[i]->type;
