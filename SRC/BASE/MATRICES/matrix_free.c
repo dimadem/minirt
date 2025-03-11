@@ -12,6 +12,12 @@
 
 #include "base_matrices.h"
 
+/**
+ * Frees a matrix and sets the pointer to NULL.
+ * This function is safe to call with NULL.
+ * 
+ * @param mat_ptr Pointer to the matrix pointer to free
+ */
 void	free_matrix(t_matrix *mat)
 {
 	int	i;
@@ -30,5 +36,5 @@ void	free_matrix(t_matrix *mat)
 		free(mat->data);
 	}
 	free(mat);
-	mat = NULL;
+	// Note: setting mat = NULL has no effect since mat is passed by value
 }

@@ -12,6 +12,12 @@
 
 #include "base_matrices.h"
 
+/**
+ * Frees a ray and all of its associated matrices.
+ * This function is safe to call with NULL.
+ * 
+ * @param ray Pointer to the ray to free
+ */
 void	free_ray(t_ray *ray)
 {
 	if (ray == NULL)
@@ -21,5 +27,5 @@ void	free_ray(t_ray *ray)
 	if (ray->direction)
 		free_matrix(ray->direction);
 	free(ray);
-	ray = NULL;
+	// Note: setting ray = NULL has no effect since ray is passed by value
 }

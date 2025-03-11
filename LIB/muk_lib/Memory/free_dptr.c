@@ -12,7 +12,14 @@
 
 #include "../muk_lib.h"
 
-//	This function is used to free double pointers.
+/**
+ * Frees a NULL-terminated array of pointers and the array itself.
+ * The array must be NULL-terminated.
+ * This function nullifies individual pointers after freeing.
+ * Note that setting dptr = NULL has no effect since dptr is passed by value.
+ * 
+ * @param dptr The NULL-terminated array of pointers to free
+ */
 void	free_dptr(void **dptr)
 {
 	int	i;
@@ -23,9 +30,9 @@ void	free_dptr(void **dptr)
 	while (dptr[i] != NULL)
 	{
 		free(dptr[i]);
-		dptr[i] = NULL;
+		dptr[i] = NULL;  // This can be useful to prevent use-after-free bugs
 		i++;
 	}
-	free (dptr);
-	dptr = NULL;
+	free(dptr);
+	// Note: setting dptr = NULL has no effect since dptr is passed by value
 }
