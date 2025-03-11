@@ -12,16 +12,27 @@
 
 #include "types.h"
 
+/**
+ * Converts a matrix to a tuple.
+ * 
+ * @param mat The matrix to convert
+ * @return A newly allocated tuple or NULL if allocation fails
+ */
 t_tuple	*matrix_to_tuple(t_matrix *mat)
 {
 	t_tuple	*temp;
 
-	temp = (t_tuple *)malloc(sizeof(t_tuple));
-	if (temp == NULL)
-		return (temp);
+	if (!mat)
+		return (NULL);
+		
+	temp = (t_tuple *)safe_malloc(sizeof(t_tuple), 1);
+	if (!temp)
+		return (NULL);
+		
 	temp->x = mat->data[0][0];
 	temp->y = mat->data[1][0];
 	temp->z = mat->data[2][0];
 	temp->w = mat->data[3][0];
+	
 	return (temp);
 }
