@@ -29,7 +29,7 @@ static void	calculate_uv(int i, int j, t_camera *camera)
 
 static int	process_pixel(int x, int y, t_rayt *lux)
 {
-	t_ray		ray;
+	t_ray		*ray;
 	t_isect		**intersections;
 	t_comps		*comp;
 	t_mat		material;
@@ -39,18 +39,29 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	matrix_normalize(lux->camera->v_orient);
 	ray = ray_create_local(lux->camera->origin, &lux->camera->viewport);
 	
-	intersections = ray_intersect_world(lux, &ray);
+	if (!ray)
+		return (0x00000000);
 	
-	// Free the ray direction created inside ray_create_local
-	free_matrix(ray.direction);
+	intersections = ray_intersect_world(lux, ray);
+	
 	if (!intersections || !intersections[0])
 	{
 		if (intersections)
 			free_dptr((void **)intersections);
+		// Free ray and its components
+		free_matrix(ray->direction);
+		free_matrix(ray->origin);
+		free(ray);
 		return (0x00000000);
 	}
 	
-	comp = prepare_computations(lux, intersections, &ray);
+	comp = prepare_computations(lux, intersections, ray);
+	
+	// Free ray after prepare_computations
+	free_matrix(ray->direction);
+	free_matrix(ray->origin);
+	free(ray);
+	
 	if (!comp)
 	{
 		free_dptr((void **)intersections);

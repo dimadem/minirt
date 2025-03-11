@@ -26,18 +26,38 @@ t_ray	*ray_create(t_matrix *origin, t_matrix *direction)
 	return (temp);
 }
 
-t_ray	ray_create_local(t_matrix *origin, t_uv *direction)
+t_ray	*ray_create_local(t_matrix *origin, t_uv *direction)
 {
-	t_ray	temp;
+	t_ray	*temp;
 	t_matrix *dir;
 
+	if (!origin || !direction)
+		return (NULL);
+		
 	dir = matrix_create(4, 1);
+	if (!dir)
+		return (NULL);
+		
 	dir->data[0][0] = direction->u;
 	dir->data[1][0] = direction->v;
 	dir->data[2][0] = 1.0;
 	dir->data[3][0] = 0.0;
 	
-	temp.origin = origin;
-	temp.direction = dir;
+	temp = safe_malloc(sizeof(t_ray), 1);
+	if (!temp)
+	{
+		free_matrix(dir);
+		return (NULL);
+	}
+	
+	temp->origin = matrix_clone(origin);
+	if (!temp->origin)
+	{
+		free_matrix(dir);
+		free(temp);
+		return (NULL);
+	}
+	
+	temp->direction = dir;
 	return (temp);
 }
