@@ -16,14 +16,30 @@
 #include "muk_lib.h"
 #include <math.h>
 
-static void	asgva(t_isect ***a_ix, double t1, double t2)
+/**
+ * Creates and populates two intersection records with the given t-values.
+ * Adds them to the provided intersection array.
+ * 
+ * Error handling: Cleans up resources on allocation failure. If the first
+ * allocation fails, returns immediately. If the second fails, frees the first
+ * and sets the array to NULL.
+ * 
+ * @param a_ix Pointer to the intersection array to populate
+ * @param t1 The t-value for the first intersection
+ * @param t2 The t-value for the second intersection
+ */
+static void	create_sphere_intersections(t_isect ***a_ix, double t1, double t2)
 {
 	t_isect	*inter1;
 	t_isect	*inter2;
 
+	if (!a_ix)
+		return;
+		
 	inter1 = safe_malloc(sizeof(t_isect), 1);
 	if (!inter1)
 		return;
+		
 	inter1->t_val = t1;
 	add_to_dptr((void ***)a_ix, (void *)inter1);
 	
@@ -34,10 +50,23 @@ static void	asgva(t_isect ***a_ix, double t1, double t2)
 		*a_ix = NULL;
 		return;
 	}
+	
 	inter2->t_val = t2;
 	add_to_dptr((void ***)a_ix, (void *)inter2);
 }
 
+/**
+ * Calculates the intersection points between a ray and a sphere.
+ * Transforms the ray to object space, calculates intersection points,
+ * and creates intersection records.
+ * 
+ * Error handling: Returns NULL on allocation failures or when no intersection exists.
+ * Resource management: Properly frees intermediate matrices and rays.
+ * 
+ * @param obj The sphere object to test for intersection
+ * @param ray The ray to test for intersection
+ * @return Array of intersection records or NULL if no intersection or on error
+ */
 t_isect	**ray_intersect_sphere(t_object *obj, t_ray *ray)
 {
 	t_isect		**all_inter;
@@ -78,12 +107,23 @@ t_isect	**ray_intersect_sphere(t_object *obj, t_ray *ray)
 	t1 = (var - sqrt(delta)) / (2 * matrix_dot(nray->direction, nray->direction));
 	t2 = (var + sqrt(delta)) / (2 * matrix_dot(nray->direction, nray->direction));
 	
-	asgva(&all_inter, t1, t2);
+	create_sphere_intersections(&all_inter, t1, t2);
 	free_matrix(sptoray);
 	free_ray(nray);
 	return (all_inter);
 }
 
+/**
+ * Calculates the intersection points between a ray and a plane.
+ * Uses the plane normal and position to determine if and where the ray intersects.
+ * 
+ * Error handling: Returns NULL on allocation failures or when no intersection exists.
+ * Resource management: Properly frees intermediate matrices.
+ * 
+ * @param obj The plane object to test for intersection
+ * @param ray The ray to test for intersection
+ * @return Array of intersection records or NULL if no intersection or on error
+ */
 t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 {
 	t_isect		**all_inter;
@@ -141,11 +181,25 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 	return (all_inter);
 }
 
+/**
+ * Calculates the intersection points between a ray and a cylinder.
+ * 
+ * Note: This is a placeholder for future implementation.
+ * 
+ * Error handling: Always returns NULL (not yet implemented).
+ * Resource management: No resources are allocated.
+ * 
+ * @param obj The cylinder object to test for intersection
+ * @param ray The ray to test for intersection
+ * @return Array of intersection records or NULL
+ */
 t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 {
-	// Simplified cylinder intersection logic - returns NULL for now
-	// Will be implemented properly in a future update
-	(void)obj;
-	(void)ray;
+	// Placeholder for future implementation
+	// Currently always returns NULL
+	if (!obj || !ray || obj->type != CYLINDER)
+		return (NULL);
+		
+	// TODO: Implement cylinder intersection logic
 	return (NULL);
 }
