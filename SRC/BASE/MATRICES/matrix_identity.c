@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "base_matrices.h"
+#include "muk_lib.h"
+
 /**
  * @brief Function that creates an identity matrix of size n
  * 1 0 0 0
