@@ -142,6 +142,8 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 	
 	// Check if ray is parallel to plane
 	denom = matrix_dot(normal, ray->direction);
+	printf("Debug: Ray direction [%f, %f, %f]\n", 
+		ray->direction->data[0][0], ray->direction->data[1][0], ray->direction->data[2][0]);
 	printf("Debug: Plane dot product with ray direction: %f\n", denom);
 	if (fabs(denom) < 0.0001)
 	{
@@ -153,7 +155,12 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 	origin_diff = matrix_subs(obj->obj.plane.origin, ray->origin);
 	if (!origin_diff)
 		return (NULL);
+	
 	t = matrix_dot(origin_diff, normal) / denom;
+	printf("Debug: Origin diff [%f, %f, %f]\n", 
+		origin_diff->data[0][0], origin_diff->data[1][0], origin_diff->data[2][0]);
+	printf("Debug: Raw t value: %f\n", t);
+	
 	free_matrix(origin_diff);
 	
 	// Only add intersection if it's in front of the ray origin
