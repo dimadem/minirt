@@ -16,6 +16,7 @@
 #include "base_rays.h"
 #include "objects_sphere.h"
 #include "objects_plane.h"
+#include "objects_cylinder.h"
 
 static t_comps	*init_comp_structure(t_isect *inter)
 {
@@ -77,7 +78,7 @@ static int	setup_normal_vector(t_comps *comps)
 	else if (comps->type == PLANE)
 		comps->v_normal = plane_normal(comps->object, comps->p_intersect);
 	else if (comps->type == CYLINDER)
-		comps->v_normal = create_fallback_normal(); // TODO: Implement cylinder normal
+		comps->v_normal = cylinder_normal(comps->object, comps->p_intersect);
 
 	if (!comps->v_normal)
 		comps->v_normal = create_fallback_normal();
