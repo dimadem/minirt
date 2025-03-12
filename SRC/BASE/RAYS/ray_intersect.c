@@ -210,8 +210,137 @@ static void	create_cylinder_intersections(t_isect ***a_ix, double *t_vals, int c
 }
 
 /**
+ * Checks if a point is within the height limits of a cylinder.
+ * 
+ * @param obj The cylinder object
+ * @param ray The ray being tested
+ * @param t The t value of the intersection
+ * @param axis The normalized cylinder axis
+ * @param projection_ptr Pointer to store the projection value
+ * @return 1 if within height limits, 0 if outside
+ */
+static int	is_within_cylinder_height(t_object *obj, t_ray *ray, double t, 
+									t_matrix *axis, double *projection_ptr)
+{
+	t_matrix	*intersection_point;
+	t_matrix	*cylinder_to_point;
+	double		projection;
+	double		half_height;
+
+	// Calculate intersection point
+	intersection_point = ray_position(ray, t);
+	if (!intersection_point)
+		return (0);
+	
+	// Vector from cylinder origin to intersection point
+	cylinder_to_point = matrix_subs(intersection_point, obj->obj.cylinder.origin);
+	free_matrix(intersection_point);
+	
+	if (!cylinder_to_point)
+		return (0);
+	
+	// Project this vector onto the cylinder axis
+	projection = matrix_dot(cylinder_to_point, axis);
+	free_matrix(cylinder_to_point);
+	
+	// Store projection value for caller if requested
+	if (projection_ptr)
+		*projection_ptr = projection;
+	
+	// Check if projection is within cylinder height
+	half_height = obj->obj.cylinder.height / 2;
+	return (projection >= -half_height && projection <= half_height);
+}
+
+/**
+ * Calculates the intersection of a ray with a cylinder cap.
+ * 
+ * @param obj The cylinder object
+ * @param ray The ray being tested
+ * @param axis The normalized cylinder axis
+ * @param is_top 1 for top cap, 0 for bottom cap
+ * @return The t value of the intersection or -1 if no intersection
+ */
+static double	intersect_cap(t_object *obj, t_ray *ray, t_matrix *axis, 
+							int is_top)
+{
+	double		t;
+	t_matrix	*cap_center;
+	t_matrix	*cap_to_ray;
+	double		radius;
+	double		denom;
+	t_matrix	*intersection_point;
+	t_matrix	*to_center;
+	double		distance_squared;
+
+	// Calculate cap center position
+	cap_center = matrix_clone(axis);
+	if (!cap_center)
+		return (-1);
+	
+	// Position the cap at either top or bottom
+	matrix_scalar_mult(cap_center, is_top ? 
+						obj->obj.cylinder.height / 2 : 
+						-obj->obj.cylinder.height / 2);
+	matrix_sum(cap_center, obj->obj.cylinder.origin);
+	
+	// Calculate vector from cap center to ray origin
+	cap_to_ray = matrix_subs(cap_center, ray->origin);
+	if (!cap_to_ray)
+	{
+		free_matrix(cap_center);
+		return (-1);
+	}
+	
+	// Check if ray is parallel to cap plane
+	denom = matrix_dot(axis, ray->direction);
+	if (fabs(denom) < 0.0001)
+	{
+		free_matrix(cap_center);
+		free_matrix(cap_to_ray);
+		return (-1);
+	}
+	
+	// Calculate t at which ray intersects cap plane
+	t = matrix_dot(cap_to_ray, axis) / denom;
+	free_matrix(cap_to_ray);
+	
+	// Check if intersection is behind ray origin
+	if (t <= 0.0001)
+	{
+		free_matrix(cap_center);
+		return (-1);
+	}
+	
+	// Calculate intersection point
+	intersection_point = ray_position(ray, t);
+	if (!intersection_point)
+	{
+		free_matrix(cap_center);
+		return (-1);
+	}
+	
+	// Calculate distance from intersection to cap center
+	to_center = matrix_subs(intersection_point, cap_center);
+	free_matrix(cap_center);
+	free_matrix(intersection_point);
+	if (!to_center)
+		return (-1);
+	
+	// Check if intersection point is within the cap radius
+	distance_squared = matrix_dot(to_center, to_center);
+	free_matrix(to_center);
+	radius = obj->obj.cylinder.diameter / 2;
+	
+	if (distance_squared <= radius * radius)
+		return (t);
+	
+	return (-1);
+}
+
+/**
  * Calculates the intersection points between a ray and a cylinder.
- * Handles both the infinite cylinder body and the caps, if within height bounds.
+ * Handles both the cylinder body and end caps.
  * 
  * Error handling: Returns NULL on allocation failures or when no intersection exists.
  * Resource management: Properly frees intermediate matrices.
@@ -223,10 +352,9 @@ static void	create_cylinder_intersections(t_isect ***a_ix, double *t_vals, int c
 t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 {
 	t_isect		**all_inter;
-	t_matrix	*a, *b, *c;
-	double		abc[3];
-	double		delta, t1, t2;
-	double		t_vals[2];
+	t_matrix	*axis, *b, *c;
+	double		abc[3], delta, t_vals[4]; // Max 4 intersections (2 body + 2 caps)
+	double		a_dot, c_dot, t1, t2, t_cap;
 	int			count;
 
 	if (!obj || !ray || obj->type != CYLINDER || !obj->obj.cylinder.v_orient)
@@ -235,28 +363,41 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	all_inter = NULL;
 	
 	// Get cylinder orientation (normalized)
-	a = matrix_clone(obj->obj.cylinder.v_orient);
-	if (!a)
+	axis = matrix_clone(obj->obj.cylinder.v_orient);
+	if (!axis)
 		return (NULL);
-	matrix_normalize(a);
+	matrix_normalize(axis);
+	
+	// Check cap intersections first
+	count = 0;
+	
+	// Top cap
+	t_cap = intersect_cap(obj, ray, axis, 1);
+	if (t_cap > 0.00001)
+		t_vals[count++] = t_cap;
+	
+	// Bottom cap
+	t_cap = intersect_cap(obj, ray, axis, 0);
+	if (t_cap > 0.00001)
+		t_vals[count++] = t_cap;
 	
 	// Calculate vector from cylinder origin to ray origin
 	c = matrix_subs(ray->origin, obj->obj.cylinder.origin);
 	if (!c)
 	{
-		free_matrix(a);
+		free_matrix(axis);
 		return (NULL);
 	}
 	
-	// Calculate components for quadratic equation
-	// A = ray direction dot product with cylinder axis
-	double a_dot = matrix_dot(ray->direction, a);
+	// Calculate projections for quadratic equation
+	a_dot = matrix_dot(ray->direction, axis);
+	c_dot = matrix_dot(c, axis);
 	
 	// Calculate vector rejection (ray direction perpendicular to cylinder axis)
 	b = matrix_clone(ray->direction);
 	if (!b)
 	{
-		free_matrix(a);
+		free_matrix(axis);
 		free_matrix(c);
 		return (NULL);
 	}
@@ -265,16 +406,13 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	
 	// A coefficient in quadratic equation
 	abc[0] = matrix_dot(b, b);
-	
-	// Free b and calculate new b (vector rejection of oc vector)
 	free_matrix(b);
 	
 	// Calculate vector rejection (oc perpendicular to cylinder axis)
-	double c_dot = matrix_dot(c, a);
-	b = matrix_clone(a);
+	b = matrix_clone(axis);
 	if (!b)
 	{
-		free_matrix(a);
+		free_matrix(axis);
 		free_matrix(c);
 		return (NULL);
 	}
@@ -282,32 +420,32 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	matrix_scalar_mult(b, -1);
 	matrix_sum(b, c);
 	
-	// B coefficient (2 * dot product of direction rejection and origin rejection)
-	abc[1] = 2 * matrix_dot(ray->direction, b) - 
-			2 * a_dot * matrix_dot(c, a);
-	
-	// C coefficient (dot product of origin rejection with itself minus radius squared)
+	// B and C coefficients for quadratic equation
+	abc[1] = 2 * matrix_dot(ray->direction, b) - 2 * a_dot * c_dot;
 	abc[2] = matrix_dot(b, b) - pow(obj->obj.cylinder.diameter / 2, 2);
-	
-	free_matrix(a);
-	free_matrix(b);
-	free_matrix(c);
 	
 	// Calculate discriminant
 	delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
-	if (delta < 0 || fabs(abc[0]) < 0.00001)
-		return (NULL);
 	
-	// Calculate intersection points
-	t1 = (-abc[1] - sqrt(delta)) / (2 * abc[0]);
-	t2 = (-abc[1] + sqrt(delta)) / (2 * abc[0]);
+	// Clean up before checking discriminant
+	free_matrix(b);
 	
-	// Only include intersections with positive t values
-	count = 0;
-	if (t1 > 0.00001)
-		t_vals[count++] = t1;
-	if (t2 > 0.00001)
-		t_vals[count++] = t2;
+	// Check for body intersections if discriminant is positive
+	if (delta >= 0 && fabs(abc[0]) > 0.00001)
+	{
+		// Calculate intersection points
+		t1 = (-abc[1] - sqrt(delta)) / (2 * abc[0]);
+		t2 = (-abc[1] + sqrt(delta)) / (2 * abc[0]);
+		
+		// Only include intersections with positive t values and within cylinder height
+		if (t1 > 0.00001 && is_within_cylinder_height(obj, ray, t1, axis, NULL))
+			t_vals[count++] = t1;
+		if (t2 > 0.00001 && is_within_cylinder_height(obj, ray, t2, axis, NULL))
+			t_vals[count++] = t2;
+	}
+	
+	free_matrix(c);
+	free_matrix(axis);
 	
 	if (count > 0)
 		create_cylinder_intersections(&all_inter, t_vals, count);
