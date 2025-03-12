@@ -137,19 +137,11 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 		
 	all_inter = NULL;
 	normal = obj->obj.plane.v_orient;
-	printf("Debug: Plane v_orient [%f, %f, %f]\n", 
-		normal->data[0][0], normal->data[1][0], normal->data[2][0]);
 	
 	// Check if ray is parallel to plane
 	denom = matrix_dot(normal, ray->direction);
-	printf("Debug: Ray direction [%f, %f, %f]\n", 
-		ray->direction->data[0][0], ray->direction->data[1][0], ray->direction->data[2][0]);
-	printf("Debug: Plane dot product with ray direction: %f\n", denom);
 	if (fabs(denom) < 0.0001)
-	{
-		printf("Debug: Ray is parallel to plane\n");
 		return (NULL);  // Ray is parallel to plane
-	}
 	
 	// Calculate distance to intersection
 	origin_diff = matrix_subs(obj->obj.plane.origin, ray->origin);
@@ -157,19 +149,11 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 		return (NULL);
 	
 	t = matrix_dot(origin_diff, normal) / denom;
-	printf("Debug: Origin diff [%f, %f, %f]\n", 
-		origin_diff->data[0][0], origin_diff->data[1][0], origin_diff->data[2][0]);
-	printf("Debug: Raw t value: %f\n", t);
-	
 	free_matrix(origin_diff);
 	
 	// Only add intersection if it's in front of the ray origin
 	if (t <= 0.0001)
-	{
-		printf("Debug: Plane intersection behind ray (t = %f)\n", t);
 		return (NULL);
-	}
-	printf("Debug: Plane intersection at t = %f\n", t);
 	
 	// Create intersection - just one intersection for plane is enough
 	all_inter = safe_malloc(sizeof(t_isect *), 2);  // 1 intersection + NULL terminator

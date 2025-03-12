@@ -47,21 +47,7 @@ static void	free_comp(t_comps *comp)
 	free(comp);
 }
 
-static void	print_debug_info(t_comps *comp, int x, int y)
-{
-	static int debug_count = 0;
-	
-	if (debug_count >= 20 || !comp)
-		return ;
-	
-	if (comp->type == SPHERE)
-		printf("Pixel [%d,%d] hit SPHERE\n", x, y);
-	else if (comp->type == PLANE)
-		printf("Pixel [%d,%d] hit PLANE\n", x, y);
-	else if (comp->type == CYLINDER)
-		printf("Pixel [%d,%d] hit CYLINDER\n", x, y);
-	debug_count++;
-}
+// Removed debug function - not needed anymore
 
 static void	setup_material(t_mat *material, t_comps *comp)
 {
@@ -141,7 +127,7 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 		return (0x00000000);
 	}
 	
-	print_debug_info(comp, x, y);
+	// Debug info removed
 	setup_material(&material, comp);
 	color = apply_lighting(lux, &material, comp);
 	
