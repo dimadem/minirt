@@ -75,23 +75,17 @@ static t_isect **get_intersections(t_object *obj, t_ray *ray)
 {
 	if (!obj || !ray)
 		return (NULL);
-	
-	printf("DEBUG: get_intersections checking object of type %d\n", obj->type);
 		
 	// Dispatch to the appropriate intersection function based on object type
 	switch (obj->type)
 	{
 		case SPHERE:
-			printf("DEBUG: Testing intersection with SPHERE\n");
 			return (ray_intersect_sphere(obj, ray));
 		case PLANE:
-			printf("DEBUG: Testing intersection with PLANE\n");
 			return (ray_intersect_plane(obj, ray));
 		case CYLINDER:
-			printf("DEBUG: Testing intersection with CYLINDER\n");
 			return (ray_intersect_cylinder(obj, ray));
 		default:
-			printf("DEBUG: Unknown object type: %d\n", obj->type);
 			return (NULL);  // Unknown object type
 	}
 }

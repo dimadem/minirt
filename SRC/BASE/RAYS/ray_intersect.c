@@ -382,14 +382,8 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	double		t1, t2, t_cap;
 	int			count;
 
-	printf("DEBUG: ray_intersect_cylinder called\n");
-
 	if (!obj || !ray || obj->type != CYLINDER || !obj->obj.cylinder.v_orient)
-	{
-		printf("DEBUG: ray_intersect_cylinder early return: %p %p %d %p\n", 
-			obj, ray, (obj ? obj->type : -1), (obj ? obj->obj.cylinder.v_orient : NULL));
 		return (NULL);
-	}
 	
 	all_inter = NULL;
 	count = 0;
@@ -464,7 +458,6 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	
 	// Calculate discriminant
 	delta = b * b - 4 * a * c;
-	printf("DEBUG: Cylinder quadratic: a=%f, b=%f, c=%f, delta=%f\n", a, b, c, delta);
 	
 	// Free temporary matrices that aren't needed anymore
 	free_matrix(rd_reject);
@@ -476,37 +469,24 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 		// Calculate intersection points
 		t1 = (-b - sqrt(delta)) / (2 * a);
 		t2 = (-b + sqrt(delta)) / (2 * a);
-		printf("DEBUG: Cylinder body t values: t1=%f, t2=%f\n", t1, t2);
 		
 		// Only include intersections with positive t values and within cylinder height
 		if (t1 > 0.00001 && is_within_cylinder_height(obj, ray, t1, axis, NULL))
-		{
-			printf("DEBUG: Adding t1=%f to intersections\n", t1);
 			t_vals[count++] = t1;
-		}
 		if (t2 > 0.00001 && is_within_cylinder_height(obj, ray, t2, axis, NULL))
-		{
-			printf("DEBUG: Adding t2=%f to intersections\n", t2);
 			t_vals[count++] = t2;
-		}
 	}
 	
 	// Check cap intersections
 	// Top cap
 	t_cap = intersect_cap(obj, ray, axis, 1);
 	if (t_cap > 0.00001)
-	{
-		printf("DEBUG: Adding top cap t=%f to intersections\n", t_cap);
 		t_vals[count++] = t_cap;
-	}
 	
 	// Bottom cap
 	t_cap = intersect_cap(obj, ray, axis, 0);
 	if (t_cap > 0.00001)
-	{
-		printf("DEBUG: Adding bottom cap t=%f to intersections\n", t_cap);
 		t_vals[count++] = t_cap;
-	}
 	
 	// Clean up resources
 	free_matrix(oc);
@@ -514,14 +494,7 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	
 	// Create intersection records if we found any
 	if (count > 0)
-	{
-		printf("DEBUG: Found %d cylinder intersections\n", count);
 		create_cylinder_intersections(&all_inter, t_vals, count);
-	}
-	else
-	{
-		printf("DEBUG: No cylinder intersections found\n");
-	}
 	
 	return (all_inter);
 }

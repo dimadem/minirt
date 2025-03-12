@@ -102,12 +102,6 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	t_mat		material;
 	int			color;
 
-	// Only add debug prints for a few specific pixels to avoid flooding console
-	bool debug = (x == WINDOW_WIDTH/2 && y == WINDOW_HEIGHT/2);
-	
-	if (debug)
-		printf("\nDEBUG: Processing center pixel (%d, %d)\n", x, y);
-
 	if (!lux || !lux->camera)
 		return (0x00000000);
 		
@@ -115,29 +109,13 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	if (!ray)
 		return (0x00000000);
 	
-	if (debug)
-		printf("DEBUG: Ray created, finding intersections\n");
-	
 	intersections = ray_intersect_world(lux, ray);
 	if (!intersections || !intersections[0])
 	{
-		if (debug)
-			printf("DEBUG: No intersections found\n");
-		
 		if (intersections)
 			free_dptr((void **)intersections);
 		free_ray(ray);
 		return (0x00000000);
-	}
-	
-	if (debug)
-	{
-		int count = 0;
-		while (intersections[count])
-			count++;
-		
-		printf("DEBUG: Found %d intersections. First hit: type=%d, t=%f\n", 
-			count, intersections[0]->obj_type, intersections[0]->t_val);
 	}
 	
 	comp = prepare_computations(lux, intersections, ray);
@@ -145,22 +123,12 @@ static int	process_pixel(int x, int y, t_rayt *lux)
 	
 	if (!comp)
 	{
-		if (debug)
-			printf("DEBUG: Failed to prepare computations\n");
-		
 		free_dptr((void **)intersections);
 		return (0x00000000);
 	}
 	
-	if (debug)
-		printf("DEBUG: Computations prepared. Object type: %d\n", comp->type);
-	
 	setup_material(&material, comp);
 	color = apply_lighting(lux, &material, comp);
-	
-	if (debug)
-		printf("DEBUG: Final color: 0x%08X (R:%d, G:%d, B:%d)\n", 
-			color, (color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
 	
 	free_dptr((void **)intersections);
 	free_comp(comp);
