@@ -12,6 +12,7 @@
 
 #include "base_matrices.h"
 #include "base_rays.h"
+#include "muk_lib.h"
 
 t_ray	*ray_transform(t_ray *ray, t_matrix *matrix)
 {
