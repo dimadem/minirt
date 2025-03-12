@@ -49,25 +49,7 @@ static int	setup_eye_vector(t_comps *comps, t_ray *ray)
 	return (1);
 }
 
-static t_matrix	*create_plane_normal(t_object *obj)
-{
-	t_matrix	*normal;
-	
-	if (!obj || !obj->obj.plane.v_orient)
-		return (NULL);
-		
-	normal = matrix_create(4, 1);
-	if (!normal)
-		return (NULL);
-		
-	normal->data[0][0] = obj->obj.plane.v_orient->data[0][0];
-	normal->data[1][0] = obj->obj.plane.v_orient->data[1][0];
-	normal->data[2][0] = obj->obj.plane.v_orient->data[2][0];
-	normal->data[3][0] = 0;  // Ensure it's a vector (w=0)
-	matrix_normalize(normal);
-	
-	return (normal);
-}
+// Removed create_plane_normal function - using plane_normal instead
 
 static t_matrix	*create_fallback_normal(void)
 {
@@ -93,7 +75,9 @@ static int	setup_normal_vector(t_comps *comps)
 	if (comps->type == SPHERE)
 		comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
 	else if (comps->type == PLANE)
-		comps->v_normal = create_plane_normal(comps->object);
+		comps->v_normal = plane_normal(comps->object, comps->p_intersect);
+	else if (comps->type == CYLINDER)
+		comps->v_normal = create_fallback_normal(); // TODO: Implement cylinder normal
 
 	if (!comps->v_normal)
 		comps->v_normal = create_fallback_normal();

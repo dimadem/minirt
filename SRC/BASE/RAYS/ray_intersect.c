@@ -154,8 +154,8 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 	if (t <= 0.0001)
 		return (NULL);
 	
-	// Create intersection
-	all_inter = safe_malloc(sizeof(t_isect *), 3);  // 2 intersections + NULL terminator
+	// Create intersection - just one intersection for plane is enough
+	all_inter = safe_malloc(sizeof(t_isect *), 2);  // 1 intersection + NULL terminator
 	if (!all_inter)
 		return (NULL);
 		
@@ -166,18 +166,9 @@ t_isect	**ray_intersect_plane(t_object *obj, t_ray *ray)
 		return (NULL);
 	}
 	all_inter[0]->t_val = t;
-	all_inter[0]->count = 2;  // Set count for compatibility
+	all_inter[0]->count = 1;  // Only one intersection for a plane
 	
-	all_inter[1] = safe_malloc(sizeof(t_isect), 1);
-	if (!all_inter[1])
-	{
-		free(all_inter[0]);
-		free(all_inter);
-		return (NULL);
-	}
-	all_inter[1]->t_val = t;  // Same t value for second intersection (needed for compatibility)
-	
-	all_inter[2] = NULL;  // NULL terminator
+	all_inter[1] = NULL;  // NULL terminator
 	return (all_inter);
 }
 
