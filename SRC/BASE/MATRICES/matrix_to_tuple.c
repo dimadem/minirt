@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "types.h"
+#include "muk_lib.h"
 
 /**
  * Converts a matrix to a tuple.
