@@ -187,8 +187,23 @@ static void	create_cylinder_intersections(t_isect ***a_ix, double *t_vals, int c
 	t_isect	*inter;
 	int		i;
 
-	if (!a_ix || !t_vals || count < 1 || count > 2)
+	if (!a_ix || !t_vals || count < 1 || count > 4)
 		return;
+	
+	// Sort the intersections by t_val (ascending)
+	// Simple bubble sort for small array
+	for (int j = 0; j < count - 1; j++)
+	{
+		for (int k = 0; k < count - j - 1; k++)
+		{
+			if (t_vals[k] > t_vals[k + 1])
+			{
+				double temp = t_vals[k];
+				t_vals[k] = t_vals[k + 1];
+				t_vals[k + 1] = temp;
+			}
+		}
+	}
 	
 	i = 0;
 	while (i < count)
@@ -196,17 +211,27 @@ static void	create_cylinder_intersections(t_isect ***a_ix, double *t_vals, int c
 		inter = safe_malloc(sizeof(t_isect), 1);
 		if (!inter)
 		{
-			if (i > 0 && *a_ix)
+			// Clean up all previous allocations
+			if (*a_ix)
 			{
-				free((*a_ix)[0]);
+				int j = 0;
+				while (j < i && (*a_ix)[j])
+				{
+					free((*a_ix)[j]);
+					j++;
+				}
 				*a_ix = NULL;
 			}
 			return;
 		}
 		inter->t_val = t_vals[i];
+		inter->count = count;  // Store number of intersections
 		add_to_dptr((void ***)a_ix, (void *)inter);
 		i++;
 	}
+	
+	// Add NULL terminator
+	add_to_dptr((void ***)a_ix, NULL);
 }
 
 /**
@@ -216,7 +241,7 @@ static void	create_cylinder_intersections(t_isect ***a_ix, double *t_vals, int c
  * @param ray The ray being tested
  * @param t The t value of the intersection
  * @param axis The normalized cylinder axis
- * @param projection_ptr Pointer to store the projection value
+ * @param projection_ptr Pointer to store the projection value (can be NULL)
  * @return 1 if within height limits, 0 if outside
  */
 static int	is_within_cylinder_height(t_object *obj, t_ray *ray, double t, 
@@ -244,7 +269,7 @@ static int	is_within_cylinder_height(t_object *obj, t_ray *ray, double t,
 	free_matrix(cylinder_to_point);
 	
 	// Store projection value for caller if requested
-	if (projection_ptr)
+	if (projection_ptr != NULL)
 		*projection_ptr = projection;
 	
 	// Check if projection is within cylinder height
@@ -352,15 +377,16 @@ static double	intersect_cap(t_object *obj, t_ray *ray, t_matrix *axis,
 t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 {
 	t_isect		**all_inter;
-	t_matrix	*axis, *b, *c;
-	double		abc[3], delta, t_vals[4]; // Max 4 intersections (2 body + 2 caps)
-	double		a_dot, c_dot, t1, t2, t_cap;
+	t_matrix	*axis, *oc, *rd_reject, *oc_reject;
+	double		a, b, c, delta, t_vals[4]; // Max 4 intersections (2 body + 2 caps)
+	double		t1, t2, t_cap;
 	int			count;
 
 	if (!obj || !ray || obj->type != CYLINDER || !obj->obj.cylinder.v_orient)
 		return (NULL);
 	
 	all_inter = NULL;
+	count = 0;
 	
 	// Get cylinder orientation (normalized)
 	axis = matrix_clone(obj->obj.cylinder.v_orient);
@@ -368,9 +394,90 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 		return (NULL);
 	matrix_normalize(axis);
 	
-	// Check cap intersections first
-	count = 0;
+	// Calculate vector from cylinder origin to ray origin (oc)
+	oc = matrix_subs(ray->origin, obj->obj.cylinder.origin);
+	if (!oc)
+	{
+		free_matrix(axis);
+		return (NULL);
+	}
 	
+	// Calculate projections
+	double dot_dir_axis = matrix_dot(ray->direction, axis);
+	double dot_oc_axis = matrix_dot(oc, axis);
+	
+	// Calculate perpendicular components for ray direction and oc vector
+	// Ray direction perpendicular to cylinder axis
+	rd_reject = matrix_clone(ray->direction);
+	if (!rd_reject)
+	{
+		free_matrix(axis);
+		free_matrix(oc);
+		return (NULL);
+	}
+	t_matrix *axis_temp = matrix_clone(axis);
+	if (!axis_temp)
+	{
+		free_matrix(axis);
+		free_matrix(oc);
+		free_matrix(rd_reject);
+		return (NULL);
+	}
+	matrix_scalar_mult(axis_temp, dot_dir_axis);
+	matrix_scalar_mult(axis_temp, -1);
+	matrix_sum(rd_reject, axis_temp);
+	free_matrix(axis_temp);
+	
+	// OC vector perpendicular to cylinder axis
+	oc_reject = matrix_clone(oc);
+	if (!oc_reject)
+	{
+		free_matrix(axis);
+		free_matrix(oc);
+		free_matrix(rd_reject);
+		return (NULL);
+	}
+	axis_temp = matrix_clone(axis);
+	if (!axis_temp)
+	{
+		free_matrix(axis);
+		free_matrix(oc);
+		free_matrix(rd_reject);
+		free_matrix(oc_reject);
+		return (NULL);
+	}
+	matrix_scalar_mult(axis_temp, dot_oc_axis);
+	matrix_scalar_mult(axis_temp, -1);
+	matrix_sum(oc_reject, axis_temp);
+	free_matrix(axis_temp);
+	
+	// Compute quadratic coefficients
+	a = matrix_dot(rd_reject, rd_reject);
+	b = 2 * matrix_dot(rd_reject, oc_reject);
+	c = matrix_dot(oc_reject, oc_reject) - pow(obj->obj.cylinder.diameter / 2, 2);
+	
+	// Calculate discriminant
+	delta = b * b - 4 * a * c;
+	
+	// Free temporary matrices that aren't needed anymore
+	free_matrix(rd_reject);
+	free_matrix(oc_reject);
+	
+	// Check for body intersections if discriminant is positive
+	if (delta >= 0 && fabs(a) > 0.00001)
+	{
+		// Calculate intersection points
+		t1 = (-b - sqrt(delta)) / (2 * a);
+		t2 = (-b + sqrt(delta)) / (2 * a);
+		
+		// Only include intersections with positive t values and within cylinder height
+		if (t1 > 0.00001 && is_within_cylinder_height(obj, ray, t1, axis, NULL))
+			t_vals[count++] = t1;
+		if (t2 > 0.00001 && is_within_cylinder_height(obj, ray, t2, axis, NULL))
+			t_vals[count++] = t2;
+	}
+	
+	// Check cap intersections
 	// Top cap
 	t_cap = intersect_cap(obj, ray, axis, 1);
 	if (t_cap > 0.00001)
@@ -381,72 +488,11 @@ t_isect	**ray_intersect_cylinder(t_object *obj, t_ray *ray)
 	if (t_cap > 0.00001)
 		t_vals[count++] = t_cap;
 	
-	// Calculate vector from cylinder origin to ray origin
-	c = matrix_subs(ray->origin, obj->obj.cylinder.origin);
-	if (!c)
-	{
-		free_matrix(axis);
-		return (NULL);
-	}
-	
-	// Calculate projections for quadratic equation
-	a_dot = matrix_dot(ray->direction, axis);
-	c_dot = matrix_dot(c, axis);
-	
-	// Calculate vector rejection (ray direction perpendicular to cylinder axis)
-	b = matrix_clone(ray->direction);
-	if (!b)
-	{
-		free_matrix(axis);
-		free_matrix(c);
-		return (NULL);
-	}
-	matrix_scalar_mult(b, -a_dot);
-	matrix_sum(b, ray->direction);
-	
-	// A coefficient in quadratic equation
-	abc[0] = matrix_dot(b, b);
-	free_matrix(b);
-	
-	// Calculate vector rejection (oc perpendicular to cylinder axis)
-	b = matrix_clone(axis);
-	if (!b)
-	{
-		free_matrix(axis);
-		free_matrix(c);
-		return (NULL);
-	}
-	matrix_scalar_mult(b, c_dot);
-	matrix_scalar_mult(b, -1);
-	matrix_sum(b, c);
-	
-	// B and C coefficients for quadratic equation
-	abc[1] = 2 * matrix_dot(ray->direction, b) - 2 * a_dot * c_dot;
-	abc[2] = matrix_dot(b, b) - pow(obj->obj.cylinder.diameter / 2, 2);
-	
-	// Calculate discriminant
-	delta = abc[1] * abc[1] - 4 * abc[0] * abc[2];
-	
-	// Clean up before checking discriminant
-	free_matrix(b);
-	
-	// Check for body intersections if discriminant is positive
-	if (delta >= 0 && fabs(abc[0]) > 0.00001)
-	{
-		// Calculate intersection points
-		t1 = (-abc[1] - sqrt(delta)) / (2 * abc[0]);
-		t2 = (-abc[1] + sqrt(delta)) / (2 * abc[0]);
-		
-		// Only include intersections with positive t values and within cylinder height
-		if (t1 > 0.00001 && is_within_cylinder_height(obj, ray, t1, axis, NULL))
-			t_vals[count++] = t1;
-		if (t2 > 0.00001 && is_within_cylinder_height(obj, ray, t2, axis, NULL))
-			t_vals[count++] = t2;
-	}
-	
-	free_matrix(c);
+	// Clean up resources
+	free_matrix(oc);
 	free_matrix(axis);
 	
+	// Create intersection records if we found any
 	if (count > 0)
 		create_cylinder_intersections(&all_inter, t_vals, count);
 	
