@@ -75,7 +75,10 @@ static int	setup_normal_vector(t_comps *comps)
 	if (comps->type == SPHERE)
 		comps->v_normal = sphere_normal(comps->object, comps->p_intersect);
 	else if (comps->type == PLANE)
+	{
 		comps->v_normal = plane_normal(comps->object, comps->p_intersect);
+		printf("Debug: Created plane normal\n");
+	}
 	else if (comps->type == CYLINDER)
 		comps->v_normal = create_fallback_normal(); // TODO: Implement cylinder normal
 

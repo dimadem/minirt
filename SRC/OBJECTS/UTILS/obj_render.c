@@ -51,7 +51,7 @@ static void	print_debug_info(t_comps *comp, int x, int y)
 {
 	static int debug_count = 0;
 	
-	if (debug_count >= 5 || !comp)
+	if (debug_count >= 20 || !comp)
 		return ;
 	
 	if (comp->type == SPHERE)
