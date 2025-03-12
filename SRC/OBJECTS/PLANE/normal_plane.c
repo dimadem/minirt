@@ -12,6 +12,7 @@
 
 #include "base_matrices.h"
 #include "objects_plane.h"
+#include <stdio.h>
 
 t_matrix	*plane_normal(t_object *curr, t_matrix *point)
 {
