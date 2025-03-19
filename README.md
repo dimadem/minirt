@@ -1,6 +1,6 @@
 # 42-c4-miniRT
 
-
+![Norminette](https://github.com/dimadem/minirt/actions/workflows/norminette.yml/badge.svg)
 
 ## Project about bouncing lights and shadows
 
