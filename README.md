@@ -1,6 +1,6 @@
 # 42-c4-miniRT
 
-![Norminette](https://github.com/dimadem/minirt/actions/workflows/norminette.yml/badge.svg)
+![Deploy](https://github.com/dimadem/ai-agent-conversation/actions/workflows/digitalocean-deploy.yml/badge.svg)
 
 
 ## Project about bouncing lights and shadows
