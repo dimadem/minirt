@@ -14,27 +14,95 @@
 #include "base_rays.h"
 #include "muk_lib.h"
 
+/**
+ * Sorts an array of intersections by their t-values in ascending order.
+ * Uses bubble sort algorithm for simplicity. Also stores the count of
+ * intersections in the first element's count field.
+ * 
+ * Error handling: Returns silently if input is NULL or empty.
+ * Resource management: No memory allocation or deallocation.
+ * 
+ * @param w_isect The array of intersections to sort
+ */
 static void	sort_w_isect(t_isect **w_isect)
 {
 	t_isect	*temp;
 	int		i;
+	int		j;
+	int		count;
 
-	i = 0;
-	while (w_isect[i + 1] != NULL)
+	if (!w_isect)
+		return;
+	
+	// Count the number of intersections
+	count = 0;
+	while (w_isect[count] != NULL)
+		count++;
+	
+	if (count <= 0)
+		return;
+		
+	// Bubble sort by t-value
+	for (i = 0; i < count - 1; i++)
 	{
-		if (w_isect[i]->t_val > w_isect[i + 1]->t_val)
+		for (j = 0; j < count - i - 1; j++)
 		{
-			temp = w_isect[i + 1];
-			w_isect[i + 1] = w_isect[i];
-			w_isect[i] = temp;
-			i = 0;
+			if (w_isect[j]->t_val > w_isect[j + 1]->t_val)
+			{
+				temp = w_isect[j];
+				w_isect[j] = w_isect[j + 1];
+				w_isect[j + 1] = temp;
+			}
 		}
-		else
-			i++;
 	}
-	w_isect[0]->count = i + 1;
+	
+	// Store the count for later use
+	w_isect[0]->count = count;
 }
 
+/**
+ * Dispatches to the appropriate intersection function based on object type.
+ * 
+ * Error handling: Returns NULL if input parameters are invalid or if
+ * the object type is unknown.
+ * Resource management: Delegates to type-specific intersection functions.
+ * 
+ * @param obj The object to test for intersection
+ * @param ray The ray to test for intersection
+ * @return Array of intersections or NULL if none exist or on error
+ */
+static t_isect **get_intersections(t_object *obj, t_ray *ray)
+{
+	if (!obj || !ray)
+		return (NULL);
+		
+	// Dispatch to the appropriate intersection function based on object type
+	switch (obj->type)
+	{
+		case SPHERE:
+			return (ray_intersect_sphere(obj, ray));
+		case PLANE:
+			return (ray_intersect_plane(obj, ray));
+		case CYLINDER:
+			return (ray_intersect_cylinder(obj, ray));
+		default:
+			return (NULL);  // Unknown object type
+	}
+}
+
+/**
+ * Finds all intersections between a ray and objects in the scene.
+ * Collects intersections from all objects, adds metadata, and sorts by t-value.
+ * 
+ * Error handling: Returns NULL if input parameters are invalid.
+ * Resource management: Transfers ownership of individual intersection records
+ * to the returned array. Caller is responsible for freeing the returned array
+ * and all its contents with free_dptr.
+ * 
+ * @param lux The scene data structure containing all objects
+ * @param ray The ray to test for intersections
+ * @return Array of all intersections sorted by t-value, or NULL on error
+ */
 t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 {
 	t_isect		**w_inter;
@@ -42,22 +110,43 @@ t_isect	**ray_intersect_world(t_rayt *lux, t_ray *ray)
 	int			i;
 	int			j;
 
-	if (!lux || !ray)
+	if (!lux || !ray || !lux->objects)
 		return (NULL);
+		
 	w_inter = NULL;
 	i = -1;
 	while (lux->objects[++i])
 	{
-		inter = ray_intersect_sphere(lux->objects[i], ray);
+		// Get intersections for the current object
+		inter = get_intersections(lux->objects[i], ray);
+		if (!inter)
+			continue;  // Skip to next object if no intersections
+			
+		// Process all intersections
 		j = 0;
-		while (j < 2)
+		while (inter[j] != NULL)
 		{
+			// Add metadata to each intersection
 			inter[j]->obj_id = i;
 			inter[j]->obj_type = lux->objects[i]->type;
-			add_to_dptr((void ***)&w_inter, (void *)inter[j++]);
+			
+			// Transfer ownership to the world intersection array
+			if (add_to_dptr((void ***)&w_inter, (void *)inter[j++]))
+			{
+				// Handle allocation failure in add_to_dptr
+				// Note: We don't free existing elements in w_inter as they're still needed
+				free(inter);
+				return (w_inter);  // Return what we have so far
+			}
 		}
+		
+		// Free only the array container, contents were transferred to w_inter
 		free(inter);
 	}
-	sort_w_isect(w_inter);
+	
+	// Sort intersections by t-value for proper rendering
+	if (w_inter)
+		sort_w_isect(w_inter);
+	
 	return (w_inter);
 }

@@ -59,7 +59,7 @@ int	create_image(t_rayt *lux)
 	lux->image.img = mlx_new_image(lux->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	lux->image.addr = mlx_get_data_addr(lux->image.img, &lux->image.bpp, \
 			&lux->image.line_len, &lux->image.endian);
-	obj_render(pixel, lux->objects, lux->camera);
+	obj_render(pixel, lux);
 	pixel_to_image(lux, pixel, WINDOW_WIDTH, WINDOW_HEIGHT);
 	canvas_to_ppm("./canvas.ppm", lux, WINDOW_WIDTH, WINDOW_HEIGHT);
 	i = 0;

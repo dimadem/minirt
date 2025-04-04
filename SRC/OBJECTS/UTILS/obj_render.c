@@ -15,6 +15,9 @@
 #include "base_rays.h"
 #include "window_size.h"
 #include "muk_lib.h"
+#include "base_helpers.h"
+#include "base_colours.h"
+#include "physics_light.h"
 
 static void	calculate_uv(int i, int j, t_camera *camera)
 {
@@ -24,36 +27,120 @@ static void	calculate_uv(int i, int j, t_camera *camera)
 							* camera->half_height;
 }
 
-static bool	process_pixel(int x, int y, t_object **objects, t_camera *camera)
+static t_ray	*create_ray_for_pixel(int x, int y, t_camera *camera)
 {
-	t_ray	ray;
-	t_isect	**inter;
-	int		i;
-	bool	hit;
-
-	hit = false;
 	calculate_uv(x, y, camera);
 	matrix_normalize(camera->v_orient);
-	ray = ray_create_local(camera->origin, &camera->viewport);
-	i = 0;
-	while (objects[i] != NULL)
-	{
-		inter = ray_intersect_sphere(objects[i], &ray);
-		if (inter != NULL)
-		{
-			hit = true;
-			free_dptr((void **)inter);
-		}
-		i++;
-	}
-	return (hit);
+	return (ray_create_local(camera->origin, &camera->viewport));
 }
 
-void	obj_render(int **pixel, t_object **objects, t_camera *camera)
+static void	free_comp(t_comps *comp)
+{
+	if (!comp)
+		return ;
+	if (comp->p_intersect)
+		free_matrix(comp->p_intersect);
+	if (comp->v_eye)
+		free_matrix(comp->v_eye);
+	if (comp->v_normal)
+		free_matrix(comp->v_normal);
+	free(comp);
+}
+
+// Removed debug function - not needed anymore
+
+static void	setup_material(t_mat *material, t_comps *comp)
+{
+	ft_bzero(material, sizeof(t_mat));
+	
+	if (!comp)
+		return ;
+	
+	if (comp->type == SPHERE)
+		material->colour = comp->object->obj.sphere.color;
+	else if (comp->type == PLANE)
+		material->colour = comp->object->obj.plane.color;
+	else if (comp->type == CYLINDER)
+		material->colour = comp->object->obj.cylinder.color;
+	
+	material->ambient = 0.1;
+	material->diffuse = 0.7;
+	material->specular = 0.2;
+	material->shininess = 200.0;
+}
+
+static int	apply_lighting(t_rayt *lux, t_mat *material, t_comps *comp)
+{
+	t_trgb	adjusted_color;
+	double	brightness;
+	
+	if (!lux || !lux->p_light || !comp->p_intersect || !comp->v_normal)
+		return (colour_to_int(material->colour));
+	
+	*material = lighting(lux, *material, comp->p_intersect, comp->v_normal);
+	
+	adjusted_color = material->colour;
+	brightness = material->brightness_ratio;
+	
+	if (brightness < 0.0)
+		brightness = 0.0;
+	if (brightness > 1.0)
+		brightness = 1.0;
+	
+	adjusted_color.r *= brightness;
+	adjusted_color.g *= brightness;
+	adjusted_color.b *= brightness;
+	
+	return (colour_to_int(adjusted_color));
+}
+
+static int	process_pixel(int x, int y, t_rayt *lux)
+{
+	t_ray		*ray;
+	t_isect		**intersections;
+	t_comps		*comp;
+	t_mat		material;
+	int			color;
+
+	if (!lux || !lux->camera)
+		return (0x00000000);
+		
+	ray = create_ray_for_pixel(x, y, lux->camera);
+	if (!ray)
+		return (0x00000000);
+	
+	intersections = ray_intersect_world(lux, ray);
+	if (!intersections || !intersections[0])
+	{
+		if (intersections)
+			free_dptr((void **)intersections);
+		free_ray(ray);
+		return (0x00000000);
+	}
+	
+	comp = prepare_computations(lux, intersections, ray);
+	free_ray(ray);
+	
+	if (!comp)
+	{
+		free_dptr((void **)intersections);
+		return (0x00000000);
+	}
+	
+	setup_material(&material, comp);
+	color = apply_lighting(lux, &material, comp);
+	
+	free_dptr((void **)intersections);
+	free_comp(comp);
+	
+	return (color);
+}
+
+void	obj_render(int **pixel, t_rayt *lux)
 {
 	int		y;
 	int		x;
-	bool	hit;
+	int		color;
 
 	y = 0;
 	while (y < WINDOW_HEIGHT)
@@ -61,11 +148,8 @@ void	obj_render(int **pixel, t_object **objects, t_camera *camera)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			hit = process_pixel(x, y, objects, camera);
-			if (hit == true)
-				pixel[y][x] = 0xFFFFFFFF;
-			else
-				pixel[y][x] = 0x00000000;
+			color = process_pixel(x, y, lux);
+			pixel[y][x] = color;
 			x++;
 		}
 		y++;

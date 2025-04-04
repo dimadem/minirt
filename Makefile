@@ -122,6 +122,7 @@ SRC = \
 	PHYSICS/ATMOSPHERE/atmosphere.c  \
 	PHYSICS/LIGHT/lighting.c  \
 	PHYSICS/LIGHT/reflect.c  \
+	PHYSICS/LIGHT/shadow.c	\
 	PHYSICS/MATERIAL/material.c 
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
@@ -131,7 +132,7 @@ OBJS = $(SRC:.c=.o)
 OBJECTS = $(addprefix $(OBJ_PATH), $(OBJS))
 
 all: $(NAME)
-	@./$(NAME) MAP/testing.rt
+	@./$(NAME) MAP/minimalist.rt
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
 	@mkdir -p $(dir $@)
