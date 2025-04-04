@@ -1,5 +1,4 @@
 NAME = minirt
-TESTER = luxtester
 VALGRIND = memorytester
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 #-O2
@@ -28,22 +27,6 @@ INCLUDES =	-I/usr/include \
 			-I./INC
 
 SRC_MAIN =	./SRC/mini_ray.c
-TEST_MAIN =	\
-	TESTS/LIB/Unity/src/unity.c \
-	TESTS/SRC/BASE/COLOURS/colour.c  \
-	TESTS/SRC/BASE/MATRICES/matrix_feature.c  \
-	TESTS/SRC/BASE/MATRICES/matrix_transformations.c  \
-	TESTS/SRC/BASE/RAYS/create_ray.c \
-	TESTS/SRC/CORE/RENDER/canvas.c \
-	TESTS/SRC/FEATURES/PPM/create_ppm.c \
-	TESTS/SRC/FEATURES/PPM/tick_ppm.c \
-	TESTS/SRC/OBJECTS/SPHERE/ray_sphere_intersections.c \
-	TESTS/SRC/OBJECTS/SPHERE/ray_world_intersect.c \
-	TESTS/SRC/OBJECTS/SPHERE/render_sphere.c \
-	TESTS/SRC/OBJECTS/TRANSFORM/chaining_transformations.c \
-	TESTS/SRC/PHYSICS/LIGHTS/light_shading.c \
-	TESTS/SRC/test_main.c 
-
 
 SRC_PATH = ./SRC/
 SRC = \
@@ -153,9 +136,6 @@ $(MUK_LIB):
 $(NAME): $(OBJECTS) $(MLX) $(LIBFT) $(MUK_LIB) $(SRC_MAIN)
 	@$(CC) $(CFLAGS) $(SANITIZE_FLAGS) $(INCLUDES) -o $(NAME) $(SRC_MAIN) $(OBJECTS) $(LIBFT) $(MUK_LIB) $(MLX_FLAGS) -lm
 
-$(TESTER): $(OBJECTS) $(MLX) $(LIBFT) $(MUK_LIB) $(TEST_MAIN)
-	@$(CC) $(CFLAGS) $(SANITIZE_FLAGS) $(DUNITY_FLAGS) $(INCLUDES) -o $(TESTER) $(TEST_MAIN) $(OBJECTS) $(LIBFT) $(MUK_LIB) $(MLX_FLAGS) -lm
-
 $(VALGRIND): $(SRC_MAIN) $(OBJECTS) $(LIBFT) $(MUK_LIB) $(MLX)
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $(VALGRIND) $(SRC_MAIN) $(OBJECTS) $(LIBFT) $(MUK_LIB) $(MLX_FLAGS) -lm
 
@@ -167,15 +147,11 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f $(TESTER)
 	@rm -f $(VALGRIND)
 	@make fclean -C $(LIBFT_PATH)
 	@make fclean -C $(MUK_LIB_PATH)
 
 re: fclean all
-
-unity: $(TESTER)
-	@ASAN_OPTIONS=fast_unwind_on_malloc=0:verbosity=1 ./$(TESTER) MAP/data.rt
 
 valgrind: $(VALGRIND)
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./$(VALGRIND) MAP/data.rt

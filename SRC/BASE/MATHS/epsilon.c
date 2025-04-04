@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_ray.c                                         :+:      :+:    :+:   */
+/*   epsilon.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 22:46:43 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/04 12:58:52 by mcoskune         ###   ########.fr       */
+/*   Created: 2024/12/04 19:47:23 by mcoskune          #+#    #+#             */
+/*   Updated: 2025/04/04 13:01:38 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include <math.h>
 
-int	main(int ac, char **av)
+/**
+ * @brief EPSILON function that checks if 2 doubles are equivalent. This
+ * function is needed as round off errors can cause issues when comparing
+ * doubles
+ * @return `1` if they are equal, `0` if they are not
+ */
+int	epsilon(double a, double b)
 {
-	t_rayt	lux;
-
-	// input_validate(ac, av);
-	// init_lux(&lux);
-	// parse_rt_main(av, &lux);
-	// init_mlx(&lux);
-	// render_main(&lux);
-	// exit_cleanup("Reached end of MAIN!\n", &lux, 0);
+	if (fabs(a - b) <= 0.0001)
+		return (1);
+	return (0);
 }

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_ray.c                                         :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 22:46:43 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/04 12:58:52 by mcoskune         ###   ########.fr       */
+/*   Created: 2025/04/04 12:01:03 by mcoskune          #+#    #+#             */
+/*   Updated: 2025/04/04 13:39:27 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef MINIRT_H
+# define MINIRT_H
 
-int	main(int ac, char **av)
-{
-	t_rayt	lux;
+#include <stdlib.h>
 
-	// input_validate(ac, av);
-	// init_lux(&lux);
-	// parse_rt_main(av, &lux);
-	// init_mlx(&lux);
-	// render_main(&lux);
-	// exit_cleanup("Reached end of MAIN!\n", &lux, 0);
-}
+# include "types.h"
+# include "base.h"
+
+
+
+#endif
