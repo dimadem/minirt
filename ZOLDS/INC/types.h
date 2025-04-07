@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:07:14 by dmdemirk          #+#    #+#             */
-/*   Updated: 2025/04/04 14:40:11 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:12:00 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 
-typedef enum e_type
-{
-	AMBIENT = 0,
-	CAMERA = 1,
-	LIGHT = 2,
-	SPHERE = 3,
-	PLANE = 4,
-	CYLINDER = 5,
-	OTHER = 6,
-	ERROR = 7,
-	EMPTY = 8
-}	t_type;
 
-/**
- * @brief n x m size matrix where values are stored in double **data
- * @param n [int] Number of Rows
- * @param m [int] Number of Columns
- * @param data [double] Stored numbers for matrix calculations.
- * `matrix->data[2][1]` will return the value in row_id 2 and column_id 1
- */
 
 
 typedef struct s_image
@@ -70,15 +51,6 @@ typedef struct s_uv
 	double	v;
 }	t_uv;
 
-/**
- * @brief Material [Identifier M]
- * @param colour			[0 - 255] [0 - 255] [0 - 255] [0 - 255]
- * @param brightness_ratio	[0.0 - 1.0]
- * @param ambient			[0.0 - 1.0]
- * @param diffuse			[0.0 - 1.0]
- * @param specular			[0.0 - 1.0]
- * @param shininess			[0.0 - 1.0]
- */
 typedef struct s_mat
 {
 	t_trgb	colour;
@@ -145,45 +117,8 @@ typedef struct s_light
  * @param type		[Identifier sp, pl, cy]
  * @param obj		[Union of Sphere, Plane, Cylinder]
  */
-typedef struct s_object
-{
-	t_type	type;
-	union	u_data
-	{
-		struct s_sphere
-		{
-			t_matrix	*origin;
-			t_matrix	*transform;
-			double		radius;
-			t_trgb		color;
-		}	sphere;
-		struct s_plane
-		{
-			t_matrix	*origin;
-			t_matrix	*v_orient;
-			t_trgb		color;
-		}	plane;
-		struct s_cylinder
-		{
-			t_matrix	*origin;
-			t_matrix	*v_orient;
-			double		diameter;
-			double		height;
-			t_trgb		color;
-		}	cylinder;
-	}	obj;
-}	t_object;
 
-/**
- * @brief Ray [Identifier R]
- * @param origin	[x, y, z, 1]	4x1 tuple
- * @param direction	[x, y, z, 0]	4x1 tuple
- */
-typedef struct s_ray
-{
-	t_matrix	*origin;
-	t_matrix	*direction;
-}	t_ray;
+
 
 typedef struct s_comps
 {
@@ -196,14 +131,6 @@ typedef struct s_comps
 	t_matrix	*v_normal;
 }	t_comps;
 
-typedef struct s_isect
-{
-	double		t_val;
-	int			t_count;
-	t_type		obj_type;
-	int			obj_id;
-	int			count;
-}	t_isect;
 
 
 // ************************************************************************** //

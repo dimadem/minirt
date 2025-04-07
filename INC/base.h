@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:02:10 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/04 15:27:40 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:17:00 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "types.h"
 
-/* MATHS */
+/* HELPERS */
 int			epsilon(double a, double b);
+double		discriminant(t_ray *ray, t_tuple *sphere_to_ray);
 
 /* TUPLES */
 t_tuple		tuple_sum(t_tuple *tuple1, t_tuple *tuple2);
@@ -25,8 +26,12 @@ t_tuple		tuple_scalar_mult(t_tuple *tuple, double scalar);
 double		tuple_magnitude(t_tuple *tuple);
 t_tuple		tuple_normalize(t_tuple *tuple);
 double		tuple_dot(t_tuple *tup1, t_tuple *tup2);
+t_tuple		tuple_cross(t_tuple *tup1, t_tuple *tup2);
 t_tuple		tuple_create(double x, double y, double z, int w);
 int			tuple_comp(t_tuple *tup1, t_tuple *tup2);
+t_tuple		point_create(double x, double y, double z);
+t_tuple		vector_create(double x, double y, double z);
+
 
 /* MATRIX */
 t_matrix	matrix_sum(t_matrix *mat1, t_matrix *mat2);

@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:05:34 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/04 14:45:13 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:16:36 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,32 @@ int	tuple_comp(t_tuple *tup1, t_tuple *tup2)
 	return (0);
 }
 
+t_tuple	vector_create(double x, double y, double z)
+{
+	t_tuple	a;
+
+	a.n = 4;
+	a.m = 1;
+	a.data[0][0] = x;
+	a.data[1][0] = y;
+	a.data[2][0] = z;
+	a.data[3][0] = 0;
+	return (a);
+}
+
+t_tuple	point_create(double x, double y, double z)
+{
+	t_tuple	a;
+
+	a.n = 4;
+	a.m = 1;
+	a.data[0][0] = x;
+	a.data[1][0] = y;
+	a.data[2][0] = z;
+	a.data[3][0] = 1;
+	return (a);
+}
+
 t_tuple	tuple_create(double x, double y, double z, int w)
 {
 	t_tuple	a;
@@ -44,6 +70,8 @@ t_tuple	tuple_cross(t_tuple *tup1, t_tuple *tup2)
 {
 	t_tuple	result;
 
+	result.n = 4;
+	result.m = 1;
 	result.data[0][0] = tup1->data[1][0] * tup2->data[2][0] \
 						- tup1->data[2][0] * tup2->data[1][0];
 	result.data[1][0] = tup1->data[2][0] * tup2->data[0][0] \
@@ -92,7 +120,8 @@ double	tuple_magnitude(t_tuple *tuple)
 {
 	return (sqrt(pow(tuple->data[0][0], 2) \
 				+ pow(tuple->data[1][0], 2) \
-					+ pow(tuple->data[2][0], 2)));
+					+ pow(tuple->data[2][0], 2)
+						+ pow(tuple->data[3][0], 2)));
 }
 
 t_tuple	tuple_scalar_mult(t_tuple *tuple, double scalar)

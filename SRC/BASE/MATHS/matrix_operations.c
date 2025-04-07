@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:13:46 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/04 15:28:08 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:42:17 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static double	calculate_value_tup(t_matrix *mat1, t_tuple *tup1, int i, int j)
 	return (sum);
 }
 
-static void	result_iterator_tup(t_matrix *result, t_matrix *mat1, t_matrix *tup1)
+static void	result_iterator_tup(t_tuple *result, t_matrix *mat1, t_tuple *tup1)
 {
 	int	i;
 	int	j;

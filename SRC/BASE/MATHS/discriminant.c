@@ -6,22 +6,20 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:57:12 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/14 12:27:40 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2025/04/07 15:43:57 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "base_helpers.h"
-#include "base_tuples.h"
-#include "base_matrices.h"
+#include "minirt.h"
 
-double	discriminant(t_ray *ray, t_matrix *sphere_to_ray)
+double	discriminant(t_ray *ray, t_tuple *sphere_to_ray)
 {
 	double	a;
 	double	b;
 	double	c;
 
-	a = matrix_dot(ray->direction, ray->direction);
-	b = 2 * matrix_dot(ray->direction, sphere_to_ray);
-	c = matrix_dot(sphere_to_ray, sphere_to_ray) - 1;
+	a = tuple_dot(&ray->direction, &ray->direction);
+	b = 2 * tuple_dot(&ray->direction, sphere_to_ray);
+	c = tuple_dot(sphere_to_ray, sphere_to_ray) - 1;
 	return (b * b - 4 * a * c);
 }

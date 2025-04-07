@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 15:35:53 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/03/11 15:00:00 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:10:24 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,51 +67,7 @@ static void	create_sphere_intersections(t_isect ***a_ix, double t1, double t2)
  * @param ray The ray to test for intersection
  * @return Array of intersection records or NULL if no intersection or on error
  */
-t_isect	**ray_intersect_sphere(t_object *obj, t_ray *ray)
-{
-	t_isect		**all_inter;
-	t_matrix	*sptoray;
-	double		delta;
-	t_ray		*nray;
-	double		t1, t2, var;
 
-	if (!obj || !ray || obj->type != SPHERE || !obj->obj.sphere.transform)
-		return (NULL);
-		
-	all_inter = NULL;
-	sptoray = matrix_inverse(obj->obj.sphere.transform);
-	if (!sptoray)
-		return (NULL);
-		
-	nray = ray_transform(ray, sptoray);
-	free_matrix(sptoray);
-	if (!nray)
-		return (NULL);
-		
-	sptoray = matrix_subs(nray->origin, obj->obj.sphere.origin);
-	if (!sptoray)
-	{
-		free_ray(nray);
-		return (NULL);
-	}
-	
-	delta = discriminant(nray, sptoray);
-	if (delta < 0)
-	{
-		free_ray(nray);
-		free_matrix(sptoray);
-		return (NULL);
-	}
-	
-	var = -1 * 2 * matrix_dot(nray->direction, sptoray);
-	t1 = (var - sqrt(delta)) / (2 * matrix_dot(nray->direction, nray->direction));
-	t2 = (var + sqrt(delta)) / (2 * matrix_dot(nray->direction, nray->direction));
-	
-	create_sphere_intersections(&all_inter, t1, t2);
-	free_matrix(sptoray);
-	free_ray(nray);
-	return (all_inter);
-}
 
 /**
  * Calculates the intersection points between a ray and a plane.

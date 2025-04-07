@@ -6,12 +6,12 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:00:30 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/03/10 17:21:44 by dmdemirk         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:46:18 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../muk_lib.h"
-#include "../../../INC/types.h"
+#include "/home/mcoskune/minirtdima/INC/minirt.h"
 
 void	free_matrix(t_matrix *mat);
 
@@ -110,19 +110,19 @@ int	add_to_ptr(void **ptr, void *to_add)
 		return (1);
 	if (*ptr != NULL)
 	{
-		if (((t_ambient *)*ptr)->type == AMBIENT)
-			free(*ptr);
-		else if (((t_camera *)*ptr)->type == CAMERA)
-		{
-			free_matrix(((t_camera *)*ptr)->origin);
-			free_matrix(((t_camera *)*ptr)->v_orient);
-			free(*ptr);
-		}
-		else if (((t_light *)*ptr)->type == LIGHT)
-		{
-			free_matrix(((t_light *)*ptr)->origin);
-			free(*ptr);
-		}
+		// if (((t_ambient *)*ptr)->type == AMBIENT)
+		// 	free(*ptr);
+		// else if (((t_camera *)*ptr)->type == CAMERA)
+		// {
+		// 	free_matrix(((t_camera *)*ptr)->origin);
+		// 	free_matrix(((t_camera *)*ptr)->v_orient);
+		// 	free(*ptr);
+		// }
+		// else if (((t_light *)*ptr)->type == LIGHT)
+		// {
+		// 	free_matrix(((t_light *)*ptr)->origin);
+		// 	free(*ptr);
+		// }
 	}
 	*ptr = to_add;
 	return (0);
