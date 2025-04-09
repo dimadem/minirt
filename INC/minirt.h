@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:01:03 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 22:31:31 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:22:45 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,13 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 
 # include "types.h"
 # include "base.h"
 # include "objects.h"
 # include "rays.h"
+# include "lighting.h"
 
 #include "../LIB/muk_lib/muk_lib.h"
 

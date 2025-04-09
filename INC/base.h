@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 13:02:10 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 15:17:00 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:36:13 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,11 @@ t_trgb		colour_sum(t_trgb colour1, t_trgb colour2);
 t_trgb		colour_subs(t_trgb colour1, t_trgb colour2);
 t_trgb		colour_scalar_mult(t_trgb colour, double num);
 t_trgb		colour_hadamard_product(t_trgb colour1, t_trgb colour2);
+
+/* NORMAL VECTORS */
+t_tuple		sphere_normal(t_object *curr, t_tuple *w_point);
+
+/* REFLECTION VECTORS */
+t_tuple		reflect(t_tuple *incoming, t_tuple *normal);
 
 #endif

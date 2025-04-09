@@ -6,13 +6,11 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 10:03:10 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/20 12:14:03 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:38:12 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types.h"
-#include "base_rays.h"
-#include "muk_lib.h"
+#include "minirt.h"
 
 /**
  * Sorts an array of intersections by their t-values in ascending order.
@@ -81,10 +79,10 @@ static t_isect **get_intersections(t_object *obj, t_ray *ray)
 	{
 		case SPHERE:
 			return (ray_intersect_sphere(obj, ray));
-		case PLANE:
-			return (ray_intersect_plane(obj, ray));
-		case CYLINDER:
-			return (ray_intersect_cylinder(obj, ray));
+		// case PLANE:
+		// 	return (ray_intersect_plane(obj, ray));
+		// case CYLINDER:
+		// 	return (ray_intersect_cylinder(obj, ray));
 		default:
 			return (NULL);  // Unknown object type
 	}

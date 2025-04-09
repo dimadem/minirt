@@ -6,15 +6,11 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 21:46:44 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/08 17:16:12 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:28:14 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "base_matrices.h"
-#include "base_colours.h"
-#include "physics_light.h"
-#include "libft.h"
-#include <math.h>
+#include "minirt.h"
 
 static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 {
@@ -24,7 +20,7 @@ static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 
 	// Initialize with default values first in case of early return
 	result->colour.r = 0;
-	result->colour.g = 0; 
+	result->colour.g = 0;
 	result->colour.b = 0;
 	result->colour.t = 0;
 	result->diffuse = 0;
@@ -36,87 +32,79 @@ static void	trgb_init(t_mat *result, t_mat *material, t_light *light)
 	result->colour = colour_hadamard_product(material->colour, light->color);
 	
 	// Scale by constant factor
-	result->colour.r *= 0.00392156862;
-	result->colour.g *= 0.00392156862;
-	result->colour.b *= 0.00392156862;
+	// result->colour.r *= 0.00392156862;
+	// result->colour.g *= 0.00392156862;
+	// result->colour.b *= 0.00392156862;
 	
 	// Set ambient light
 	result->ambient = light->brightness_ratio * material->ambient;
 }
 
-static double	calculate_specular(t_matrix *v_light, t_matrix *v_normal, 
-						t_matrix *camera_orient, t_light *light, t_mat mat)
+static double	calculate_specular(t_tuple *v_light, t_tuple *v_normal, t_tuple *camera_orient, t_light *light, t_mat mat)
 {
-	t_matrix	*v_reflect;
+	t_tuple	v_reflect;
 	double		dot_h;
 	double		specular;
 
 	specular = 0.0;
 	
-	if (!v_light || !v_normal || !camera_orient || !light)
-		return (specular);
+	// if (!v_light || !v_normal || !camera_orient || !light)
+	// 	return (specular);
 		
-	matrix_scalar_mult(v_light, -1);
+	tuple_scalar_mult(v_light, -1);
 	v_reflect = reflect(v_light, v_normal);
 	
-	if (v_reflect)
-	{
-		dot_h = matrix_dot(v_reflect, camera_orient);
-		if (dot_h > 0)
-			specular = light->brightness_ratio * mat.specular * 
-				pow(dot_h, mat.shininess);
-		free_matrix(v_reflect);
-	}
+	// if (v_reflect)
+	// {
+		t_tuple	negative_camera_vec = tuple_scalar_mult(camera_orient, -1);
+		dot_h = tuple_dot(&v_reflect, &negative_camera_vec);
+		// printf("dot_h is %f\n", dot_h);
+		if (dot_h < 0)
+		{
+			dot_h *= -1;
+		}
+			// printf("hello spec");
+			specular = light->brightness_ratio * mat.specular * pow(dot_h, mat.shininess);
+
+		// }
+		// free_matrix(v_reflect);
+	// }
 	
 	return (specular);
 }
 
-t_mat	lighting(t_rayt *lux, t_mat mat, t_matrix *pos, t_matrix *v_normal)
+t_mat	lighting(t_rayt *lux, t_mat mat, t_tuple pos, t_tuple v_normal)
 {
 	t_mat		result;
 	double		dot_h;
-	t_matrix	*v_light;
-	bool		in_shadow;
+	t_tuple		v_light;
+	// bool		in_shadow;
 
-	// Initialize the result with zero values
+
 	ft_bzero(&result, sizeof(t_mat));
-	
-	// Add null checks
-	if (!lux || !lux->p_light || !pos || !v_normal || !lux->camera || !lux->camera->v_orient)
-		return (result);
 	
 	trgb_init(&result, &mat, lux->p_light);
 	
-	// Check for shadows if shadow detection is available
-	in_shadow = is_shadowed(lux, pos);
+	// in_shadow = is_shadowed(lux, pos);
 	
-	if (!in_shadow)
-	{
-		v_light = matrix_subs(lux->p_light->origin, pos);
-		if (!v_light)
-			return (result);
-			
-		matrix_normalize(v_light);
-		dot_h = matrix_dot(v_light, v_normal);
+	// if (!in_shadow)
+	// {
+		v_light = tuple_sub(&lux->p_light->origin, &pos);
+		v_light = tuple_normalize(&v_light);
+		dot_h = tuple_dot(&v_light, &v_normal);
 		
 		if (dot_h > 0)
 		{
 			result.diffuse = lux->p_light->brightness_ratio * mat.diffuse * dot_h;
-			
 			// We need to clone v_light because calculate_specular will modify it
-			t_matrix *v_light_copy = matrix_clone(v_light);
-			if (v_light_copy)
-			{
-				result.specular = calculate_specular(v_light_copy, v_normal, 
-					lux->camera->v_orient, lux->p_light, mat);
-				free_matrix(v_light_copy);
-			}
-		}
+			t_tuple v_light_copy = v_light;
+			result.specular = calculate_specular(&v_light_copy, &v_normal, &lux->camera->v_orient, lux->p_light, mat);
+
+		// }
 		
-		free_matrix(v_light);
+
 	}
-	
-	// Calculate final brightness
+
 	result.brightness_ratio = result.ambient + result.diffuse + result.specular;
 	return (result);
 }

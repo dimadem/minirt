@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 22:46:43 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/08 21:39:22 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:45:00 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	print_matrix(t_matrix *mat, char *str)
 		i = 0;
 		while (i < mat->m)
 		{
-			printf("%.3f  ", mat->data[j][i]);
+			printf("%.5f  ", mat->data[j][i]);
 			i++;
 		}
 		printf("\n");
@@ -56,7 +56,7 @@ void	print_tuple(t_tuple *tup, char *str)
 		i = 0;
 		while (i < tup->m)
 		{
-			printf("%.3f  ", tup->data[j][i]);
+			printf("%.5f  ", tup->data[j][i]);
 			i++;
 		}
 		printf("\n");
@@ -96,6 +96,17 @@ void	print_intersect(t_isect **isect, char *str)
 		printf("count %d\n", isect[i]->count);
 		i++;
 	}
+}
+
+void	print_material(t_mat *mat, char *str)
+{
+	printf(MAGENTA "Material Structure %s\n" RESET, str);
+	print_color(&mat->colour, "Color of given Material");
+	printf("Brightness Ratio %.3f  \n", mat->brightness_ratio);
+	printf("Ambient %.5f  \n", mat->ambient);
+	printf("Diffuse %.5f  \n", mat->diffuse);
+	printf("Specular %.5f  \n", mat->specular);
+	printf("Shininess %.5f  \n", mat->shininess);
 }
 
 
@@ -139,6 +150,7 @@ int main()
 		// print_tuple(&tup3, "TUPLE 3 CROSS PRODUCT");
 	}
 
+
 	/** CHAPTER 2 - COLOR TEST **/
 	printf(RED "COLOR TEST\n" RESET);
 	{
@@ -167,6 +179,7 @@ int main()
 		// color3 = colour_hadamard_product(color1, color2);
 		// print_color(&color3, "color3");
 	}
+
 
 	/** CHAPTER 3 - MATRIX TEST **/
 	printf(RED "MATRIX TEST\n" RESET);
@@ -347,6 +360,7 @@ int main()
 		// print_tuple(&temp, "ALL TRANSFORM");
 	}
 
+
 	/** CHAPTER 5 - RAY SPHERE INTERSECTIONS **/
 	printf(RED "RAY SPHERE INTERSECTIONS\n" RESET);
 	{
@@ -448,13 +462,145 @@ int main()
 	}
 
 
-
 	/** CHAPTER 6 - LIGHT AND SHADING **/
-	printf(RED "RAY SPHERE INTERSECTIONS\n" RESET);
+	printf(RED "LIGHT AND SHADING\n" RESET);
 	{
-		printf(BLUE "CREATE RAY\n" RESET);
+		// printf(BLUE "SPHERE NORMALS\n" RESET);
+		// t_object	sph;
 
+		// sph.type = SPHERE;
+		// sph.obj.sphere.origin = point_create(0,0,0); sph.obj.sphere.transform = matrix_identity(4); sph.obj.sphere.radius = 1;
 		
+		// t_tuple		normal;
+		// t_tuple		poi;
+
+		// poi = point_create(1,0,0);
+		// normal = sphere_normal(&sph, &poi);
+		// print_tuple(&normal, "Normal vector at 1 0 0");
+
+		// poi = point_create(0,1,0);
+		// normal = sphere_normal(&sph, &poi);
+		// print_tuple(&normal, "Normal vector at 0 1 0");
+
+		// poi = point_create(0,0,1);
+		// normal = sphere_normal(&sph, &poi);
+		// print_tuple(&normal, "Normal vector at 0 0 1");
+
+		// poi = point_create(sqrt(3)/3,sqrt(3)/3,sqrt(3)/3);
+		// normal = sphere_normal(&sph, &poi);
+		// print_tuple(&normal, "Normal vector at sqrt(3)/3's");
+
+		// t_matrix	scale = object_scaling(1,0.5,1);
+		// t_matrix	rotate = rotation_z(M_PI/5);
+		// sph.obj.sphere.transform = matrix_multiple(&scale, &rotate);
+		// poi = point_create(0, sqrt(2)/2, -sqrt(2)/2);
+		// normal = sphere_normal(&sph, &poi);
+		// print_tuple(&normal, "Normal vector on translated sphere");
+
+		// printf(BLUE "REFLECTION VECTORS\n" RESET);
+
+		// t_tuple	vector;
+		// vector = vector_create(1,-1,0);
+		// normal = vector_create(0,1,0);
+		// t_tuple	vreflect;
+		// vreflect = reflect(&vector, &normal);
+		// print_tuple(&vreflect, "Reflecting at 45 deg");
+
+		// vector = vector_create(0, -1, 0);
+		// normal = vector_create(sqrt(2)/2,sqrt(2)/2,0);
+		// vreflect = reflect(&vector, &normal);
+		// print_tuple(&vreflect, "Reflecting off a slanted surface");
+
+
+		// printf(BLUE "PHOOOOOOOOOOOONG!!!\n" RESET);
+
+		// printf(BLUE "TEST 1 - PHOOOOOOOOOOOONG!!!\n" RESET);
+		// t_light	light;
+		// light.color = colour_create(1,1,1); light.origin = point_create(0,0,-10);
+		// t_mat	material;
+		// material.colour = colour_create(1,1,1); material.ambient = 0.1; material.diffuse = 0.9; material.specular = 0.9; material.shininess = 200;
+
+		// t_tuple 	normal_v;
+		// t_mat		result;
+		// t_rayt		lux;
+		// t_camera	cam;
+		
+		// sph.material = material;
+		// sph.obj.sphere.origin = point_create(0,0,0);
+		// sph.obj.sphere.transform = matrix_identity(4);
+		// lux.camera = &cam;
+		// lux.p_light = &light;
+		// light.brightness_ratio = 1;
+		// cam.origin = point_create(0,0,-1);
+		// cam.v_orient = vector_create(0,0,1); //IN THE LIGHTING THIS IS TAKEN WRONG, put a simple fix for now
+
+		// normal_v = vector_create(0,0,-1);
+		// result = lighting(&lux, material, sph.obj.sphere.origin, normal_v);
+		// print_material(&result, "First Test");
+
+		// cam.v_orient = vector_create(0, -sqrt(2)/2, sqrt(2)/2);
+		// result = lighting(&lux, material, sph.obj.sphere.origin, normal_v);
+		// print_material(&result, "Second Test eye at 45 degree");
+
+		// cam.v_orient = vector_create(0, 0, 1);
+		// light.origin = point_create(0,10,-10);
+		// result = lighting(&lux, material, sph.obj.sphere.origin, normal_v);
+		// print_material(&result, "Third Test light at 45 degree");
+
+		// cam.v_orient = vector_create(0, sqrt(2)/2, sqrt(2)/2);
+		// result = lighting(&lux, material, sph.obj.sphere.origin, normal_v);
+		// print_material(&result, "4th Test eye and light at 45 degree");
+
+		// cam.v_orient = vector_create(0, 0, 1);
+		// light.origin = point_create(0,0,10);
+		// result = lighting(&lux, material, sph.obj.sphere.origin, normal_v);
+		// print_material(&result, "5th Test Light Behind the Object");
 	}
 	
+
+	/** CHAPTER 7 - MAKING THE SCENE **/
+	printf(RED "MAKING THE SCENE\n" RESET);
+	{
+		printf(BLUE "BUILDING THE WORLD\n" RESET);
+		t_rayt		lux;
+
+		t_mat	material;
+		material.colour = colour_create(1,1,1); material.ambient = 0.1; material.diffuse = 0.9; material.specular = 0.9; material.shininess = 200;
+
+		t_light	light;
+		light.color = colour_create(1,1,1); light.origin = point_create(-10,10,-10); light.brightness_ratio = 1;
+
+		t_object	sph1;
+		sph1.material = material;
+		sph1.type = SPHERE; sph1.material.colour = colour_create(0.8, 1, 0.6);
+		sph1.material.diffuse = 0.8; sph1.material.specular = 0.2;
+		sph1.obj.sphere.origin = point_create(0,0,0);
+		sph1.obj.sphere.transform = matrix_identity(4);
+
+		t_object	sph2;
+		sph2.type = SPHERE; sph2.material = material;
+		sph2.obj.sphere.origin = point_create(0,0,0);
+		sph2.obj.sphere.transform = object_scaling(0.5,0.5,0.5);
+
+		t_camera	cam;
+		cam.origin = point_create(0,0,-1);
+		cam.v_orient = vector_create(0,0,1);
+
+		lux.camera = &cam;
+		lux.p_light = &light;
+		lux.objects = NULL;
+		add_to_dptr((void ***)&lux.objects, (void *)&sph1);
+		add_to_dptr((void ***)&lux.objects, (void *)&sph2);
+
+		t_ray	ray1;
+		ray1.origin = point_create(0,0,-5); ray1.direction = vector_create(0,0,1);
+
+		t_isect **inter;
+		// inter = ray_intersect_sphere(&sph1, &ray1);
+		inter = ray_intersect_world(&lux, &ray1);
+		print_intersect(inter, "Ray1 Intersecting the World");
+
+		free(lux.objects);
+		free_dptr((void **)inter);
+	}
 }

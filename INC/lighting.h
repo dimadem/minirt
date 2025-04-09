@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reflect.c                                          :+:      :+:    :+:   */
+/*   lighting.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 20:58:28 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/03 21:27:51 by mcoskune         ###   ########.fr       */
+/*   Created: 2025/04/09 11:21:48 by mcoskune          #+#    #+#             */
+/*   Updated: 2025/04/09 11:22:25 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "base_matrices.h"
+#ifndef LIGHTING_H
+# define LIGHTING_H
 
-t_matrix	*reflect(t_matrix *incoming, t_matrix *normal)
-{
-	t_matrix	*temp;
-	t_matrix	*v_ref;
-	double		dot;
+# include "minirt.h"
 
-	temp = matrix_clone(normal);
-	dot = matrix_dot(incoming, normal);
-	matrix_scalar_mult(temp, 2 * dot);
-	v_ref = matrix_subs(incoming, temp);
-	free_matrix(temp);
-	return (v_ref);
-}
+t_mat	lighting(t_rayt *lux, t_mat mat, t_tuple pos, t_tuple v_normal);
+
+
+#endif

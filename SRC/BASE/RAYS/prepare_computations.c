@@ -6,17 +6,11 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 13:03:54 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/01/19 18:20:15 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:47:54 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "types.h"
-#include "muk_lib.h"
-#include "base_matrices.h"
-#include "base_rays.h"
-#include "objects_sphere.h"
-#include "objects_plane.h"
-#include "objects_cylinder.h"
+#include "minirt.h"
 
 static t_comps	*init_comp_structure(t_isect *inter)
 {
@@ -90,7 +84,7 @@ t_comps	*prepare_computations(t_rayt *lux, t_isect **inter, t_ray *ray)
 {
 	t_comps	*comps;
 
-	if (!lux || !inter || !inter[0] || !ray || !ray->direction || !ray->origin)
+	if (!lux || !inter || !inter[0] || !ray)
 		return (NULL);
 
 	comps = init_comp_structure(inter[0]);

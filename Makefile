@@ -37,7 +37,11 @@ SRC = \
 	SRC/BASE/MATHS/tuple_operations.c \
 	SRC/BASE/COLOURS/colour.c \
 	SRC/BASE/RAYS/rays.c \
-	SRC/BASE/OBJECTS/object_manip.c
+	SRC/BASE/OBJECTS/object_manip.c \
+	SRC/BASE/MATHS/normal_vectors.c \
+	SRC/LIGHTING/lighting.c \
+	SRC/BASE/RAYS/ray_world_intersect.c \
+	SRC/BASE/RAYS/prepare_computations.c \
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 

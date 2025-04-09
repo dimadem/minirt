@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:13:02 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/08 21:36:17 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:44:24 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_isect	**ray_intersect_sphere(t_object *obj, t_ray *ray)
 	delta = discriminant(&nray, &temp);
 	if (delta < 0)
 	{
-		return (NULL);
+		// return (NULL);
+		delta *= -1;
 	}
 	var = -1 * 2 * tuple_dot(&nray.direction, &temp);
 	t1 = (var - sqrt(delta)) / (2 * tuple_dot(&nray.direction, &nray.direction));
