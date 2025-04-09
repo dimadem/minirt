@@ -6,44 +6,77 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:13:02 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 17:29:30 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/08 21:36:17 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+static void	create_sphere_intersections(t_isect ***a_ix, double t1, double t2)
+{
+	t_isect	*inter1;
+	t_isect	*inter2;
+
+	if (!a_ix)
+		return;
+		
+	inter1 = safe_malloc(sizeof(t_isect), 1);
+	if (!inter1)
+		return;
+		
+	inter1->t_val = t1;
+	add_to_dptr((void ***)a_ix, (void *)inter1);
+	
+	inter2 = safe_malloc(sizeof(t_isect), 1);
+	if (!inter2)
+	{
+		free((*a_ix)[0]);
+		*a_ix = NULL;
+		return;
+	}
+	
+	inter2->t_val = t2;
+	add_to_dptr((void ***)a_ix, (void *)inter2);
+}
+
 t_isect	**ray_intersect_sphere(t_object *obj, t_ray *ray)
 {
 	t_isect		**all_inter;
-	// t_matrix	sptoray;
-	// double		delta;
-	// t_ray		*nray;
-	// double		t1, t2, var;
+	t_matrix	sptoray;
+	double		delta;
+	t_ray		nray;
+	t_tuple		temp;
+	double		t1, t2, var;
 
-	if (!obj || !ray || obj->type != SPHERE || !obj->obj.sphere.transform)
+	if (!obj || !ray || obj->type != SPHERE)
 		return (NULL);
-		
-	// all_inter = NULL;
-	// sptoray = matrix_inverse(obj->obj.sphere.transform);
-		
-	// nray = ray_transform(ray, sptoray);
-	// if (!nray)
-	// 	return (NULL);
-		
-	// sptoray = matrix_sub(&nray->origin, obj->obj.sphere.origin);
-	// delta = discriminant(nray, &sptoray);
-	// if (delta < 0)
-	// {
-	// 	return (NULL);
-	// }
-	
-	// var = -1 * 2 * tuple_dot(&nray->direction, &sptoray);
-	// t1 = (var - sqrt(delta)) / (2 * tuple_dot(&nray->direction, &nray->direction));
-	// t2 = (var + sqrt(delta)) / (2 * tuple_dot(&nray->direction, &nray->direction));
-
-	// create_sphere_intersections(&all_inter, t1, t2);
 	all_inter = NULL;
+	sptoray = matrix_inverse(&obj->obj.sphere.transform);
+	nray = ray_transform(ray, &sptoray);
+	temp = tuple_sub(&nray.origin, &obj->obj.sphere.origin);
+	delta = discriminant(&nray, &temp);
+	if (delta < 0)
+	{
+		return (NULL);
+	}
+	var = -1 * 2 * tuple_dot(&nray.direction, &temp);
+	t1 = (var - sqrt(delta)) / (2 * tuple_dot(&nray.direction, &nray.direction));
+	t2 = (var + sqrt(delta)) / (2 * tuple_dot(&nray.direction, &nray.direction));
+	create_sphere_intersections(&all_inter, t1, t2);
 	return (all_inter);
+}
+
+t_ray	ray_transform(t_ray *ray, t_matrix *matrix)
+{
+	t_ray		new_ray;
+	t_tuple		new_origin;
+	t_tuple		new_direction;
+
+	new_origin = matrix_tuple_multiple(matrix, &ray->origin);
+	new_direction = matrix_tuple_multiple(matrix, &ray->direction);
+	new_ray.origin = new_origin;
+	new_ray.direction = new_direction;
+	return (new_ray);
 }
 
 t_tuple	ray_position(t_ray ray, double dt)

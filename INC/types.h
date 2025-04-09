@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:02:25 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 13:41:15 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:30:49 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,21 @@ typedef struct s_object
 	{
 		struct s_sphere
 		{
-			t_matrix	*origin;
-			t_matrix	*transform;
+			t_tuple		origin;
+			t_matrix	transform;
 			double		radius;
 			t_trgb		color;
 		}	sphere;
 		struct s_plane
 		{
-			t_matrix	*origin;
-			t_matrix	*v_orient;
+			t_tuple		*origin;
+			t_tuple		*v_orient;
 			t_trgb		color;
 		}	plane;
 		struct s_cylinder
 		{
-			t_matrix	*origin;
-			t_matrix	*v_orient;
+			t_tuple		*origin;
+			t_tuple		*v_orient;
 			double		diameter;
 			double		height;
 			t_trgb		color;

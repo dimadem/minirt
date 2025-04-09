@@ -6,12 +6,12 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:00:30 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 13:46:18 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:32:23 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../muk_lib.h"
-#include "/home/mcoskune/minirtdima/INC/minirt.h"
+#include "../../../INC/minirt.h"
 
 void	free_matrix(t_matrix *mat);
 

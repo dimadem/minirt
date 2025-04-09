@@ -6,7 +6,7 @@
 /*   By: mcoskune <mcoskune@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 12:01:03 by mcoskune          #+#    #+#             */
-/*   Updated: 2025/04/07 17:28:48 by mcoskune         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:31:31 by mcoskune         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "objects.h"
 # include "rays.h"
 
-#include "/home/mcoskune/minirtdima/LIB/muk_lib/muk_lib.h"
+#include "../LIB/muk_lib/muk_lib.h"
 
 # define RED		"\033[0;31m"
 # define GREEN	"\033[0;32m"
